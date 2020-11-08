@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "GiftCertificates", "GiftCertificates\GiftCertificates.vbproj", "{02AC98A7-4939-40B9-961F-F53E7D19D73D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02AC98A7-4939-40B9-961F-F53E7D19D73D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02AC98A7-4939-40B9-961F-F53E7D19D73D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02AC98A7-4939-40B9-961F-F53E7D19D73D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02AC98A7-4939-40B9-961F-F53E7D19D73D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C6C7BF32-2656-40FA-A5CA-6C8670B1EB61}
+	EndGlobalSection
+EndGlobal
