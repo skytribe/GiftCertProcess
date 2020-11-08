@@ -162,6 +162,7 @@
     <Compile Include="Forms\FrmReprint.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Models\BrotherPrinting.vb" />
     <Compile Include="Models\ClsGiftCertificate.vb" />
     <Compile Include="Models\ClsJumpRunCustomer.vb" />
     <Compile Include="Models\ClsPersonSearch.vb" />
