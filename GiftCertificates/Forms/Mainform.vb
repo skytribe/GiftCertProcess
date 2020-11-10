@@ -62,4 +62,13 @@
     Private Sub setupForm()
         Me.Text = "Gift Certificates Main Form"
     End Sub
+
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+        Dim sb As New System.Text.StringBuilder
+        sb.AppendLine("17821 20th ave se")
+        sb.AppendLine("Mill Creek, WA 98012")
+
+        DoPrint("Spotty Bowles", sb.ToString)
+
+    End Sub
 End Class

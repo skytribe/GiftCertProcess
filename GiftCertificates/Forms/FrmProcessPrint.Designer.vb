@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FrmProcessPrint
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class FrmProcessPrint
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -34,7 +34,6 @@ Partial Class FrmProcessPrint
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -160,21 +159,11 @@ Partial Class FrmProcessPrint
         Me.Button3.Text = "Print Label (Purchaser)"
         Me.Button3.UseVisualStyleBackColor = True
         '
-        'Button4
-        '
-        Me.Button4.Location = New System.Drawing.Point(707, 100)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(142, 61)
-        Me.Button4.TabIndex = 4
-        Me.Button4.Text = "Print Label (Recipient/Shipper)"
-        Me.Button4.UseVisualStyleBackColor = True
-        '
         'FrmProcessPrint
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(889, 282)
-        Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
@@ -200,5 +189,4 @@ Partial Class FrmProcessPrint
     Friend WithEvents Label3 As Label
     Friend WithEvents lblRecipientEmail As Label
     Friend WithEvents Label1 As Label
-    Friend WithEvents Button4 As Button
 End Class

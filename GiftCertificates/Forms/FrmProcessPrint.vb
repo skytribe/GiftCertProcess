@@ -6,27 +6,55 @@
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        MsgBox("TO BE IMPLEMENTED Print a shipping label - Using Purchaser")
+        Dim sb As New System.Text.StringBuilder
+        Dim addressCityStateZip As String = ""
+        Try
+            If String.IsNullOrEmpty(Certificate.Recipient_Address1) = False Then
+                sb.AppendLine(Certificate.Recipient_Address1.Trim)
+                If String.IsNullOrEmpty(Certificate.Recipient_Address2) = False Then
+                    sb.AppendLine(Certificate.Recipient_Address2.Trim)
+                End If
+                addressCityStateZip = String.Format("{0}  {1}  {2}", Certificate.Recipient_City.Trim.ToProperCase, Certificate.Recipient_State.Trim.ToProperCase, Certificate.Recipient_Zip.Trim)
+                sb.AppendLine(addressCityStateZip)
+            Else
+                sb.AppendLine(Certificate.Purchaser_Address1.Trim)
+                If String.IsNullOrEmpty(Certificate.Purchaser_Address2) = False Then
+                    sb.AppendLine(Certificate.Purchaser_Address2.Trim)
+                End If
+                addressCityStateZip = String.Format("{0}  {1}  {2}", Certificate.Purchaser_City.Trim.ToProperCase, Certificate.Purchaser_State.Trim.ToProperCase, Certificate.Purchaser_Zip.Trim)
+                sb.AppendLine(addressCityStateZip)
+
+            End If
+            DoPrint(Certificate.Purchaser_Name, sb.ToString)
+            MsgBox("TO BE IMPLEMENTED Print a shipping label - Using Purchaser")
+        Catch ex As Exception
+            MsgBox(ex)
+        End Try
+
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Try
+            If Certificate.delivery = DeliveryOptions.InOffice OrElse
+                    Certificate.delivery = DeliveryOptions.USMail OrElse
+                    Certificate.delivery = DeliveryOptions.USMailDiscrete Then
+                PrintCertificate(Certificate, dest:=Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbMergeToNewPublication)
+            ElseIf Certificate.delivery = DeliveryOptions.Email Then
+                Button1.Enabled = False
+                'PrintCertificate(Certificate, dest:=Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbMergeToNewPublication)
+                SendEmail(Certificate, destEmail:=
+                          TextBox1.Text)
+                Button1.Enabled = True
+            Else
+            End If
 
-        If Certificate.delivery = DeliveryOptions.InOffice OrElse
-                Certificate.delivery = DeliveryOptions.USMail OrElse
-                Certificate.delivery = DeliveryOptions.USMailDiscrete Then
-            PrintCertificate(Certificate, dest:=Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbMergeToNewPublication)
-        ElseIf Certificate.delivery = DeliveryOptions.Email Then
-            Button1.Enabled = False
-            'PrintCertificate(Certificate, dest:=Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbMergeToNewPublication)
-            SendEmail(Certificate, destEmail:=
-                      TextBox1.Text)
-            Button1.Enabled = True
-        Else
-        End If
 
 
+            Me.Close()
+        Catch ex As Exception
+            MsgBox(ex)
+        End Try
 
-        Me.Close()
     End Sub
 
     Private Sub FrmProcessPrint_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -83,4 +111,6 @@
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
         DetermineControlStatus()
     End Sub
+
+
 End Class

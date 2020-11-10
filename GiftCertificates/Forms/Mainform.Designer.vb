@@ -30,6 +30,7 @@ Partial Class Mainform
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.Button7 = New System.Windows.Forms.Button()
+        Me.Button8 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Button1
@@ -101,11 +102,22 @@ Partial Class Mainform
         Me.Button7.Text = "Development Reset/Test"
         Me.Button7.UseVisualStyleBackColor = True
         '
+        'Button8
+        '
+        Me.Button8.ForeColor = System.Drawing.Color.Magenta
+        Me.Button8.Location = New System.Drawing.Point(343, 313)
+        Me.Button8.Name = "Button8"
+        Me.Button8.Size = New System.Drawing.Size(257, 52)
+        Me.Button8.TabIndex = 7
+        Me.Button8.Text = "LabelPrint"
+        Me.Button8.UseVisualStyleBackColor = True
+        '
         'Mainform
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(642, 312)
+        Me.ClientSize = New System.Drawing.Size(642, 400)
+        Me.Controls.Add(Me.Button8)
         Me.Controls.Add(Me.Button7)
         Me.Controls.Add(Me.Button6)
         Me.Controls.Add(Me.Button5)
@@ -127,4 +139,5 @@ Partial Class Mainform
     Friend WithEvents Button5 As Button
     Friend WithEvents Button6 As Button
     Friend WithEvents Button7 As Button
+    Friend WithEvents Button8 As Button
 End Class

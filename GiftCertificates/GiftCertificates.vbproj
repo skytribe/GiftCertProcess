@@ -51,42 +51,46 @@
     <ApplicationIcon>hnet.com-image.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Interop.bpac">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Brother bPAC3 SDK\Samples\VBNET\Badge\bin\x86\Debug\Interop.bpac.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Publisher, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Interop.Microsoft.Office.Interop.Publisher.2.2.0.0\lib\net40\Interop.Microsoft.Office.Interop.Publisher.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Syncfusion.Core.WinForms, Version=18.3460.0.40, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Core.WinForms.18.3.0.40\lib\net46\Syncfusion.Core.WinForms.dll</HintPath>
+    <Reference Include="Syncfusion.Core.WinForms, Version=18.3460.0.47, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Core.WinForms.18.3.0.47\lib\net46\Syncfusion.Core.WinForms.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Data.WinForms, Version=18.3460.0.40, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Data.WinForms.18.3.0.40\lib\net46\Syncfusion.Data.WinForms.dll</HintPath>
+    <Reference Include="Syncfusion.Data.WinForms, Version=18.3460.0.47, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Data.WinForms.18.3.0.47\lib\net46\Syncfusion.Data.WinForms.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.DataSource.WinForms, Version=18.3460.0.40, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.DataSource.WinForms.18.3.0.40\lib\net46\Syncfusion.DataSource.WinForms.dll</HintPath>
+    <Reference Include="Syncfusion.DataSource.WinForms, Version=18.3460.0.47, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.DataSource.WinForms.18.3.0.47\lib\net46\Syncfusion.DataSource.WinForms.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Grid.Windows, Version=18.3460.0.40, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Grid.Windows.18.3.0.40\lib\net46\Syncfusion.Grid.Windows.dll</HintPath>
+    <Reference Include="Syncfusion.Grid.Windows, Version=18.3460.0.47, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Grid.Windows.18.3.0.47\lib\net46\Syncfusion.Grid.Windows.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.GridCommon.WinForms, Version=18.3460.0.40, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.GridCommon.WinForms.18.3.0.40\lib\net46\Syncfusion.GridCommon.WinForms.dll</HintPath>
+    <Reference Include="Syncfusion.GridCommon.WinForms, Version=18.3460.0.47, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.GridCommon.WinForms.18.3.0.47\lib\net46\Syncfusion.GridCommon.WinForms.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Licensing, Version=18.3460.0.40, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Licensing.18.3.0.40\lib\net46\Syncfusion.Licensing.dll</HintPath>
+    <Reference Include="Syncfusion.Licensing, Version=18.3460.0.47, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Licensing.18.3.0.47\lib\net46\Syncfusion.Licensing.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.SfDataGrid.WinForms, Version=18.3460.0.40, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.SfDataGrid.WinForms.18.3.0.40\lib\net46\Syncfusion.SfDataGrid.WinForms.dll</HintPath>
+    <Reference Include="Syncfusion.SfDataGrid.WinForms, Version=18.3460.0.47, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfDataGrid.WinForms.18.3.0.47\lib\net46\Syncfusion.SfDataGrid.WinForms.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.SfInput.WinForms, Version=18.3460.0.40, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.SfInput.WinForms.18.3.0.40\lib\net46\Syncfusion.SfInput.WinForms.dll</HintPath>
+    <Reference Include="Syncfusion.SfInput.WinForms, Version=18.3460.0.47, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfInput.WinForms.18.3.0.47\lib\net46\Syncfusion.SfInput.WinForms.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.SfListView.WinForms, Version=18.3460.0.40, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.SfListView.WinForms.18.3.0.40\lib\net46\Syncfusion.SfListView.WinForms.dll</HintPath>
+    <Reference Include="Syncfusion.SfListView.WinForms, Version=18.3460.0.47, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfListView.WinForms.18.3.0.47\lib\net46\Syncfusion.SfListView.WinForms.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Shared.Base, Version=18.3460.0.40, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Shared.Base.18.3.0.40\lib\net46\Syncfusion.Shared.Base.dll</HintPath>
+    <Reference Include="Syncfusion.Shared.Base, Version=18.3460.0.47, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Shared.Base.18.3.0.47\lib\net46\Syncfusion.Shared.Base.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Shared.Windows, Version=18.3460.0.40, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Shared.Windows.18.3.0.40\lib\net46\Syncfusion.Shared.Windows.dll</HintPath>
+    <Reference Include="Syncfusion.Shared.Windows, Version=18.3460.0.47, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Shared.Windows.18.3.0.47\lib\net46\Syncfusion.Shared.Windows.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -234,6 +238,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Files\Address.lbx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Badge.lbx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Files\GC004000.pdf" />
     <None Include="Files\GiftCertificate.pub">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -261,6 +271,17 @@
     </Content>
     <Content Include="Files\fields.txt" />
     <Content Include="hnet.com-image.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="bpac">
+      <Guid>{90359D74-B7D9-467F-B938-3883F4CAB582}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

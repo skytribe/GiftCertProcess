@@ -141,6 +141,106 @@ Public Module Module4
 
 
 
+    Public Function RetrieveGiftCertificatesFromQueue(name As String, Optional devmode As Boolean = False) As List(Of ClsGiftCertificate)
+
+        Dim sfield As String = ""
+
+        Dim LstPossibles As New List(Of ClsGiftCertificate)
+        GetConnectionString()
+        Try
+            Dim cmd As New SqlCommand
+            Dim reader As SqlDataReader
+
+            _sqlCon = New SqlConnection(_strConn)
+            Dim sqlstring = String.Format("Select * from dbo.GiftCertificates where Purchaser_FirstName like  '%{0}%' OR Purchaser_LastName like  '%{1}%'", name.Trim, name.Trim)
+
+            If devmode = False Then
+                cmd.CommandText = sqlstring
+            Else
+                '//Devmode
+                cmd.CommandText = "Select * from dbo.GiftCertificates"
+            End If
+
+            'cmd.CommandText = "Select * from dbo.GiftCertificates"
+            cmd.CommandType = CommandType.Text
+            cmd.Connection = _sqlCon
+
+            _sqlCon.Open()
+
+            reader = cmd.ExecuteReader()
+            ' Data is accessible through the DataReader object here.
+            ' Use Read method (true/false) to see if reader has records and advance to next record
+            ' You can use a While loop for multiple records (While reader.Read() ... End While)
+            Do While reader.Read
+                Dim PossibleRecord As New ClsGiftCertificate
+
+
+                PossibleRecord.ID = reader("Id").ToString()
+
+                PossibleRecord.Purchaser_FirstName = reader("Purchaser_FirstName").ToString()
+                PossibleRecord.Purchaser_LastName = reader("Purchaser_LastName").ToString()
+                PossibleRecord.Purchaser_Address1 = reader("Purchaser_Address1").ToString()
+                PossibleRecord.Purchaser_Address2 = reader("Purchaser_Address2").ToString()
+                PossibleRecord.Purchaser_City = reader("Purchaser_City").ToString()
+                PossibleRecord.Purchaser_State = reader("Purchaser_State").ToString()
+                PossibleRecord.Purchaser_Zip = reader("Purchaser_Zip").ToString()
+                PossibleRecord.Purchaser_Phones1 = reader("Purchaser_Phone1").ToString()
+                PossibleRecord.Purchaser_Phones2 = reader("Purchaser_Phone2").ToString()
+                PossibleRecord.Purchaser_Email = reader("Purchaser_Email").ToString()
+
+                PossibleRecord.Recipient_FirstName = reader("Recipient_FirstName").ToString()
+                PossibleRecord.Recipient_LastName = reader("Recipient_LastName").ToString()
+                PossibleRecord.Recipient_Address1 = reader("Recipient_Address1").ToString()
+                PossibleRecord.Recipient_Address2 = reader("Recipient_Address2").ToString()
+                PossibleRecord.Recipient_City = reader("Recipient_City").ToString()
+                PossibleRecord.Recipient_State = reader("Recipient_State").ToString()
+                PossibleRecord.Recipient_Zip = reader("Recipient_Zip").ToString()
+                PossibleRecord.Recipient_Phones1 = reader("Recipient_Phone1").ToString()
+                PossibleRecord.Recipient_Phones2 = reader("Recipient_Phone2").ToString()
+                PossibleRecord.Recipient_Email = reader("Recipient_Email").ToString()
+                PossibleRecord.Item_Tandem10k = reader("Item_Tandem10k").ToString()
+                PossibleRecord.Item_Tandem12k = reader("Item_Tandem12k").ToString()
+                PossibleRecord.Item_Video = reader("Item_Video").ToString()
+                PossibleRecord.Item_Other = reader("Item_Other").ToString()
+                PossibleRecord.Item_OtherAmount = reader("Item_OtherAmount").ToString()
+
+                If IsDBNull(reader("JR_PurchaseID")) = False Then
+                    PossibleRecord.JR_PurchaseID = reader("JR_PurchaseID")
+                End If
+                If IsDBNull(reader("JR_RecipientID")) = False Then
+                    PossibleRecord.JR_RecipientID = reader("JR_RecipientID")
+                End If
+                PossibleRecord.GC_DateEntered = reader("DateEntered").ToString()
+                PossibleRecord.HearAbout = reader("HearAbout").ToString()
+                PossibleRecord.delivery = reader("DeliveryOption").ToString()
+                PossibleRecord.PointOfSale = reader("PointOfSales").ToString()
+                PossibleRecord.Notes = reader("Notes").ToString()
+                PossibleRecord.GC_Authorization = reader("Authorization").ToString()
+                PossibleRecord.GC_Username = reader("UserName").ToString()
+                PossibleRecord.ID = reader("ID").ToString()
+                PossibleRecord.GC_Status = reader("Status")
+                PossibleRecord.GC_Number = reader("Online_Certificate_Number").ToString
+                PossibleRecord.PaymentMethod = reader("PaymentMethod").ToString
+
+
+
+                LstPossibles.Add(PossibleRecord)
+            Loop
+
+
+        Catch ex As Exception
+            MessageBox.Show("An error occurred" & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            'LogError("LoadMatchData:", ex)
+            ' LogError("LoadMatchData: sfield=", sfield)
+        Finally
+            _sqlCon.Close()
+        End Try
+
+        Return LstPossibles
+
+    End Function
+
+
     Public Function SearchGiftCertificates(lastname As String, Optional devmode As Boolean = False) As List(Of ClsGiftCertificate)
 
         Dim sfield As String = ""

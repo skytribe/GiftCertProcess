@@ -625,7 +625,47 @@ Public Class FrmProcess
         End Try
 
     End Function
+    Public Function GetCertificatesToProcess(name As String, Filter As FilterStates) As List(Of ClsGiftCertificate)
+        Try
+            'Get a list of certificates for a given date.
 
+            Dim gclist1 As New List(Of ClsGiftCertificate)
+            gclist1 = RetrieveGiftCertificatesFromQueue(name)
+
+            Dim FilteredList As List(Of ClsGiftCertificate)
+
+            Select Case Filter
+                Case FilterStates.Entered
+                    CurrentFilter = FilterStates.Entered
+                    FilteredList = (From i1 In gclist1 Where i1.GC_Status = CertificateStatus.Entered Select i1).ToList
+
+                Case FilterStates.Processed
+                    CurrentFilter = FilterStates.Processed
+                    FilteredList = (From i1 In gclist1 Where i1.GC_Status = CertificateStatus.Processed Select i1).ToList
+
+
+
+                Case FilterStates.Completed
+                    CurrentFilter = FilterStates.Completed
+                    FilteredList = (From i1 In gclist1 Where i1.GC_Status = CertificateStatus.Completed Select i1).ToList
+
+                Case FilterStates.ProcessAndCompleteOnly
+                    CurrentFilter = FilterStates.ProcessAndCompleteOnly
+
+                    FilteredList = (From i1 In gclist1 Where i1.GC_Status = CertificateStatus.Completed Or
+                                                          i1.GC_Status = CertificateStatus.Processed
+                                    Select i1).ToList
+                Case FilterStates.All
+                    FilteredList = (From i1 In gclist1 Select i1).ToList
+            End Select
+
+            Return FilteredList
+
+        Catch ex As Exception
+
+        End Try
+
+    End Function
     Private Sub RdoEntered_CheckedChanged(sender As Object, e As EventArgs) Handles RdoEntered.CheckedChanged, RdoCompleted.CheckedChanged, RdoProcessed.CheckedChanged, RdoAll.CheckedChanged
         Try
 
@@ -653,6 +693,44 @@ Public Class FrmProcess
     End Sub
 
     Private Sub SfDataGrid1_Click(sender As Object, e As EventArgs) Handles SfDataGrid1.Click
+
+    End Sub
+
+    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged, RadioButton2.CheckedChanged
+        If RadioButton1.Checked Then
+            Panel5.Enabled = True
+            Panel6.Enabled = False
+        Else
+            Panel5.Enabled = False
+            Panel6.Enabled = True
+        End If
+
+    End Sub
+
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+        MsgBox("Implement Search to populate list of certificates to process")
+        Try
+
+            '//Which was checked
+            Dim s1 = WhatRadioIsSelected(Me.Panel3)
+                Select Case s1.ToLower
+
+                    Case "rdoentered"
+                        CurrentFilter = FilterStates.Entered
+                    Case "rdoprocessed"
+                        CurrentFilter = FilterStates.Processed
+                    Case "rdocompleted"
+                        CurrentFilter = FilterStates.Completed
+                    Case "rdoall"
+                        CurrentFilter = FilterStates.All
+                End Select
+
+                Dim fl = GetCertificatesToProcess(TextBox1.Text, CurrentFilter)
+                SfDataGrid1.DataSource = fl
+            Catch ex As Exception
+                MsgBox(ex.Message)
+
+            End Try
 
     End Sub
 End Class

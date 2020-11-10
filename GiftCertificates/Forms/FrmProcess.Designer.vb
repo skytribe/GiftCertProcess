@@ -112,6 +112,14 @@ Partial Class FrmProcess
         Me.RdoCompleted = New System.Windows.Forms.RadioButton()
         Me.RdoProcessed = New System.Windows.Forms.RadioButton()
         Me.RdoEntered = New System.Windows.Forms.RadioButton()
+        Me.Button8 = New System.Windows.Forms.Button()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.Panel6 = New System.Windows.Forms.Panel()
+        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.Panel1.SuspendLayout()
         CType(Me.SfDGPurchaser, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
@@ -120,6 +128,9 @@ Partial Class FrmProcess
         Me.GrpDetails.SuspendLayout()
         Me.GrpItems.SuspendLayout()
         Me.Panel3.SuspendLayout()
+        Me.Panel4.SuspendLayout()
+        Me.Panel5.SuspendLayout()
+        Me.Panel6.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -672,16 +683,16 @@ Partial Class FrmProcess
         'SfDataGrid1
         '
         Me.SfDataGrid1.AccessibleName = "Table"
-        Me.SfDataGrid1.Location = New System.Drawing.Point(320, 12)
+        Me.SfDataGrid1.Location = New System.Drawing.Point(595, 12)
         Me.SfDataGrid1.Name = "SfDataGrid1"
         Me.SfDataGrid1.PreviewRowHeight = 35
-        Me.SfDataGrid1.Size = New System.Drawing.Size(1324, 186)
+        Me.SfDataGrid1.Size = New System.Drawing.Size(1049, 186)
         Me.SfDataGrid1.TabIndex = 9
         Me.SfDataGrid1.Text = "SfDataGrid1"
         '
         'SfDateEntry
         '
-        Me.SfDateEntry.Location = New System.Drawing.Point(58, 12)
+        Me.SfDateEntry.Location = New System.Drawing.Point(65, 3)
         Me.SfDateEntry.Name = "SfDateEntry"
         Me.SfDateEntry.Size = New System.Drawing.Size(171, 34)
         Me.SfDateEntry.TabIndex = 10
@@ -689,7 +700,7 @@ Partial Class FrmProcess
         '
         'Button7
         '
-        Me.Button7.Location = New System.Drawing.Point(239, 12)
+        Me.Button7.Location = New System.Drawing.Point(242, 3)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(75, 34)
         Me.Button7.TabIndex = 11
@@ -699,7 +710,7 @@ Partial Class FrmProcess
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(12, 12)
+        Me.Label3.Location = New System.Drawing.Point(11, 3)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(46, 17)
         Me.Label3.TabIndex = 12
@@ -970,15 +981,15 @@ Partial Class FrmProcess
         Me.Panel3.Controls.Add(Me.RdoCompleted)
         Me.Panel3.Controls.Add(Me.RdoProcessed)
         Me.Panel3.Controls.Add(Me.RdoEntered)
-        Me.Panel3.Location = New System.Drawing.Point(24, 52)
+        Me.Panel3.Location = New System.Drawing.Point(24, 122)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(211, 131)
+        Me.Panel3.Size = New System.Drawing.Size(565, 47)
         Me.Panel3.TabIndex = 15
         '
         'RdoAll
         '
         Me.RdoAll.AutoSize = True
-        Me.RdoAll.Location = New System.Drawing.Point(7, 94)
+        Me.RdoAll.Location = New System.Drawing.Point(416, 13)
         Me.RdoAll.Name = "RdoAll"
         Me.RdoAll.Size = New System.Drawing.Size(44, 21)
         Me.RdoAll.TabIndex = 3
@@ -988,7 +999,7 @@ Partial Class FrmProcess
         'RdoCompleted
         '
         Me.RdoCompleted.AutoSize = True
-        Me.RdoCompleted.Location = New System.Drawing.Point(7, 67)
+        Me.RdoCompleted.Location = New System.Drawing.Point(279, 13)
         Me.RdoCompleted.Name = "RdoCompleted"
         Me.RdoCompleted.Size = New System.Drawing.Size(96, 21)
         Me.RdoCompleted.TabIndex = 2
@@ -998,7 +1009,7 @@ Partial Class FrmProcess
         'RdoProcessed
         '
         Me.RdoProcessed.AutoSize = True
-        Me.RdoProcessed.Location = New System.Drawing.Point(7, 40)
+        Me.RdoProcessed.Location = New System.Drawing.Point(140, 13)
         Me.RdoProcessed.Name = "RdoProcessed"
         Me.RdoProcessed.Size = New System.Drawing.Size(96, 21)
         Me.RdoProcessed.TabIndex = 1
@@ -1009,7 +1020,7 @@ Partial Class FrmProcess
         '
         Me.RdoEntered.AutoSize = True
         Me.RdoEntered.Checked = True
-        Me.RdoEntered.Location = New System.Drawing.Point(7, 13)
+        Me.RdoEntered.Location = New System.Drawing.Point(17, 13)
         Me.RdoEntered.Name = "RdoEntered"
         Me.RdoEntered.Size = New System.Drawing.Size(79, 21)
         Me.RdoEntered.TabIndex = 0
@@ -1017,17 +1028,93 @@ Partial Class FrmProcess
         Me.RdoEntered.Text = "Entered"
         Me.RdoEntered.UseVisualStyleBackColor = True
         '
+        'Button8
+        '
+        Me.Button8.Location = New System.Drawing.Point(290, 9)
+        Me.Button8.Name = "Button8"
+        Me.Button8.Size = New System.Drawing.Size(75, 34)
+        Me.Button8.TabIndex = 16
+        Me.Button8.Text = "Search"
+        Me.Button8.UseVisualStyleBackColor = True
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Location = New System.Drawing.Point(3, 15)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(102, 17)
+        Me.Label28.TabIndex = 17
+        Me.Label28.Text = "Search String :"
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(111, 15)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(171, 22)
+        Me.TextBox1.TabIndex = 18
+        '
+        'Panel4
+        '
+        Me.Panel4.Controls.Add(Me.Button7)
+        Me.Panel4.Controls.Add(Me.SfDateEntry)
+        Me.Panel4.Controls.Add(Me.Label3)
+        Me.Panel4.Location = New System.Drawing.Point(224, 0)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(330, 42)
+        Me.Panel4.TabIndex = 19
+        '
+        'Panel5
+        '
+        Me.Panel5.Controls.Add(Me.Label28)
+        Me.Panel5.Controls.Add(Me.Button8)
+        Me.Panel5.Controls.Add(Me.TextBox1)
+        Me.Panel5.Location = New System.Drawing.Point(174, 43)
+        Me.Panel5.Name = "Panel5"
+        Me.Panel5.Size = New System.Drawing.Size(380, 57)
+        Me.Panel5.TabIndex = 20
+        '
+        'Panel6
+        '
+        Me.Panel6.Controls.Add(Me.RadioButton2)
+        Me.Panel6.Controls.Add(Me.Panel5)
+        Me.Panel6.Controls.Add(Me.RadioButton1)
+        Me.Panel6.Controls.Add(Me.Panel4)
+        Me.Panel6.Location = New System.Drawing.Point(24, 14)
+        Me.Panel6.Name = "Panel6"
+        Me.Panel6.Size = New System.Drawing.Size(565, 103)
+        Me.Panel6.TabIndex = 21
+        '
+        'RadioButton2
+        '
+        Me.RadioButton2.AutoSize = True
+        Me.RadioButton2.Location = New System.Drawing.Point(17, 57)
+        Me.RadioButton2.Name = "RadioButton2"
+        Me.RadioButton2.Size = New System.Drawing.Size(115, 21)
+        Me.RadioButton2.TabIndex = 1
+        Me.RadioButton2.Text = "Name Search"
+        Me.RadioButton2.UseVisualStyleBackColor = True
+        '
+        'RadioButton1
+        '
+        Me.RadioButton1.AutoSize = True
+        Me.RadioButton1.Checked = True
+        Me.RadioButton1.Location = New System.Drawing.Point(17, 4)
+        Me.RadioButton1.Name = "RadioButton1"
+        Me.RadioButton1.Size = New System.Drawing.Size(108, 21)
+        Me.RadioButton1.TabIndex = 0
+        Me.RadioButton1.TabStop = True
+        Me.RadioButton1.Text = "Date Search"
+        Me.RadioButton1.UseVisualStyleBackColor = True
+        '
         'FrmProcess
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1653, 830)
+        Me.Controls.Add(Me.Panel6)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.GrpItems)
         Me.Controls.Add(Me.GrpDetails)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Button7)
-        Me.Controls.Add(Me.SfDateEntry)
         Me.Controls.Add(Me.SfDataGrid1)
         Me.Controls.Add(Me.Button6)
         Me.Controls.Add(Me.Button5)
@@ -1048,8 +1135,13 @@ Partial Class FrmProcess
         Me.GrpItems.PerformLayout()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
+        Me.Panel4.ResumeLayout(False)
+        Me.Panel4.PerformLayout()
+        Me.Panel5.ResumeLayout(False)
+        Me.Panel5.PerformLayout()
+        Me.Panel6.ResumeLayout(False)
+        Me.Panel6.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
@@ -1143,4 +1235,12 @@ Partial Class FrmProcess
     Friend WithEvents RdoCompleted As RadioButton
     Friend WithEvents RdoProcessed As RadioButton
     Friend WithEvents RdoEntered As RadioButton
+    Friend WithEvents Button8 As Button
+    Friend WithEvents Label28 As Label
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Panel4 As Panel
+    Friend WithEvents Panel5 As Panel
+    Friend WithEvents Panel6 As Panel
+    Friend WithEvents RadioButton2 As RadioButton
+    Friend WithEvents RadioButton1 As RadioButton
 End Class
