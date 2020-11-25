@@ -7,45 +7,12 @@ Imports Microsoft.Office.Interop.Publisher
 Imports System.Net.Mail
 Imports System.Net
 Imports System.Text.RegularExpressions
+Imports System.Reflection
 
 Module Module3
-    Public Sub GetCertificatesToProcess(entrydate As Date, dg As Syncfusion.WinForms.DataGrid.SfDataGrid)
-        'Get a list of certificates for a given date.
-
-        Dim gclist1 As New List(Of ClsGiftCertificate)
-        gclist1 = RetrieveGiftCertificatesFromQueue(entrydate)
-
-        dg.DataSource = gclist1
-        dg.Refresh()
 
 
-    End Sub
-
-    Public Sub ProcessCertificate(Certificate As ClsGiftCertificate)
-
-        'We have 5 scenarios
-        'Both purchase and recipient as new and different
-        'Both purchase and recipient as new and the same
-        'Purchase is new and recipient is existing
-        'Purchase is exising and recipient is new
-        'Purchase is new and recipient is existing
-
-        'This will determine if we need to create new customer records
-        '
-
-        'Create JumpRun Record if required for purchaser
-        'Add payment Record
-
-        'If Certificate.Purchaser_FirstName Then
-        'Create Jumprun Record if required for recipient
-        'Create a transfer record to recipient
-
-
-        'UpdateCertificateStatus
-        'UpdateCertificateStatus(certificate , CertificateStatus.Processed)
-
-    End Sub
-    Public Sub UpdateCertificateJumpRunCustomers(certificate As ClsGiftCertificate, PurchaseID As Integer, RecipientID As Integer)
+    Public Sub UpdateCertificateJumpRunCustomers(certificate As ClsGiftCertificate2, PurchaseID As Integer)
         'Set status to completed/processed
         GetConnectionString()
         Dim sqlCon = New SqlConnection(_strConn)
@@ -56,207 +23,118 @@ Module Module3
             Dim sqlComm As New SqlCommand()
             sqlComm.Connection = sqlCon
 
-            sqlComm.CommandText = "GC_UpdateJRCustomers"
+            sqlComm.CommandText = "dbo.GCO_UpdateJRCustomers"
             sqlComm.CommandType = CommandType.StoredProcedure
             sqlComm.Parameters.AddWithValue("ID", certificate.ID)
             sqlComm.Parameters.AddWithValue("PurchaserID", PurchaseID)
-            sqlComm.Parameters.AddWithValue("RecipientID", RecipientID)
-
             sqlComm.ExecuteNonQuery()
 
             If sqlCon.State = ConnectionState.Open Then sqlCon.Close()
         Catch ex As Exception
+            Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
+            Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
+            LogError(methodName, ex)
+
             MessageBox.Show("An error occurred" & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            'LogError("UpdateCertificateStats:", ex)
+
         Finally
 
             sqlCon = Nothing
         End Try
-
     End Sub
 
-    Public Sub UpdateCertificateStatus(certificate As ClsGiftCertificate, status As CertificateStatus)
+    Public Sub UpdatePricing(pricing As ClsPricing, IsItem As Boolean)
+        'Set status to completed/processed
+        GetConnectionString()
+        Dim sqlCon1 = New SqlConnection(_strConn)
+        Try
+            If sqlCon1.State = ConnectionState.Closed Then sqlCon1.Open()
+
+            Dim sqlComm As New SqlCommand()
+            sqlComm.Connection = sqlCon1
+
+            sqlComm.CommandText = "dbo.GCO_UpdatePricing"
+            sqlComm.CommandType = CommandType.StoredProcedure
+
+            sqlComm.Parameters.AddWithValue("ID", pricing.ID)
+            sqlComm.Parameters.AddWithValue("SKU", pricing.SKU)
+            sqlComm.Parameters.AddWithValue("Price", pricing.Price)
+            sqlComm.Parameters.AddWithValue("JumpRunItemId", pricing.JR_ItemID)
+            sqlComm.Parameters.AddWithValue("DiscountableItem", pricing.Discountable)
+            sqlComm.Parameters.AddWithValue("IsItem", IsItem)
+
+            sqlComm.ExecuteNonQuery()
+
+            If sqlCon1.State = ConnectionState.Open Then sqlCon1.Close()
+        Catch ex As Exception
+            Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
+            Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
+            LogError(methodName, ex)
+
+            MessageBox.Show("An error occurred" & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            sqlCon1 = Nothing
+        End Try
+
+    End Sub
+    Public Sub UpdateGCOrderStatus(certificate As ClsGiftCertificate2, status As CertificateStatus, pdate As Date)
         'Set status to completed/processed
         GetConnectionString()
         Dim sqlCon = New SqlConnection(_strConn)
         Try
-
             If sqlCon.State = ConnectionState.Closed Then sqlCon.Open()
 
             Dim sqlComm As New SqlCommand()
             sqlComm.Connection = sqlCon
 
-            sqlComm.CommandText = "dbo.GC_UpdateStatus"
+            sqlComm.CommandText = "dbo.GCO_UpdateStatus"
             sqlComm.CommandType = CommandType.StoredProcedure
             sqlComm.Parameters.AddWithValue("ID", certificate.ID)
             sqlComm.Parameters.AddWithValue("Status", status)
+            sqlComm.Parameters.AddWithValue("ProcessDate", pdate)
             sqlComm.ExecuteNonQuery()
 
             If sqlCon.State = ConnectionState.Open Then sqlCon.Close()
         Catch ex As Exception
-            MessageBox.Show("An error occurred" & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            'LogError("UpdateCertificateStats:", ex)
-        Finally
+            Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
+            Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
+            LogError(methodName, ex)
 
+            MessageBox.Show("An error occurred" & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
             sqlCon = Nothing
         End Try
 
     End Sub
 
-    Public Sub PrintCertificate(certificate As ClsGiftCertificate, dest As Microsoft.Office.Interop.Publisher.PbMailMergeDestination)
+    Public Sub UpdateGCOrderAuthorizer(certificate As ClsGiftCertificate2, Authorizer As String)
+        'Set status to completed/processed
+        GetConnectionString()
+        Dim sqlCon = New SqlConnection(_strConn)
         Try
-            '//Generate Mailmerge File
-            Dim MailMergeFile As String = "Mailmerge.txt"
+            If sqlCon.State = ConnectionState.Closed Then sqlCon.Open()
 
+            Dim sqlComm As New SqlCommand()
+            sqlComm.Connection = sqlCon
 
-            Dim certificatestoprint As Integer = 0
-            certificatestoprint = GenerateMailMergeFile(certificate, MailMergeFile)
+            sqlComm.CommandText = "dbo.GCO_UpdateAuthorizer"
+            sqlComm.CommandType = CommandType.StoredProcedure
+            sqlComm.Parameters.AddWithValue("ID", certificate.ID)
+            sqlComm.Parameters.AddWithValue("Authorizer", Left(Authorizer.Trim.Trim, 10))
+            sqlComm.ExecuteNonQuery()
 
-            'Write Mailmerge and print using TandemCertificate master publisher document
-            If CheckIfRunning("MSPUB") Then
-                Dim response = MessageBox.Show("Publisher is open, close before continuing" & Environment.NewLine & "DO you want to close it now ?", "Print Certificate", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
-                If response = DialogResult.No Then
-                    Exit Sub
-                Else
-                    Try
-                        For Each p In Process.GetProcessesByName("MSPUB")
-                            p.Kill()
-                        Next
-                    Catch ex As Exception
-
-                    End Try
-
-                End If
-            End If
-
-            Dim appFolder = My.Application.Info.DirectoryPath
-            Dim MasterFileFolder = System.IO.Path.Combine(appFolder, "Files")
-            Dim CertificateToPrint = System.IO.Path.Combine(MasterFileFolder, "GIFTcERTIFICATE.pub")
-            Dim PrintCertificateDocument = System.IO.Path.Combine(appFolder, CertificateToPrint)
-
-            If certificatestoprint > 0 And System.IO.File.Exists(MailMergeFile) Then
-                Dim Application As Publisher.Application = New Publisher.Application()
-                Application.ActiveWindow.Visible = True
-                Dim Path As String = PrintCertificateDocument
-                Try
-                    Application.Open(Path, False, True)
-                    Application.ActiveDocument.MailMerge.Execute(True, Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbMergeToNewPublication)
-
-                    If dest = PbMailMergeDestination.pbSendToPrinter Then
-                        Application.Quit()
-                    ElseIf dest = PbMailMergeDestination.pbMergeToNewPublication Then
-                        'ElseIf dest = PbMailMergeDestination.pbSendEmail Then
-
-                        'Certificate 123 Spotty Bowles.pdb
-                        Dim filename = String.Format("Certificate {0} {1} {2}.pdf", certificate.ID, certificate.Purchaser_FirstName.Trim, certificate.Purchaser_LastName.Trim)
-                        Application.ActiveDocument.ExportAsFixedFormat(Format:=PbFixedFormatType.pbFixedFormatTypePDF, Filename:="c:\temp\" & filename)
-
-                        'Application.ActiveDocument.ExportAsFixedFormat(PbFixedFormatType.pbFixedFormatTypePDF, "c:\temp\Cert.pdf")
-                        Application.Quit()
-
-                        ', PbFixedFormatIntent.pbIntentStandard, True, -1, -1, -1, -1, -1, -1, -1, True, PbPrintStyle.pbPrintStyleDefault, False, False, False, Nothing)
-                    End If
-                Catch ex As Exception
-                    MessageBox.Show(ex.Message)
-                End Try
-                If CheckIfRunning("MSPUB") Then
-
-                    Try
-                        For Each p In Process.GetProcessesByName("MSPUB")
-                            p.Kill()
-                        Next
-                    Catch ex As Exception
-
-                    End Try
-
-
-                End If
-            End If
-            UpdateCertificateStatus(certificate, CertificateStatus.Completed)
+            If sqlCon.State = ConnectionState.Open Then sqlCon.Close()
         Catch ex As Exception
-            WriteException(ex)
-            MessageBox.Show(ex.Message)
-        End Try
-    End Sub
+            Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
+            Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
+            LogError(methodName, ex)
 
-
-    Private Function GenerateMailMergeFile(certificate As ClsGiftCertificate, mmsource As String) As Integer
-
-        'Details to print on certificate
-
-
-
-        Dim str As String = ""
-        Dim sb As New StringBuilder
-        'Header Line
-        sb.AppendLine("Number" & "," & "Recipient" & "," & "10k" & "," & "12k" & "," & "Video" & "," & "Other" & "," & "OtherAmount" & "," & "Total" & "," & "From" & "," & "Authorized")
-        Dim certificatestoprint As Integer = 0
-
-        Dim ActualAltitude = ""
-
-        Dim name As String = ""
-
-        Dim GCFrom As String
-        If String.IsNullOrEmpty(certificate.Recipient_PersonalizedFrom) Then
-            GCFrom = String.Format("{0} {1}", certificate.Purchaser_FirstName.Trim, certificate.Purchaser_LastName.Trim)
-        Else
-            GCFrom = certificate.Recipient_PersonalizedFrom.Trim
-        End If
-
-        Dim GCTo As String = ""
-        If String.IsNullOrEmpty(certificate.Purchaser_PersonalizedTo) Then
-            GCTo = String.Format("{0} {1}", certificate.Recipient_FirstName.Trim, certificate.Recipient_LastName.Trim)
-        Else
-            GCTo = certificate.Purchaser_PersonalizedTo.Trim
-        End If
-
-
-        Dim st1 = String.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9}",
-certificate.GC_Number,
-GCTo,
-certificate.Item_Tandem10k,
-certificate.Item_Tandem12k,
-certificate.Item_Video,
-certificate.Item_Other,
-certificate.Item_OtherAmount,
-certificate.GC_CalculateTotal,
-GCFrom,
-certificate.GC_Authorization)
-
-        sb.AppendLine(st1)
-
-
-        Try
-            mmsource = System.IO.Path.Combine(My.Application.Info.DirectoryPath, mmsource)
-            Dim StdEncoder As New System.Text.ASCIIEncoding
-            Dim orfWriter As System.IO.StreamWriter = New System.IO.StreamWriter(mmsource, False, StdEncoder)
-            orfWriter.Write(sb.ToString)
-            orfWriter.Close()
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
+            MessageBox.Show("An error occurred" & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            sqlCon = Nothing
         End Try
 
-        Return 1
-    End Function
-
-
-    Public Sub PrintLabel(certificate As ClsGiftCertificate)
-
     End Sub
-
-
-
-
-    Public Sub WriteException(ex1 As Exception)
-        '/./Write Exception to a log file.
-        Dim s As String = "----------------------------------------------------------" & Environment.NewLine
-        s = s & String.Format("{0:d/M/yyyy HH:mm:ss}", Now) & Environment.NewLine
-        s = s & ex1.ToString
-
-        My.Computer.FileSystem.WriteAllText("CheckinManifest.Log", s, True)
-        MessageBox.Show(s)
-    End Sub
-
 
     Friend Function CheckIfRunning(name As String) As Boolean
         Dim isProcessRunning As Boolean = False
@@ -271,13 +149,24 @@ certificate.GC_Authorization)
                 isProcessRunning = True
             End If
         Catch ex As Exception
-            WriteException(ex)
+            Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
+            Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
+            LogError(methodName, ex)
+
         End Try
 
         Return isProcessRunning
     End Function
 
-
+    '//Reset After Test
+    '//Use gcProcess sOpInsert to identify
+    '//
+    '//Remove any newly created People or PeopleAncillary
+    '//Remove All GiftCertificate Tables
+    '//Remove Inv or InvAll 
+    '//Remove Payment or PaymentAll
+    '//Remove Redeem
+    '
 
     'Sub JumpRunDeleteCustomer(Id As String)
     '    GetConnectionString()
@@ -675,95 +564,4 @@ certificate.GC_Authorization)
     '    Return SuccessState
     'End Function
 
-    Sub SendEmail(certificate As ClsGiftCertificate, Optional destEmail As String = "")
-        Dim publisherdest = Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbMergeToNewPublication
-
-        Try
-            PrintCertificate(certificate, publisherdest)
-
-            '//I need to have a bit of a pause to allow for the file to be generated before I can create the email and attach.
-            Dim t As New Timer
-            t.Tag = DateTime.Now
-            TimerEventOccured = False
-            t.Enabled = True
-            t.Interval = 5000
-            AddHandler t.Tick, AddressOf MyTickHandler
-            t.Start()
-            Do Until TimerEventOccured = True
-                My.Application.DoEvents()
-                't.Stop()
-            Loop
-
-            t.Stop()
-
-            'Certificate 123 Spotty Bowles.pdb
-            Dim filename = String.Format("Certificate {0} {1} {2}.pdf", certificate.ID, certificate.Purchaser_FirstName.Trim, certificate.Purchaser_LastName.Trim)
-            Dim filepath = System.IO.Path.Combine("c:\temp\", filename)
-
-            If System.IO.File.Exists(filepath) = False Then
-                Throw New Exception("Certificate PDF Not generated for email")
-            End If
-
-            If IsValidEmailFormat(destEmail.Trim) = False AndAlso IsValidEmailFormat(certificate.Purchaser_Email) = False Then
-                Throw New Exception("No valid email address has been provided.")
-            End If
-
-
-            Dim MailMessage As New MailMessage()
-            If DEVMODE Then
-                MsgBox("In devmode so will instead send from spottys email to another of spottys emails")
-
-                MailMessage.From = New MailAddress("skytribe@hotmail.com")
-                '//receiver email adress
-
-                MailMessage.To.Add("skytribe@spottysworld.com")
-            Else
-                MsgBox("We will convert to use actual email address specified")
-            End If
-
-
-            MailMessage.Subject = "Skydive Snohomish Gift Certificate - Thank You!"
-
-            '//attach the file
-            MailMessage.Attachments.Add(New Mail.Attachment(filepath))
-
-            Dim appFolder = My.Application.Info.DirectoryPath
-            Dim MasterFileFolder = System.IO.Path.Combine(appFolder, "Files")
-            Dim EmailContentPath = System.IO.Path.Combine(MasterFileFolder, "EmailTemplate.txt")
-
-
-            Dim Content As String = System.IO.File.ReadAllText(EmailContentPath)
-            Dim ContentReplace = Content.Replace("<FirstName>", certificate.Purchaser_FirstName.Trim)
-
-            MailMessage.Body = ContentReplace
-            MailMessage.IsBodyHtml = True
-            '//SMTP client
-            Dim SmtpClient = New SmtpClient("smtp.live.com")
-            '//port number for Hot mail
-            SmtpClient.Port = 587 ' 25
-            'SmtpServer.Port = 587
-
-            '//credentials to login in to hotmail account
-            SmtpClient.Credentials = New NetworkCredential("skytribe@hotmail.com", "Lightning160")
-            '//enabled SSL
-            SmtpClient.EnableSsl = True
-            '//Send an email
-            SmtpClient.Send(MailMessage)
-
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
-
-
-    End Sub
-
-    Dim TimerEventOccured As Boolean = False
-
-    Private Sub MyTickHandler(sender As Object, e As EventArgs)
-        TimerEventOccured = True
-    End Sub
-
-    Function IsValidEmailFormat(ByVal s As String) As Boolean
-        Return Regex.IsMatch(s, "^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$")
-    End Function
 End Module

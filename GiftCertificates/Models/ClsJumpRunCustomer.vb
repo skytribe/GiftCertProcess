@@ -13,4 +13,7 @@
     Public Property Zip As String = ""
     Public property Email As String = ""
     Public Property sOpInsert As String = ""
+
+    Public Property dtInsert As DateTime
+
 End Class

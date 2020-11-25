@@ -22,45 +22,63 @@ Partial Class FrmModify
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.TextBox20 = New System.Windows.Forms.TextBox()
-        Me.TextBox21 = New System.Windows.Forms.TextBox()
-        Me.TextBox22 = New System.Windows.Forms.TextBox()
-        Me.TextBox23 = New System.Windows.Forms.TextBox()
-        Me.TextBox24 = New System.Windows.Forms.TextBox()
-        Me.TextBox25 = New System.Windows.Forms.TextBox()
-        Me.TextBox26 = New System.Windows.Forms.TextBox()
-        Me.TextBox27 = New System.Windows.Forms.TextBox()
-        Me.TextBox28 = New System.Windows.Forms.TextBox()
-        Me.TextBox29 = New System.Windows.Forms.TextBox()
-        Me.TextBox30 = New System.Windows.Forms.TextBox()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.SfDataGrid1 = New Syncfusion.WinForms.DataGrid.SfDataGrid()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.TxtSearchLastName = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.RdoPOSOnline = New System.Windows.Forms.RadioButton()
+        Me.TxtRecipientZip = New System.Windows.Forms.TextBox()
+        Me.TxtRecipientState = New System.Windows.Forms.TextBox()
+        Me.TxtRecipientCity = New System.Windows.Forms.TextBox()
+        Me.TxtRecipientAddress2 = New System.Windows.Forms.TextBox()
+        Me.TxtRecipientAddress1 = New System.Windows.Forms.TextBox()
+        Me.TxtRecipientLastName = New System.Windows.Forms.TextBox()
+        Me.TxtRecipientFirstName = New System.Windows.Forms.TextBox()
         Me.Label32 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.Label17 = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
+        Me.LblCalculatedDiscount = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.LblItem5Description = New System.Windows.Forms.Label()
+        Me.LblItem4Description = New System.Windows.Forms.Label()
+        Me.LblItem3Description = New System.Windows.Forms.Label()
+        Me.LblItem2Description = New System.Windows.Forms.Label()
+        Me.LblItem1Description = New System.Windows.Forms.Label()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.TxtAuthorization = New System.Windows.Forms.TextBox()
+        Me.TxtNotes = New System.Windows.Forms.TextBox()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.RdoPosPhone = New System.Windows.Forms.RadioButton()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Label20 = New System.Windows.Forms.Label()
-        Me.Label21 = New System.Windows.Forms.Label()
-        Me.Label22 = New System.Windows.Forms.Label()
-        Me.Label23 = New System.Windows.Forms.Label()
+        Me.LblItem5Amount = New System.Windows.Forms.Label()
+        Me.LblItem4Amount = New System.Windows.Forms.Label()
+        Me.LblItem3Amount = New System.Windows.Forms.Label()
+        Me.LblItem2Amount = New System.Windows.Forms.Label()
+        Me.LblItem1Amount = New System.Windows.Forms.Label()
+        Me.ComboBox5 = New System.Windows.Forms.ComboBox()
+        Me.ComboBox4 = New System.Windows.Forms.ComboBox()
+        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
+        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.LblCalculatedTotal = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.TextBox19 = New System.Windows.Forms.TextBox()
-        Me.TextBox18 = New System.Windows.Forms.TextBox()
-        Me.TextBox17 = New System.Windows.Forms.TextBox()
-        Me.TextBox16 = New System.Windows.Forms.TextBox()
-        Me.TextBox15 = New System.Windows.Forms.TextBox()
-        Me.TextBox14 = New System.Windows.Forms.TextBox()
-        Me.TextBox13 = New System.Windows.Forms.TextBox()
-        Me.TextBox12 = New System.Windows.Forms.TextBox()
-        Me.TextBox11 = New System.Windows.Forms.TextBox()
-        Me.TextBox10 = New System.Windows.Forms.TextBox()
-        Me.TextBox9 = New System.Windows.Forms.TextBox()
-        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label40 = New System.Windows.Forms.Label()
+        Me.TxtPurchaserEmail = New System.Windows.Forms.TextBox()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.TxtPurchaserPhone2 = New System.Windows.Forms.TextBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.TxtPurchaserPhone1 = New System.Windows.Forms.TextBox()
+        Me.TxtPurchaserZip = New System.Windows.Forms.TextBox()
+        Me.TxtPurchaserState = New System.Windows.Forms.TextBox()
+        Me.TxtPurchaserCity = New System.Windows.Forms.TextBox()
+        Me.TxtPurchaserAddress2 = New System.Windows.Forms.TextBox()
+        Me.TxtPurchaserAddress1 = New System.Windows.Forms.TextBox()
+        Me.TxtPurchaserLastName = New System.Windows.Forms.TextBox()
+        Me.TxtPurchaserFirstName = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -71,551 +89,53 @@ Partial Class FrmModify
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.RdoDeliveryInPerson = New System.Windows.Forms.RadioButton()
+        Me.RdoDeliverUSMailDiscrete = New System.Windows.Forms.RadioButton()
+        Me.RdoDeliveryUSMail = New System.Windows.Forms.RadioButton()
+        Me.RdoDeliveryEmail = New System.Windows.Forms.RadioButton()
+        Me.Label26 = New System.Windows.Forms.Label()
+        Me.CBoHearAbout = New System.Windows.Forms.ComboBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.TxtId = New System.Windows.Forms.TextBox()
+        Me.SfDateTimeEdit1 = New Syncfusion.WinForms.Input.SfDateTimeEdit()
+        Me.CboPayment = New System.Windows.Forms.ComboBox()
+        Me.TxtPaymentNotes = New System.Windows.Forms.TextBox()
         Me.Label38 = New System.Windows.Forms.Label()
+        Me.Label35 = New System.Windows.Forms.Label()
         Me.Label34 = New System.Windows.Forms.Label()
         Me.Label33 = New System.Windows.Forms.Label()
-        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.TxtSearchLastName = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.SfDataGrid1 = New Syncfusion.WinForms.DataGrid.SfDataGrid()
-        Me.Label31 = New System.Windows.Forms.Label()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label30 = New System.Windows.Forms.Label()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.Label29 = New System.Windows.Forms.Label()
-        Me.Label27 = New System.Windows.Forms.Label()
-        Me.Label26 = New System.Windows.Forms.Label()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.RadioButton4 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton3 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
-        Me.Label25 = New System.Windows.Forms.Label()
-        Me.Label24 = New System.Windows.Forms.Label()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.CheckBox4 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox3 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.GroupBox4.SuspendLayout()
-        Me.GroupBox3.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
+        Me.ComboBox6 = New System.Windows.Forms.ComboBox()
+        Me.TxtPersonalizedFrom = New System.Windows.Forms.TextBox()
+        Me.Label13 = New System.Windows.Forms.Label()
         Me.GroupBox5.SuspendLayout()
         CType(Me.SfDataGrid1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel2.SuspendLayout()
+        Me.Panel3.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
+        Me.TabPage2.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
+        Me.TabControl1.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        Me.Panel2.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(965, 745)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 21
-        Me.Button2.Text = "Cancel"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(876, 745)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 20
-        Me.Button1.Text = "OK "
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'GroupBox4
-        '
-        Me.GroupBox4.AutoSize = True
-        Me.GroupBox4.Controls.Add(Me.Label31)
-        Me.GroupBox4.Controls.Add(Me.Label30)
-        Me.GroupBox4.Controls.Add(Me.Label29)
-        Me.GroupBox4.Controls.Add(Me.Label27)
-        Me.GroupBox4.Controls.Add(Me.Label26)
-        Me.GroupBox4.Controls.Add(Me.TextBox4)
-        Me.GroupBox4.Controls.Add(Me.TextBox3)
-        Me.GroupBox4.Controls.Add(Me.TextBox2)
-        Me.GroupBox4.Controls.Add(Me.Panel2)
-        Me.GroupBox4.Controls.Add(Me.Label25)
-        Me.GroupBox4.Controls.Add(Me.Label24)
-        Me.GroupBox4.Controls.Add(Me.ComboBox1)
-        Me.GroupBox4.Controls.Add(Me.Panel1)
-        Me.GroupBox4.Controls.Add(Me.Label2)
-        Me.GroupBox4.Location = New System.Drawing.Point(965, 309)
-        Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(811, 410)
-        Me.GroupBox4.TabIndex = 19
-        Me.GroupBox4.TabStop = False
-        Me.GroupBox4.Text = "Other Details"
-        '
-        'GroupBox3
-        '
-        Me.GroupBox3.Controls.Add(Me.TextBox20)
-        Me.GroupBox3.Controls.Add(Me.TextBox21)
-        Me.GroupBox3.Controls.Add(Me.TextBox22)
-        Me.GroupBox3.Controls.Add(Me.TextBox23)
-        Me.GroupBox3.Controls.Add(Me.TextBox24)
-        Me.GroupBox3.Controls.Add(Me.TextBox25)
-        Me.GroupBox3.Controls.Add(Me.TextBox26)
-        Me.GroupBox3.Controls.Add(Me.TextBox27)
-        Me.GroupBox3.Controls.Add(Me.TextBox28)
-        Me.GroupBox3.Controls.Add(Me.TextBox29)
-        Me.GroupBox3.Controls.Add(Me.TextBox30)
-        Me.GroupBox3.Controls.Add(Me.Label32)
-        Me.GroupBox3.Controls.Add(Me.Label14)
-        Me.GroupBox3.Controls.Add(Me.Label15)
-        Me.GroupBox3.Controls.Add(Me.Label16)
-        Me.GroupBox3.Controls.Add(Me.Label17)
-        Me.GroupBox3.Controls.Add(Me.Label18)
-        Me.GroupBox3.Controls.Add(Me.Label19)
-        Me.GroupBox3.Controls.Add(Me.Label20)
-        Me.GroupBox3.Controls.Add(Me.Label21)
-        Me.GroupBox3.Controls.Add(Me.Label22)
-        Me.GroupBox3.Controls.Add(Me.Label23)
-        Me.GroupBox3.Location = New System.Drawing.Point(499, 309)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(460, 404)
-        Me.GroupBox3.TabIndex = 18
-        Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "Recipient"
-        '
-        'TextBox20
-        '
-        Me.TextBox20.Location = New System.Drawing.Point(165, 353)
-        Me.TextBox20.Name = "TextBox20"
-        Me.TextBox20.Size = New System.Drawing.Size(276, 22)
-        Me.TextBox20.TabIndex = 32
-        '
-        'TextBox21
-        '
-        Me.TextBox21.Location = New System.Drawing.Point(123, 324)
-        Me.TextBox21.Name = "TextBox21"
-        Me.TextBox21.Size = New System.Drawing.Size(318, 22)
-        Me.TextBox21.TabIndex = 31
-        '
-        'TextBox22
-        '
-        Me.TextBox22.Location = New System.Drawing.Point(123, 293)
-        Me.TextBox22.Name = "TextBox22"
-        Me.TextBox22.Size = New System.Drawing.Size(318, 22)
-        Me.TextBox22.TabIndex = 30
-        '
-        'TextBox23
-        '
-        Me.TextBox23.Location = New System.Drawing.Point(123, 263)
-        Me.TextBox23.Name = "TextBox23"
-        Me.TextBox23.Size = New System.Drawing.Size(318, 22)
-        Me.TextBox23.TabIndex = 29
-        '
-        'TextBox24
-        '
-        Me.TextBox24.Location = New System.Drawing.Point(123, 229)
-        Me.TextBox24.Name = "TextBox24"
-        Me.TextBox24.Size = New System.Drawing.Size(318, 22)
-        Me.TextBox24.TabIndex = 28
-        '
-        'TextBox25
-        '
-        Me.TextBox25.Location = New System.Drawing.Point(123, 192)
-        Me.TextBox25.Name = "TextBox25"
-        Me.TextBox25.Size = New System.Drawing.Size(318, 22)
-        Me.TextBox25.TabIndex = 27
-        '
-        'TextBox26
-        '
-        Me.TextBox26.Location = New System.Drawing.Point(123, 159)
-        Me.TextBox26.Name = "TextBox26"
-        Me.TextBox26.Size = New System.Drawing.Size(318, 22)
-        Me.TextBox26.TabIndex = 26
-        '
-        'TextBox27
-        '
-        Me.TextBox27.Location = New System.Drawing.Point(123, 128)
-        Me.TextBox27.Name = "TextBox27"
-        Me.TextBox27.Size = New System.Drawing.Size(318, 22)
-        Me.TextBox27.TabIndex = 25
-        '
-        'TextBox28
-        '
-        Me.TextBox28.Location = New System.Drawing.Point(123, 101)
-        Me.TextBox28.Name = "TextBox28"
-        Me.TextBox28.Size = New System.Drawing.Size(318, 22)
-        Me.TextBox28.TabIndex = 24
-        '
-        'TextBox29
-        '
-        Me.TextBox29.Location = New System.Drawing.Point(123, 64)
-        Me.TextBox29.Name = "TextBox29"
-        Me.TextBox29.Size = New System.Drawing.Size(318, 22)
-        Me.TextBox29.TabIndex = 23
-        '
-        'TextBox30
-        '
-        Me.TextBox30.Location = New System.Drawing.Point(123, 30)
-        Me.TextBox30.Name = "TextBox30"
-        Me.TextBox30.Size = New System.Drawing.Size(318, 22)
-        Me.TextBox30.TabIndex = 22
-        '
-        'Label32
-        '
-        Me.Label32.AutoSize = True
-        Me.Label32.Location = New System.Drawing.Point(33, 166)
-        Me.Label32.Name = "Label32"
-        Me.Label32.Size = New System.Drawing.Size(31, 17)
-        Me.Label32.TabIndex = 21
-        Me.Label32.Text = "City"
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(33, 358)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(126, 17)
-        Me.Label14.TabIndex = 20
-        Me.Label14.Text = "Personalized From"
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(33, 326)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(42, 17)
-        Me.Label15.TabIndex = 19
-        Me.Label15.Text = "Email"
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(33, 295)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(61, 17)
-        Me.Label16.TabIndex = 18
-        Me.Label16.Text = "Phone 2"
-        '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(33, 265)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(61, 17)
-        Me.Label17.TabIndex = 17
-        Me.Label17.Text = "Phone 1"
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(33, 231)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(65, 17)
-        Me.Label18.TabIndex = 16
-        Me.Label18.Text = "Zip Code"
-        '
-        'Label19
-        '
-        Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(33, 197)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(41, 17)
-        Me.Label19.TabIndex = 15
-        Me.Label19.Text = "State"
-        '
-        'Label20
-        '
-        Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(33, 133)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(72, 17)
-        Me.Label20.TabIndex = 14
-        Me.Label20.Text = "Address 2"
-        '
-        'Label21
-        '
-        Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(33, 103)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(72, 17)
-        Me.Label21.TabIndex = 13
-        Me.Label21.Text = "Address 1"
-        '
-        'Label22
-        '
-        Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(33, 71)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(76, 17)
-        Me.Label22.TabIndex = 12
-        Me.Label22.Text = "Last Name"
-        '
-        'Label23
-        '
-        Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(33, 35)
-        Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(76, 17)
-        Me.Label23.TabIndex = 11
-        Me.Label23.Text = "First Name"
-        '
-        'GroupBox2
-        '
-        Me.GroupBox2.Controls.Add(Me.TextBox19)
-        Me.GroupBox2.Controls.Add(Me.TextBox18)
-        Me.GroupBox2.Controls.Add(Me.TextBox17)
-        Me.GroupBox2.Controls.Add(Me.TextBox16)
-        Me.GroupBox2.Controls.Add(Me.TextBox15)
-        Me.GroupBox2.Controls.Add(Me.TextBox14)
-        Me.GroupBox2.Controls.Add(Me.TextBox13)
-        Me.GroupBox2.Controls.Add(Me.TextBox12)
-        Me.GroupBox2.Controls.Add(Me.TextBox11)
-        Me.GroupBox2.Controls.Add(Me.TextBox10)
-        Me.GroupBox2.Controls.Add(Me.TextBox9)
-        Me.GroupBox2.Controls.Add(Me.Label13)
-        Me.GroupBox2.Controls.Add(Me.Label12)
-        Me.GroupBox2.Controls.Add(Me.Label11)
-        Me.GroupBox2.Controls.Add(Me.Label10)
-        Me.GroupBox2.Controls.Add(Me.Label9)
-        Me.GroupBox2.Controls.Add(Me.Label8)
-        Me.GroupBox2.Controls.Add(Me.Label7)
-        Me.GroupBox2.Controls.Add(Me.Label6)
-        Me.GroupBox2.Controls.Add(Me.Label5)
-        Me.GroupBox2.Controls.Add(Me.Label4)
-        Me.GroupBox2.Controls.Add(Me.Label3)
-        Me.GroupBox2.Location = New System.Drawing.Point(11, 309)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(467, 404)
-        Me.GroupBox2.TabIndex = 17
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Purchaser"
-        '
-        'TextBox19
-        '
-        Me.TextBox19.Location = New System.Drawing.Point(169, 355)
-        Me.TextBox19.Name = "TextBox19"
-        Me.TextBox19.Size = New System.Drawing.Size(276, 22)
-        Me.TextBox19.TabIndex = 21
-        '
-        'TextBox18
-        '
-        Me.TextBox18.Location = New System.Drawing.Point(127, 326)
-        Me.TextBox18.Name = "TextBox18"
-        Me.TextBox18.Size = New System.Drawing.Size(318, 22)
-        Me.TextBox18.TabIndex = 20
-        '
-        'TextBox17
-        '
-        Me.TextBox17.Location = New System.Drawing.Point(127, 295)
-        Me.TextBox17.Name = "TextBox17"
-        Me.TextBox17.Size = New System.Drawing.Size(318, 22)
-        Me.TextBox17.TabIndex = 19
-        '
-        'TextBox16
-        '
-        Me.TextBox16.Location = New System.Drawing.Point(127, 265)
-        Me.TextBox16.Name = "TextBox16"
-        Me.TextBox16.Size = New System.Drawing.Size(318, 22)
-        Me.TextBox16.TabIndex = 18
-        '
-        'TextBox15
-        '
-        Me.TextBox15.Location = New System.Drawing.Point(127, 231)
-        Me.TextBox15.Name = "TextBox15"
-        Me.TextBox15.Size = New System.Drawing.Size(318, 22)
-        Me.TextBox15.TabIndex = 17
-        '
-        'TextBox14
-        '
-        Me.TextBox14.Location = New System.Drawing.Point(127, 194)
-        Me.TextBox14.Name = "TextBox14"
-        Me.TextBox14.Size = New System.Drawing.Size(318, 22)
-        Me.TextBox14.TabIndex = 16
-        '
-        'TextBox13
-        '
-        Me.TextBox13.Location = New System.Drawing.Point(127, 161)
-        Me.TextBox13.Name = "TextBox13"
-        Me.TextBox13.Size = New System.Drawing.Size(318, 22)
-        Me.TextBox13.TabIndex = 15
-        '
-        'TextBox12
-        '
-        Me.TextBox12.Location = New System.Drawing.Point(127, 130)
-        Me.TextBox12.Name = "TextBox12"
-        Me.TextBox12.Size = New System.Drawing.Size(318, 22)
-        Me.TextBox12.TabIndex = 14
-        '
-        'TextBox11
-        '
-        Me.TextBox11.Location = New System.Drawing.Point(127, 103)
-        Me.TextBox11.Name = "TextBox11"
-        Me.TextBox11.Size = New System.Drawing.Size(318, 22)
-        Me.TextBox11.TabIndex = 13
-        '
-        'TextBox10
-        '
-        Me.TextBox10.Location = New System.Drawing.Point(127, 66)
-        Me.TextBox10.Name = "TextBox10"
-        Me.TextBox10.Size = New System.Drawing.Size(318, 22)
-        Me.TextBox10.TabIndex = 12
-        '
-        'TextBox9
-        '
-        Me.TextBox9.Location = New System.Drawing.Point(127, 32)
-        Me.TextBox9.Name = "TextBox9"
-        Me.TextBox9.Size = New System.Drawing.Size(318, 22)
-        Me.TextBox9.TabIndex = 11
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(20, 358)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(126, 17)
-        Me.Label13.TabIndex = 10
-        Me.Label13.Text = "Personalized From"
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(20, 326)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(42, 17)
-        Me.Label12.TabIndex = 9
-        Me.Label12.Text = "Email"
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(20, 295)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(61, 17)
-        Me.Label11.TabIndex = 8
-        Me.Label11.Text = "Phone 2"
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(20, 265)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(61, 17)
-        Me.Label10.TabIndex = 7
-        Me.Label10.Text = "Phone 1"
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(20, 231)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(65, 17)
-        Me.Label9.TabIndex = 6
-        Me.Label9.Text = "Zip Code"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(20, 197)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(41, 17)
-        Me.Label8.TabIndex = 5
-        Me.Label8.Text = "State"
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(20, 166)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(31, 17)
-        Me.Label7.TabIndex = 4
-        Me.Label7.Text = "City"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(20, 133)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(72, 17)
-        Me.Label6.TabIndex = 3
-        Me.Label6.Text = "Address 2"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(20, 103)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(72, 17)
-        Me.Label5.TabIndex = 2
-        Me.Label5.Text = "Address 1"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(20, 71)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(76, 17)
-        Me.Label4.TabIndex = 1
-        Me.Label4.Text = "Last Name"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(20, 35)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(76, 17)
-        Me.Label3.TabIndex = 0
-        Me.Label3.Text = "First Name"
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.TextBox5)
-        Me.GroupBox1.Controls.Add(Me.Label38)
-        Me.GroupBox1.Controls.Add(Me.Label34)
-        Me.GroupBox1.Controls.Add(Me.Label33)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 225)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(948, 78)
-        Me.GroupBox1.TabIndex = 16
-        Me.GroupBox1.TabStop = False
-        '
-        'TextBox5
-        '
-        Me.TextBox5.Location = New System.Drawing.Point(149, 42)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(769, 22)
-        Me.TextBox5.TabIndex = 8
-        '
-        'Label38
-        '
-        Me.Label38.AutoSize = True
-        Me.Label38.Location = New System.Drawing.Point(16, 45)
-        Me.Label38.Name = "Label38"
-        Me.Label38.Size = New System.Drawing.Size(112, 17)
-        Me.Label38.TabIndex = 7
-        Me.Label38.Text = "Payment Notes :"
-        '
-        'Label34
-        '
-        Me.Label34.AutoSize = True
-        Me.Label34.Location = New System.Drawing.Point(521, 18)
-        Me.Label34.Name = "Label34"
-        Me.Label34.Size = New System.Drawing.Size(100, 17)
-        Me.Label34.TabIndex = 3
-        Me.Label34.Text = "Date Entered :"
-        '
-        'Label33
-        '
-        Me.Label33.AutoSize = True
-        Me.Label33.Location = New System.Drawing.Point(16, 18)
-        Me.Label33.Name = "Label33"
-        Me.Label33.Size = New System.Drawing.Size(133, 17)
-        Me.Label33.TabIndex = 2
-        Me.Label33.Text = "Certificate Number :"
         '
         'GroupBox5
         '
@@ -626,14 +146,24 @@ Partial Class FrmModify
         Me.GroupBox5.Controls.Add(Me.Label1)
         Me.GroupBox5.Location = New System.Drawing.Point(12, 8)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(1753, 211)
+        Me.GroupBox5.Size = New System.Drawing.Size(984, 211)
         Me.GroupBox5.TabIndex = 22
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Search"
         '
+        'SfDataGrid1
+        '
+        Me.SfDataGrid1.AccessibleName = "Table"
+        Me.SfDataGrid1.Location = New System.Drawing.Point(19, 45)
+        Me.SfDataGrid1.Name = "SfDataGrid1"
+        Me.SfDataGrid1.PreviewRowHeight = 35
+        Me.SfDataGrid1.Size = New System.Drawing.Size(869, 160)
+        Me.SfDataGrid1.TabIndex = 16
+        Me.SfDataGrid1.Text = "SfDataGrid1"
+        '
         'Button4
         '
-        Me.Button4.Location = New System.Drawing.Point(1672, 21)
+        Me.Button4.Location = New System.Drawing.Point(894, 45)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(75, 23)
         Me.Button4.TabIndex = 15
@@ -661,231 +191,979 @@ Partial Class FrmModify
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(20, 20)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(84, 17)
+        Me.Label1.Size = New System.Drawing.Size(79, 16)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Last Name :"
         '
-        'SfDataGrid1
+        'RdoPOSOnline
         '
-        Me.SfDataGrid1.AccessibleName = "Table"
-        Me.SfDataGrid1.Location = New System.Drawing.Point(19, 45)
-        Me.SfDataGrid1.Name = "SfDataGrid1"
-        Me.SfDataGrid1.PreviewRowHeight = 35
-        Me.SfDataGrid1.Size = New System.Drawing.Size(1634, 160)
-        Me.SfDataGrid1.TabIndex = 16
-        Me.SfDataGrid1.Text = "SfDataGrid1"
+        Me.RdoPOSOnline.AutoSize = True
+        Me.RdoPOSOnline.Location = New System.Drawing.Point(21, 2)
+        Me.RdoPOSOnline.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.RdoPOSOnline.Name = "RdoPOSOnline"
+        Me.RdoPOSOnline.Size = New System.Drawing.Size(64, 20)
+        Me.RdoPOSOnline.TabIndex = 0
+        Me.RdoPOSOnline.Text = "Online"
+        Me.RdoPOSOnline.UseVisualStyleBackColor = True
         '
-        'Label31
+        'TxtRecipientZip
         '
-        Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(375, 367)
-        Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(87, 17)
-        Me.Label31.TabIndex = 40
-        Me.Label31.Text = "User Name :"
+        Me.TxtRecipientZip.Location = New System.Drawing.Point(123, 212)
+        Me.TxtRecipientZip.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TxtRecipientZip.MaxLength = 15
+        Me.TxtRecipientZip.Name = "TxtRecipientZip"
+        Me.TxtRecipientZip.Size = New System.Drawing.Size(319, 22)
+        Me.TxtRecipientZip.TabIndex = 28
         '
-        'Label30
+        'TxtRecipientState
         '
-        Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(10, 367)
-        Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(99, 17)
-        Me.Label30.TabIndex = 39
-        Me.Label30.Text = "Authorization :"
+        Me.TxtRecipientState.Location = New System.Drawing.Point(123, 175)
+        Me.TxtRecipientState.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TxtRecipientState.MaxLength = 20
+        Me.TxtRecipientState.Name = "TxtRecipientState"
+        Me.TxtRecipientState.Size = New System.Drawing.Size(319, 22)
+        Me.TxtRecipientState.TabIndex = 27
         '
-        'Label29
+        'TxtRecipientCity
         '
-        Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(41, 296)
-        Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(57, 17)
-        Me.Label29.TabIndex = 38
-        Me.Label29.Text = "Notes : "
+        Me.TxtRecipientCity.Location = New System.Drawing.Point(123, 142)
+        Me.TxtRecipientCity.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TxtRecipientCity.MaxLength = 20
+        Me.TxtRecipientCity.Name = "TxtRecipientCity"
+        Me.TxtRecipientCity.Size = New System.Drawing.Size(319, 22)
+        Me.TxtRecipientCity.TabIndex = 26
         '
-        'Label27
+        'TxtRecipientAddress2
         '
-        Me.Label27.AutoSize = True
-        Me.Label27.Location = New System.Drawing.Point(6, 236)
-        Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(105, 17)
-        Me.Label27.TabIndex = 37
-        Me.Label27.Text = "Delivery Option"
+        Me.TxtRecipientAddress2.Location = New System.Drawing.Point(123, 111)
+        Me.TxtRecipientAddress2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TxtRecipientAddress2.MaxLength = 50
+        Me.TxtRecipientAddress2.Name = "TxtRecipientAddress2"
+        Me.TxtRecipientAddress2.Size = New System.Drawing.Size(319, 22)
+        Me.TxtRecipientAddress2.TabIndex = 25
         '
-        'Label26
+        'TxtRecipientAddress1
         '
-        Me.Label26.AutoSize = True
-        Me.Label26.Location = New System.Drawing.Point(52, 30)
-        Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(46, 17)
-        Me.Label26.TabIndex = 36
-        Me.Label26.Text = "Item : "
+        Me.TxtRecipientAddress1.Location = New System.Drawing.Point(123, 84)
+        Me.TxtRecipientAddress1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TxtRecipientAddress1.MaxLength = 50
+        Me.TxtRecipientAddress1.Name = "TxtRecipientAddress1"
+        Me.TxtRecipientAddress1.Size = New System.Drawing.Size(319, 22)
+        Me.TxtRecipientAddress1.TabIndex = 24
         '
-        'TextBox4
+        'TxtRecipientLastName
         '
-        Me.TextBox4.Location = New System.Drawing.Point(477, 364)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(176, 22)
-        Me.TextBox4.TabIndex = 35
+        Me.TxtRecipientLastName.Location = New System.Drawing.Point(123, 47)
+        Me.TxtRecipientLastName.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TxtRecipientLastName.MaxLength = 25
+        Me.TxtRecipientLastName.Name = "TxtRecipientLastName"
+        Me.TxtRecipientLastName.Size = New System.Drawing.Size(319, 22)
+        Me.TxtRecipientLastName.TabIndex = 23
+        Me.TxtRecipientLastName.Visible = False
         '
-        'TextBox3
+        'TxtRecipientFirstName
         '
-        Me.TextBox3.Location = New System.Drawing.Point(115, 367)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(146, 22)
-        Me.TextBox3.TabIndex = 34
+        Me.TxtRecipientFirstName.Location = New System.Drawing.Point(123, 14)
+        Me.TxtRecipientFirstName.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TxtRecipientFirstName.MaxLength = 20
+        Me.TxtRecipientFirstName.Name = "TxtRecipientFirstName"
+        Me.TxtRecipientFirstName.Size = New System.Drawing.Size(319, 22)
+        Me.TxtRecipientFirstName.TabIndex = 22
+        Me.TxtRecipientFirstName.Visible = False
         '
-        'TextBox2
+        'Label32
         '
-        Me.TextBox2.Location = New System.Drawing.Point(115, 278)
-        Me.TextBox2.Multiline = True
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(538, 80)
-        Me.TextBox2.TabIndex = 33
+        Me.Label32.AutoSize = True
+        Me.Label32.Location = New System.Drawing.Point(33, 149)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Size = New System.Drawing.Size(30, 16)
+        Me.Label32.TabIndex = 21
+        Me.Label32.Text = "City"
         '
-        'Panel2
+        'Label18
         '
-        Me.Panel2.Controls.Add(Me.RadioButton4)
-        Me.Panel2.Controls.Add(Me.RadioButton3)
-        Me.Panel2.Controls.Add(Me.RadioButton2)
-        Me.Panel2.Controls.Add(Me.RadioButton1)
-        Me.Panel2.Location = New System.Drawing.Point(130, 231)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(523, 29)
-        Me.Panel2.TabIndex = 32
+        Me.Label18.AutoSize = True
+        Me.Label18.Location = New System.Drawing.Point(33, 214)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(63, 16)
+        Me.Label18.TabIndex = 16
+        Me.Label18.Text = "Zip Code"
         '
-        'RadioButton4
+        'LblCalculatedDiscount
         '
-        Me.RadioButton4.AutoSize = True
-        Me.RadioButton4.Location = New System.Drawing.Point(397, 3)
-        Me.RadioButton4.Name = "RadioButton4"
-        Me.RadioButton4.Size = New System.Drawing.Size(89, 21)
-        Me.RadioButton4.TabIndex = 3
-        Me.RadioButton4.Text = "In Person"
-        Me.RadioButton4.UseVisualStyleBackColor = True
+        Me.LblCalculatedDiscount.AutoSize = True
+        Me.LblCalculatedDiscount.Location = New System.Drawing.Point(380, 272)
+        Me.LblCalculatedDiscount.Name = "LblCalculatedDiscount"
+        Me.LblCalculatedDiscount.Size = New System.Drawing.Size(32, 16)
+        Me.LblCalculatedDiscount.TabIndex = 24
+        Me.LblCalculatedDiscount.Text = "0.00"
         '
-        'RadioButton3
+        'Label15
         '
-        Me.RadioButton3.AutoSize = True
-        Me.RadioButton3.Location = New System.Drawing.Point(234, 3)
-        Me.RadioButton3.Name = "RadioButton3"
-        Me.RadioButton3.Size = New System.Drawing.Size(143, 21)
-        Me.RadioButton3.TabIndex = 2
-        Me.RadioButton3.Text = "US Mail (Discrete)"
-        Me.RadioButton3.UseVisualStyleBackColor = True
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(136, 272)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(112, 16)
+        Me.Label15.TabIndex = 23
+        Me.Label15.Text = "Discount Savings"
         '
-        'RadioButton2
+        'LblItem5Description
         '
-        Me.RadioButton2.AutoSize = True
-        Me.RadioButton2.Location = New System.Drawing.Point(118, 3)
-        Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(77, 21)
-        Me.RadioButton2.TabIndex = 1
-        Me.RadioButton2.Text = "US Mail"
-        Me.RadioButton2.UseVisualStyleBackColor = True
+        Me.LblItem5Description.AutoSize = True
+        Me.LblItem5Description.Location = New System.Drawing.Point(93, 134)
+        Me.LblItem5Description.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LblItem5Description.Name = "LblItem5Description"
+        Me.LblItem5Description.Size = New System.Drawing.Size(122, 16)
+        Me.LblItem5Description.TabIndex = 22
+        Me.LblItem5Description.Text = "lblItem1Description"
         '
-        'RadioButton1
+        'LblItem4Description
         '
-        Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.Location = New System.Drawing.Point(22, 3)
-        Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(63, 21)
-        Me.RadioButton1.TabIndex = 0
-        Me.RadioButton1.Text = "Email"
-        Me.RadioButton1.UseVisualStyleBackColor = True
+        Me.LblItem4Description.AutoSize = True
+        Me.LblItem4Description.Location = New System.Drawing.Point(93, 106)
+        Me.LblItem4Description.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LblItem4Description.Name = "LblItem4Description"
+        Me.LblItem4Description.Size = New System.Drawing.Size(122, 16)
+        Me.LblItem4Description.TabIndex = 21
+        Me.LblItem4Description.Text = "lblItem1Description"
         '
-        'Label25
+        'LblItem3Description
         '
-        Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(259, 81)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(36, 17)
-        Me.Label25.TabIndex = 31
-        Me.Label25.Text = "0.00"
+        Me.LblItem3Description.AutoSize = True
+        Me.LblItem3Description.Location = New System.Drawing.Point(93, 75)
+        Me.LblItem3Description.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LblItem3Description.Name = "LblItem3Description"
+        Me.LblItem3Description.Size = New System.Drawing.Size(122, 16)
+        Me.LblItem3Description.TabIndex = 20
+        Me.LblItem3Description.Text = "lblItem1Description"
         '
-        'Label24
+        'LblItem2Description
         '
-        Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(125, 81)
-        Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(118, 17)
-        Me.Label24.TabIndex = 30
-        Me.Label24.Text = "Calculated Total :"
+        Me.LblItem2Description.AutoSize = True
+        Me.LblItem2Description.Location = New System.Drawing.Point(93, 43)
+        Me.LblItem2Description.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LblItem2Description.Name = "LblItem2Description"
+        Me.LblItem2Description.Size = New System.Drawing.Size(122, 16)
+        Me.LblItem2Description.TabIndex = 19
+        Me.LblItem2Description.Text = "lblItem1Description"
+        '
+        'LblItem1Description
+        '
+        Me.LblItem1Description.AutoSize = True
+        Me.LblItem1Description.Location = New System.Drawing.Point(93, 10)
+        Me.LblItem1Description.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LblItem1Description.Name = "LblItem1Description"
+        Me.LblItem1Description.Size = New System.Drawing.Size(122, 16)
+        Me.LblItem1Description.TabIndex = 18
+        Me.LblItem1Description.Text = "lblItem1Description"
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Location = New System.Drawing.Point(19, 114)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(91, 16)
+        Me.Label28.TabIndex = 23
+        Me.Label28.Text = "Point Of Sale :"
+        '
+        'TxtAuthorization
+        '
+        Me.TxtAuthorization.Location = New System.Drawing.Point(251, 239)
+        Me.TxtAuthorization.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TxtAuthorization.MaxLength = 10
+        Me.TxtAuthorization.Name = "TxtAuthorization"
+        Me.TxtAuthorization.Size = New System.Drawing.Size(145, 22)
+        Me.TxtAuthorization.TabIndex = 9
+        '
+        'TxtNotes
+        '
+        Me.TxtNotes.Location = New System.Drawing.Point(137, 144)
+        Me.TxtNotes.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TxtNotes.Multiline = True
+        Me.TxtNotes.Name = "TxtNotes"
+        Me.TxtNotes.Size = New System.Drawing.Size(671, 89)
+        Me.TxtNotes.TabIndex = 8
+        '
+        'Panel3
+        '
+        Me.Panel3.Controls.Add(Me.RdoPosPhone)
+        Me.Panel3.Controls.Add(Me.RdoPOSOnline)
+        Me.Panel3.Location = New System.Drawing.Point(137, 110)
+        Me.Panel3.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(672, 30)
+        Me.Panel3.TabIndex = 7
+        '
+        'RdoPosPhone
+        '
+        Me.RdoPosPhone.AutoSize = True
+        Me.RdoPosPhone.Location = New System.Drawing.Point(117, 2)
+        Me.RdoPosPhone.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.RdoPosPhone.Name = "RdoPosPhone"
+        Me.RdoPosPhone.Size = New System.Drawing.Size(131, 20)
+        Me.RdoPosPhone.TabIndex = 1
+        Me.RdoPosPhone.Text = "Phone / In Person"
+        Me.RdoPosPhone.UseVisualStyleBackColor = True
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Location = New System.Drawing.Point(33, 180)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(39, 16)
+        Me.Label19.TabIndex = 15
+        Me.Label19.Text = "State"
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Location = New System.Drawing.Point(33, 116)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(69, 16)
+        Me.Label20.TabIndex = 14
+        Me.Label20.Text = "Address 2"
+        '
+        'LblItem5Amount
+        '
+        Me.LblItem5Amount.AutoSize = True
+        Me.LblItem5Amount.Location = New System.Drawing.Point(357, 126)
+        Me.LblItem5Amount.Name = "LblItem5Amount"
+        Me.LblItem5Amount.Size = New System.Drawing.Size(15, 16)
+        Me.LblItem5Amount.TabIndex = 17
+        Me.LblItem5Amount.Text = "0"
+        '
+        'LblItem4Amount
+        '
+        Me.LblItem4Amount.AutoSize = True
+        Me.LblItem4Amount.Location = New System.Drawing.Point(357, 96)
+        Me.LblItem4Amount.Name = "LblItem4Amount"
+        Me.LblItem4Amount.Size = New System.Drawing.Size(15, 16)
+        Me.LblItem4Amount.TabIndex = 16
+        Me.LblItem4Amount.Text = "0"
+        '
+        'LblItem3Amount
+        '
+        Me.LblItem3Amount.AutoSize = True
+        Me.LblItem3Amount.Location = New System.Drawing.Point(357, 65)
+        Me.LblItem3Amount.Name = "LblItem3Amount"
+        Me.LblItem3Amount.Size = New System.Drawing.Size(15, 16)
+        Me.LblItem3Amount.TabIndex = 15
+        Me.LblItem3Amount.Text = "0"
+        '
+        'LblItem2Amount
+        '
+        Me.LblItem2Amount.AutoSize = True
+        Me.LblItem2Amount.Location = New System.Drawing.Point(357, 39)
+        Me.LblItem2Amount.Name = "LblItem2Amount"
+        Me.LblItem2Amount.Size = New System.Drawing.Size(15, 16)
+        Me.LblItem2Amount.TabIndex = 14
+        Me.LblItem2Amount.Text = "0"
+        '
+        'LblItem1Amount
+        '
+        Me.LblItem1Amount.AutoSize = True
+        Me.LblItem1Amount.Location = New System.Drawing.Point(365, 9)
+        Me.LblItem1Amount.Name = "LblItem1Amount"
+        Me.LblItem1Amount.Size = New System.Drawing.Size(15, 16)
+        Me.LblItem1Amount.TabIndex = 13
+        Me.LblItem1Amount.Text = "0"
+        '
+        'ComboBox5
+        '
+        Me.ComboBox5.FormattingEnabled = True
+        Me.ComboBox5.Location = New System.Drawing.Point(19, 123)
+        Me.ComboBox5.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.ComboBox5.Name = "ComboBox5"
+        Me.ComboBox5.Size = New System.Drawing.Size(67, 24)
+        Me.ComboBox5.TabIndex = 12
+        '
+        'ComboBox4
+        '
+        Me.ComboBox4.FormattingEnabled = True
+        Me.ComboBox4.Location = New System.Drawing.Point(19, 96)
+        Me.ComboBox4.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.ComboBox4.Name = "ComboBox4"
+        Me.ComboBox4.Size = New System.Drawing.Size(67, 24)
+        Me.ComboBox4.TabIndex = 11
+        '
+        'ComboBox3
+        '
+        Me.ComboBox3.FormattingEnabled = True
+        Me.ComboBox3.Location = New System.Drawing.Point(19, 65)
+        Me.ComboBox3.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.ComboBox3.Name = "ComboBox3"
+        Me.ComboBox3.Size = New System.Drawing.Size(67, 24)
+        Me.ComboBox3.TabIndex = 10
+        '
+        'ComboBox2
+        '
+        Me.ComboBox2.FormattingEnabled = True
+        Me.ComboBox2.Location = New System.Drawing.Point(19, 33)
+        Me.ComboBox2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.ComboBox2.Name = "ComboBox2"
+        Me.ComboBox2.Size = New System.Drawing.Size(67, 24)
+        Me.ComboBox2.TabIndex = 9
         '
         'ComboBox1
         '
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(115, 185)
+        Me.ComboBox1.Location = New System.Drawing.Point(19, 2)
+        Me.ComboBox1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(143, 24)
-        Me.ComboBox1.TabIndex = 29
+        Me.ComboBox1.Size = New System.Drawing.Size(67, 24)
+        Me.ComboBox1.TabIndex = 6
         '
-        'Panel1
+        'LblCalculatedTotal
         '
-        Me.Panel1.Controls.Add(Me.TextBox1)
-        Me.Panel1.Controls.Add(Me.CheckBox4)
-        Me.Panel1.Controls.Add(Me.CheckBox3)
-        Me.Panel1.Controls.Add(Me.CheckBox2)
-        Me.Panel1.Controls.Add(Me.CheckBox1)
-        Me.Panel1.Location = New System.Drawing.Point(128, 27)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(672, 30)
-        Me.Panel1.TabIndex = 28
+        Me.LblCalculatedTotal.AutoSize = True
+        Me.LblCalculatedTotal.Location = New System.Drawing.Point(380, 238)
+        Me.LblCalculatedTotal.Name = "LblCalculatedTotal"
+        Me.LblCalculatedTotal.Size = New System.Drawing.Size(32, 16)
+        Me.LblCalculatedTotal.TabIndex = 5
+        Me.LblCalculatedTotal.Text = "0.00"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(511, 424)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(99, 16)
+        Me.Label14.TabIndex = 34
+        Me.Label14.Text = "Discount Code:"
+        '
+        'TabPage1
+        '
+        Me.TabPage1.Controls.Add(Me.GroupBox2)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TabPage1.Size = New System.Drawing.Size(475, 414)
+        Me.TabPage1.TabIndex = 0
+        Me.TabPage1.Text = "Billing Address"
+        Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.Label40)
+        Me.GroupBox2.Controls.Add(Me.TxtPurchaserEmail)
+        Me.GroupBox2.Controls.Add(Me.TextBox2)
+        Me.GroupBox2.Controls.Add(Me.TxtPurchaserPhone2)
+        Me.GroupBox2.Controls.Add(Me.TextBox1)
+        Me.GroupBox2.Controls.Add(Me.TxtPurchaserPhone1)
+        Me.GroupBox2.Controls.Add(Me.TxtPurchaserZip)
+        Me.GroupBox2.Controls.Add(Me.TxtPurchaserState)
+        Me.GroupBox2.Controls.Add(Me.TxtPurchaserCity)
+        Me.GroupBox2.Controls.Add(Me.TxtPurchaserAddress2)
+        Me.GroupBox2.Controls.Add(Me.TxtPurchaserAddress1)
+        Me.GroupBox2.Controls.Add(Me.TxtPurchaserLastName)
+        Me.GroupBox2.Controls.Add(Me.TxtPurchaserFirstName)
+        Me.GroupBox2.Controls.Add(Me.Label12)
+        Me.GroupBox2.Controls.Add(Me.Label11)
+        Me.GroupBox2.Controls.Add(Me.Label10)
+        Me.GroupBox2.Controls.Add(Me.Label9)
+        Me.GroupBox2.Controls.Add(Me.Label8)
+        Me.GroupBox2.Controls.Add(Me.Label7)
+        Me.GroupBox2.Controls.Add(Me.Label6)
+        Me.GroupBox2.Controls.Add(Me.Label5)
+        Me.GroupBox2.Controls.Add(Me.Label4)
+        Me.GroupBox2.Controls.Add(Me.Label3)
+        Me.GroupBox2.Location = New System.Drawing.Point(5, 15)
+        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.GroupBox2.Size = New System.Drawing.Size(467, 370)
+        Me.GroupBox2.TabIndex = 3
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Billing"
+        '
+        'Label40
+        '
+        Me.Label40.AutoSize = True
+        Me.Label40.Location = New System.Drawing.Point(16, 350)
+        Me.Label40.Name = "Label40"
+        Me.Label40.Size = New System.Drawing.Size(400, 16)
+        Me.Label40.TabIndex = 21
+        Me.Label40.Text = "Note: If shipping and billing are the same can leave shipping blank"
+        '
+        'TxtPurchaserEmail
+        '
+        Me.TxtPurchaserEmail.Location = New System.Drawing.Point(123, 306)
+        Me.TxtPurchaserEmail.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TxtPurchaserEmail.MaxLength = 60
+        Me.TxtPurchaserEmail.Name = "TxtPurchaserEmail"
+        Me.TxtPurchaserEmail.Size = New System.Drawing.Size(319, 22)
+        Me.TxtPurchaserEmail.TabIndex = 20
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(123, 274)
+        Me.TextBox2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TextBox2.MaxLength = 20
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(319, 22)
+        Me.TextBox2.TabIndex = 19
+        '
+        'TxtPurchaserPhone2
+        '
+        Me.TxtPurchaserPhone2.Location = New System.Drawing.Point(123, 276)
+        Me.TxtPurchaserPhone2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TxtPurchaserPhone2.Name = "TxtPurchaserPhone2"
+        Me.TxtPurchaserPhone2.Size = New System.Drawing.Size(319, 22)
+        Me.TxtPurchaserPhone2.TabIndex = 19
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(529, 3)
+        Me.TextBox1.Location = New System.Drawing.Point(123, 245)
+        Me.TextBox1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TextBox1.MaxLength = 20
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(100, 22)
-        Me.TextBox1.TabIndex = 4
+        Me.TextBox1.Size = New System.Drawing.Size(319, 22)
+        Me.TextBox1.TabIndex = 18
         '
-        'CheckBox4
+        'TxtPurchaserPhone1
         '
-        Me.CheckBox4.AutoSize = True
-        Me.CheckBox4.Location = New System.Drawing.Point(457, 5)
-        Me.CheckBox4.Name = "CheckBox4"
-        Me.CheckBox4.Size = New System.Drawing.Size(66, 21)
-        Me.CheckBox4.TabIndex = 3
-        Me.CheckBox4.Text = "Other"
-        Me.CheckBox4.UseVisualStyleBackColor = True
+        Me.TxtPurchaserPhone1.Location = New System.Drawing.Point(123, 246)
+        Me.TxtPurchaserPhone1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TxtPurchaserPhone1.Name = "TxtPurchaserPhone1"
+        Me.TxtPurchaserPhone1.Size = New System.Drawing.Size(319, 22)
+        Me.TxtPurchaserPhone1.TabIndex = 18
         '
-        'CheckBox3
+        'TxtPurchaserZip
         '
-        Me.CheckBox3.AutoSize = True
-        Me.CheckBox3.Location = New System.Drawing.Point(341, 5)
-        Me.CheckBox3.Name = "CheckBox3"
-        Me.CheckBox3.Size = New System.Drawing.Size(66, 21)
-        Me.CheckBox3.TabIndex = 2
-        Me.CheckBox3.Text = "Video"
-        Me.CheckBox3.UseVisualStyleBackColor = True
+        Me.TxtPurchaserZip.Location = New System.Drawing.Point(123, 212)
+        Me.TxtPurchaserZip.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TxtPurchaserZip.MaxLength = 15
+        Me.TxtPurchaserZip.Name = "TxtPurchaserZip"
+        Me.TxtPurchaserZip.Size = New System.Drawing.Size(319, 22)
+        Me.TxtPurchaserZip.TabIndex = 17
         '
-        'CheckBox2
+        'TxtPurchaserState
         '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Location = New System.Drawing.Point(181, 5)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(109, 21)
-        Me.CheckBox2.TabIndex = 1
-        Me.CheckBox2.Text = "Tandem 12k"
-        Me.CheckBox2.UseVisualStyleBackColor = True
+        Me.TxtPurchaserState.Location = New System.Drawing.Point(123, 175)
+        Me.TxtPurchaserState.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TxtPurchaserState.MaxLength = 20
+        Me.TxtPurchaserState.Name = "TxtPurchaserState"
+        Me.TxtPurchaserState.Size = New System.Drawing.Size(319, 22)
+        Me.TxtPurchaserState.TabIndex = 16
         '
-        'CheckBox1
+        'TxtPurchaserCity
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(19, 5)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(109, 21)
-        Me.CheckBox1.TabIndex = 0
-        Me.CheckBox1.Text = "Tandem 10k"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.TxtPurchaserCity.Location = New System.Drawing.Point(123, 142)
+        Me.TxtPurchaserCity.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TxtPurchaserCity.MaxLength = 20
+        Me.TxtPurchaserCity.Name = "TxtPurchaserCity"
+        Me.TxtPurchaserCity.Size = New System.Drawing.Size(319, 22)
+        Me.TxtPurchaserCity.TabIndex = 15
+        '
+        'TxtPurchaserAddress2
+        '
+        Me.TxtPurchaserAddress2.Location = New System.Drawing.Point(123, 111)
+        Me.TxtPurchaserAddress2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TxtPurchaserAddress2.MaxLength = 50
+        Me.TxtPurchaserAddress2.Name = "TxtPurchaserAddress2"
+        Me.TxtPurchaserAddress2.Size = New System.Drawing.Size(319, 22)
+        Me.TxtPurchaserAddress2.TabIndex = 14
+        '
+        'TxtPurchaserAddress1
+        '
+        Me.TxtPurchaserAddress1.Location = New System.Drawing.Point(123, 84)
+        Me.TxtPurchaserAddress1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TxtPurchaserAddress1.MaxLength = 50
+        Me.TxtPurchaserAddress1.Name = "TxtPurchaserAddress1"
+        Me.TxtPurchaserAddress1.Size = New System.Drawing.Size(319, 22)
+        Me.TxtPurchaserAddress1.TabIndex = 13
+        '
+        'TxtPurchaserLastName
+        '
+        Me.TxtPurchaserLastName.Location = New System.Drawing.Point(123, 47)
+        Me.TxtPurchaserLastName.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TxtPurchaserLastName.MaxLength = 25
+        Me.TxtPurchaserLastName.Name = "TxtPurchaserLastName"
+        Me.TxtPurchaserLastName.Size = New System.Drawing.Size(319, 22)
+        Me.TxtPurchaserLastName.TabIndex = 12
+        '
+        'TxtPurchaserFirstName
+        '
+        Me.TxtPurchaserFirstName.Location = New System.Drawing.Point(123, 14)
+        Me.TxtPurchaserFirstName.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TxtPurchaserFirstName.MaxLength = 20
+        Me.TxtPurchaserFirstName.Name = "TxtPurchaserFirstName"
+        Me.TxtPurchaserFirstName.Size = New System.Drawing.Size(319, 22)
+        Me.TxtPurchaserFirstName.TabIndex = 11
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(16, 306)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(42, 16)
+        Me.Label12.TabIndex = 9
+        Me.Label12.Text = "Email"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(16, 276)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(57, 16)
+        Me.Label11.TabIndex = 8
+        Me.Label11.Text = "Phone 2"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(16, 246)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(57, 16)
+        Me.Label10.TabIndex = 7
+        Me.Label10.Text = "Phone 1"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(16, 212)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(63, 16)
+        Me.Label9.TabIndex = 6
+        Me.Label9.Text = "Zip Code"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(16, 178)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(39, 16)
+        Me.Label8.TabIndex = 5
+        Me.Label8.Text = "State"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(16, 146)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(30, 16)
+        Me.Label7.TabIndex = 4
+        Me.Label7.Text = "City"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(16, 114)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(69, 16)
+        Me.Label6.TabIndex = 3
+        Me.Label6.Text = "Address 2"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(16, 84)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(69, 16)
+        Me.Label5.TabIndex = 2
+        Me.Label5.Text = "Address 1"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(16, 52)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(73, 16)
+        Me.Label4.TabIndex = 1
+        Me.Label4.Text = "Last Name"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(16, 16)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(73, 16)
+        Me.Label3.TabIndex = 0
+        Me.Label3.Text = "First Name"
+        '
+        'TabPage2
+        '
+        Me.TabPage2.Controls.Add(Me.GroupBox3)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TabPage2.Size = New System.Drawing.Size(475, 414)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "Shipping Address"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'GroupBox3
+        '
+        Me.GroupBox3.Controls.Add(Me.TxtRecipientZip)
+        Me.GroupBox3.Controls.Add(Me.TxtRecipientState)
+        Me.GroupBox3.Controls.Add(Me.TxtRecipientCity)
+        Me.GroupBox3.Controls.Add(Me.TxtRecipientAddress2)
+        Me.GroupBox3.Controls.Add(Me.TxtRecipientAddress1)
+        Me.GroupBox3.Controls.Add(Me.TxtRecipientLastName)
+        Me.GroupBox3.Controls.Add(Me.TxtRecipientFirstName)
+        Me.GroupBox3.Controls.Add(Me.Label32)
+        Me.GroupBox3.Controls.Add(Me.Label18)
+        Me.GroupBox3.Controls.Add(Me.Label19)
+        Me.GroupBox3.Controls.Add(Me.Label20)
+        Me.GroupBox3.Controls.Add(Me.Label21)
+        Me.GroupBox3.Controls.Add(Me.Label22)
+        Me.GroupBox3.Controls.Add(Me.Label23)
+        Me.GroupBox3.Location = New System.Drawing.Point(5, 11)
+        Me.GroupBox3.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.GroupBox3.Size = New System.Drawing.Size(460, 377)
+        Me.GroupBox3.TabIndex = 4
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "Shipping"
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(33, 86)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(69, 16)
+        Me.Label21.TabIndex = 13
+        Me.Label21.Text = "Address 1"
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Location = New System.Drawing.Point(33, 54)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(73, 16)
+        Me.Label22.TabIndex = 12
+        Me.Label22.Text = "Last Name"
+        Me.Label22.Visible = False
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Location = New System.Drawing.Point(33, 18)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(73, 16)
+        Me.Label23.TabIndex = 11
+        Me.Label23.Text = "First Name"
+        Me.Label23.Visible = False
+        '
+        'TabControl1
+        '
+        Me.TabControl1.Controls.Add(Me.TabPage1)
+        Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Location = New System.Drawing.Point(12, 365)
+        Me.TabControl1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(483, 443)
+        Me.TabControl1.TabIndex = 30
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(455, 1096)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 28
+        Me.Button2.Text = "Cancel"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(365, 1096)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 27
+        Me.Button1.Text = "OK "
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.LblCalculatedDiscount)
+        Me.Panel1.Controls.Add(Me.Label15)
+        Me.Panel1.Controls.Add(Me.LblItem5Description)
+        Me.Panel1.Controls.Add(Me.LblItem4Description)
+        Me.Panel1.Controls.Add(Me.LblItem3Description)
+        Me.Panel1.Controls.Add(Me.LblItem2Description)
+        Me.Panel1.Controls.Add(Me.LblItem1Description)
+        Me.Panel1.Controls.Add(Me.LblItem5Amount)
+        Me.Panel1.Controls.Add(Me.LblItem4Amount)
+        Me.Panel1.Controls.Add(Me.LblItem3Amount)
+        Me.Panel1.Controls.Add(Me.LblItem2Amount)
+        Me.Panel1.Controls.Add(Me.LblItem1Amount)
+        Me.Panel1.Controls.Add(Me.ComboBox5)
+        Me.Panel1.Controls.Add(Me.ComboBox4)
+        Me.Panel1.Controls.Add(Me.ComboBox3)
+        Me.Panel1.Controls.Add(Me.ComboBox2)
+        Me.Panel1.Controls.Add(Me.ComboBox1)
+        Me.Panel1.Controls.Add(Me.LblCalculatedTotal)
+        Me.Panel1.Controls.Add(Me.Label24)
+        Me.Panel1.Location = New System.Drawing.Point(520, 484)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(436, 322)
+        Me.Panel1.TabIndex = 24
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Location = New System.Drawing.Point(156, 238)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(112, 16)
+        Me.Label24.TabIndex = 4
+        Me.Label24.Text = "Calculated Total :"
+        '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.RdoDeliveryInPerson)
+        Me.Panel2.Controls.Add(Me.RdoDeliverUSMailDiscrete)
+        Me.Panel2.Controls.Add(Me.RdoDeliveryUSMail)
+        Me.Panel2.Controls.Add(Me.RdoDeliveryEmail)
+        Me.Panel2.Location = New System.Drawing.Point(137, 74)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(672, 30)
+        Me.Panel2.TabIndex = 6
+        '
+        'RdoDeliveryInPerson
+        '
+        Me.RdoDeliveryInPerson.AutoSize = True
+        Me.RdoDeliveryInPerson.Location = New System.Drawing.Point(397, 2)
+        Me.RdoDeliveryInPerson.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.RdoDeliveryInPerson.Name = "RdoDeliveryInPerson"
+        Me.RdoDeliveryInPerson.Size = New System.Drawing.Size(82, 20)
+        Me.RdoDeliveryInPerson.TabIndex = 3
+        Me.RdoDeliveryInPerson.Text = "In Person"
+        Me.RdoDeliveryInPerson.UseVisualStyleBackColor = True
+        '
+        'RdoDeliverUSMailDiscrete
+        '
+        Me.RdoDeliverUSMailDiscrete.AutoSize = True
+        Me.RdoDeliverUSMailDiscrete.Location = New System.Drawing.Point(235, 2)
+        Me.RdoDeliverUSMailDiscrete.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.RdoDeliverUSMailDiscrete.Name = "RdoDeliverUSMailDiscrete"
+        Me.RdoDeliverUSMailDiscrete.Size = New System.Drawing.Size(134, 20)
+        Me.RdoDeliverUSMailDiscrete.TabIndex = 2
+        Me.RdoDeliverUSMailDiscrete.Text = "US Mail (Discrete)"
+        Me.RdoDeliverUSMailDiscrete.UseVisualStyleBackColor = True
+        '
+        'RdoDeliveryUSMail
+        '
+        Me.RdoDeliveryUSMail.AutoSize = True
+        Me.RdoDeliveryUSMail.Location = New System.Drawing.Point(117, 2)
+        Me.RdoDeliveryUSMail.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.RdoDeliveryUSMail.Name = "RdoDeliveryUSMail"
+        Me.RdoDeliveryUSMail.Size = New System.Drawing.Size(73, 20)
+        Me.RdoDeliveryUSMail.TabIndex = 1
+        Me.RdoDeliveryUSMail.Text = "US Mail"
+        Me.RdoDeliveryUSMail.UseVisualStyleBackColor = True
+        '
+        'RdoDeliveryEmail
+        '
+        Me.RdoDeliveryEmail.AutoSize = True
+        Me.RdoDeliveryEmail.Location = New System.Drawing.Point(21, 2)
+        Me.RdoDeliveryEmail.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.RdoDeliveryEmail.Name = "RdoDeliveryEmail"
+        Me.RdoDeliveryEmail.Size = New System.Drawing.Size(60, 20)
+        Me.RdoDeliveryEmail.TabIndex = 0
+        Me.RdoDeliveryEmail.Text = "Email"
+        Me.RdoDeliveryEmail.UseVisualStyleBackColor = True
+        '
+        'Label26
+        '
+        Me.Label26.AutoSize = True
+        Me.Label26.Location = New System.Drawing.Point(517, 455)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(42, 16)
+        Me.Label26.TabIndex = 31
+        Me.Label26.Text = "Item : "
+        '
+        'CBoHearAbout
+        '
+        Me.CBoHearAbout.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CBoHearAbout.FormattingEnabled = True
+        Me.CBoHearAbout.Location = New System.Drawing.Point(137, 37)
+        Me.CBoHearAbout.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.CBoHearAbout.Name = "CBoHearAbout"
+        Me.CBoHearAbout.Size = New System.Drawing.Size(143, 24)
+        Me.CBoHearAbout.TabIndex = 3
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(29, 192)
+        Me.Label2.Location = New System.Drawing.Point(37, 44)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(80, 17)
-        Me.Label2.TabIndex = 27
+        Me.Label2.Size = New System.Drawing.Size(76, 16)
+        Me.Label2.TabIndex = 1
         Me.Label2.Text = "Hear About"
+        '
+        'Label27
+        '
+        Me.Label27.AutoSize = True
+        Me.Label27.Location = New System.Drawing.Point(13, 79)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(100, 16)
+        Me.Label27.TabIndex = 22
+        Me.Label27.Text = "Delivery Option"
+        '
+        'TxtId
+        '
+        Me.TxtId.Enabled = False
+        Me.TxtId.Location = New System.Drawing.Point(149, 21)
+        Me.TxtId.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TxtId.Name = "TxtId"
+        Me.TxtId.Size = New System.Drawing.Size(95, 22)
+        Me.TxtId.TabIndex = 14
+        '
+        'SfDateTimeEdit1
+        '
+        Me.SfDateTimeEdit1.Enabled = False
+        Me.SfDateTimeEdit1.Location = New System.Drawing.Point(648, 21)
+        Me.SfDateTimeEdit1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.SfDateTimeEdit1.Name = "SfDateTimeEdit1"
+        Me.SfDateTimeEdit1.Size = New System.Drawing.Size(232, 34)
+        Me.SfDateTimeEdit1.TabIndex = 13
+        Me.SfDateTimeEdit1.Value = New Date(2020, 10, 23, 0, 0, 0, 0)
+        '
+        'CboPayment
+        '
+        Me.CboPayment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CboPayment.FormattingEnabled = True
+        Me.CboPayment.Location = New System.Drawing.Point(149, 58)
+        Me.CboPayment.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.CboPayment.Name = "CboPayment"
+        Me.CboPayment.Size = New System.Drawing.Size(207, 24)
+        Me.CboPayment.TabIndex = 12
+        '
+        'TxtPaymentNotes
+        '
+        Me.TxtPaymentNotes.Location = New System.Drawing.Point(648, 64)
+        Me.TxtPaymentNotes.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TxtPaymentNotes.Name = "TxtPaymentNotes"
+        Me.TxtPaymentNotes.Size = New System.Drawing.Size(289, 22)
+        Me.TxtPaymentNotes.TabIndex = 8
+        '
+        'Label38
+        '
+        Me.Label38.AutoSize = True
+        Me.Label38.Location = New System.Drawing.Point(523, 62)
+        Me.Label38.Name = "Label38"
+        Me.Label38.Size = New System.Drawing.Size(106, 16)
+        Me.Label38.TabIndex = 7
+        Me.Label38.Text = "Payment  Notes:"
+        '
+        'Label35
+        '
+        Me.Label35.AutoSize = True
+        Me.Label35.Location = New System.Drawing.Point(16, 64)
+        Me.Label35.Name = "Label35"
+        Me.Label35.Size = New System.Drawing.Size(109, 16)
+        Me.Label35.TabIndex = 4
+        Me.Label35.Text = "Payment Method"
+        '
+        'Label34
+        '
+        Me.Label34.AutoSize = True
+        Me.Label34.Location = New System.Drawing.Point(535, 25)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(93, 16)
+        Me.Label34.TabIndex = 3
+        Me.Label34.Text = "Date Entered :"
+        '
+        'Label33
+        '
+        Me.Label33.AutoSize = True
+        Me.Label33.Location = New System.Drawing.Point(16, 18)
+        Me.Label33.Name = "Label33"
+        Me.Label33.Size = New System.Drawing.Size(124, 16)
+        Me.Label33.TabIndex = 2
+        Me.Label33.Text = "Certificate Number :"
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.TxtId)
+        Me.GroupBox1.Controls.Add(Me.SfDateTimeEdit1)
+        Me.GroupBox1.Controls.Add(Me.CboPayment)
+        Me.GroupBox1.Controls.Add(Me.TxtPaymentNotes)
+        Me.GroupBox1.Controls.Add(Me.Label38)
+        Me.GroupBox1.Controls.Add(Me.Label35)
+        Me.GroupBox1.Controls.Add(Me.Label34)
+        Me.GroupBox1.Controls.Add(Me.Label33)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 233)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.GroupBox1.Size = New System.Drawing.Size(948, 122)
+        Me.GroupBox1.TabIndex = 25
+        Me.GroupBox1.TabStop = False
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Location = New System.Drawing.Point(133, 241)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(90, 16)
+        Me.Label30.TabIndex = 25
+        Me.Label30.Text = "Authorization :"
+        '
+        'GroupBox4
+        '
+        Me.GroupBox4.Controls.Add(Me.Label30)
+        Me.GroupBox4.Controls.Add(Me.Label29)
+        Me.GroupBox4.Controls.Add(Me.Label28)
+        Me.GroupBox4.Controls.Add(Me.Label27)
+        Me.GroupBox4.Controls.Add(Me.TxtAuthorization)
+        Me.GroupBox4.Controls.Add(Me.TxtNotes)
+        Me.GroupBox4.Controls.Add(Me.Panel3)
+        Me.GroupBox4.Controls.Add(Me.Panel2)
+        Me.GroupBox4.Controls.Add(Me.CBoHearAbout)
+        Me.GroupBox4.Controls.Add(Me.Label2)
+        Me.GroupBox4.Location = New System.Drawing.Point(16, 814)
+        Me.GroupBox4.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.GroupBox4.Size = New System.Drawing.Size(944, 276)
+        Me.GroupBox4.TabIndex = 26
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "Other Details"
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Location = New System.Drawing.Point(61, 177)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(53, 16)
+        Me.Label29.TabIndex = 24
+        Me.Label29.Text = "Notes : "
+        '
+        'ComboBox6
+        '
+        Me.ComboBox6.FormattingEnabled = True
+        Me.ComboBox6.Location = New System.Drawing.Point(660, 420)
+        Me.ComboBox6.Margin = New System.Windows.Forms.Padding(4)
+        Me.ComboBox6.Name = "ComboBox6"
+        Me.ComboBox6.Size = New System.Drawing.Size(160, 24)
+        Me.ComboBox6.TabIndex = 33
+        '
+        'TxtPersonalizedFrom
+        '
+        Me.TxtPersonalizedFrom.Location = New System.Drawing.Point(660, 390)
+        Me.TxtPersonalizedFrom.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TxtPersonalizedFrom.MaxLength = 50
+        Me.TxtPersonalizedFrom.Name = "TxtPersonalizedFrom"
+        Me.TxtPersonalizedFrom.Size = New System.Drawing.Size(276, 22)
+        Me.TxtPersonalizedFrom.TabIndex = 32
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(511, 393)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(121, 16)
+        Me.Label13.TabIndex = 29
+        Me.Label13.Text = "Personalized From"
         '
         'FrmModify
         '
@@ -893,75 +1171,102 @@ Partial Class FrmModify
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.AutoSize = True
-        Me.ClientSize = New System.Drawing.Size(1782, 778)
-        Me.Controls.Add(Me.GroupBox5)
+        Me.ClientSize = New System.Drawing.Size(1046, 955)
+        Me.Controls.Add(Me.Label14)
+        Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.GroupBox4)
-        Me.Controls.Add(Me.GroupBox3)
-        Me.Controls.Add(Me.GroupBox2)
+        Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.Label26)
         Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.GroupBox4)
+        Me.Controls.Add(Me.ComboBox6)
+        Me.Controls.Add(Me.TxtPersonalizedFrom)
+        Me.Controls.Add(Me.Label13)
+        Me.Controls.Add(Me.GroupBox5)
         Me.Name = "FrmModify"
         Me.Text = "FrmModify"
-        Me.GroupBox4.ResumeLayout(False)
-        Me.GroupBox4.PerformLayout()
-        Me.GroupBox3.ResumeLayout(False)
-        Me.GroupBox3.PerformLayout()
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
         CType(Me.SfDataGrid1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel2.ResumeLayout(False)
-        Me.Panel2.PerformLayout()
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
+        Me.TabPage1.ResumeLayout(False)
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
+        Me.TabPage2.ResumeLayout(False)
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
+        Me.TabControl1.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
+        Me.GroupBox4.ResumeLayout(False)
+        Me.GroupBox4.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button1 As Button
-    Friend WithEvents GroupBox4 As GroupBox
-    Friend WithEvents GroupBox3 As GroupBox
-    Friend WithEvents TextBox20 As TextBox
-    Friend WithEvents TextBox21 As TextBox
-    Friend WithEvents TextBox22 As TextBox
-    Friend WithEvents TextBox23 As TextBox
-    Friend WithEvents TextBox24 As TextBox
-    Friend WithEvents TextBox25 As TextBox
-    Friend WithEvents TextBox26 As TextBox
-    Friend WithEvents TextBox27 As TextBox
-    Friend WithEvents TextBox28 As TextBox
-    Friend WithEvents TextBox29 As TextBox
-    Friend WithEvents TextBox30 As TextBox
+    Friend WithEvents GroupBox5 As GroupBox
+    Friend WithEvents TxtSearchLastName As TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Button4 As Button
+    Friend WithEvents Button3 As Button
+    Friend WithEvents SfDataGrid1 As Syncfusion.WinForms.DataGrid.SfDataGrid
+    Friend WithEvents RdoPOSOnline As RadioButton
+    Friend WithEvents TxtRecipientZip As TextBox
+    Friend WithEvents TxtRecipientState As TextBox
+    Friend WithEvents TxtRecipientCity As TextBox
+    Friend WithEvents TxtRecipientAddress2 As TextBox
+    Friend WithEvents TxtRecipientAddress1 As TextBox
+    Friend WithEvents TxtRecipientLastName As TextBox
+    Friend WithEvents TxtRecipientFirstName As TextBox
     Friend WithEvents Label32 As Label
-    Friend WithEvents Label14 As Label
-    Friend WithEvents Label15 As Label
-    Friend WithEvents Label16 As Label
-    Friend WithEvents Label17 As Label
     Friend WithEvents Label18 As Label
+    Friend WithEvents LblCalculatedDiscount As Label
+    Friend WithEvents Label15 As Label
+    Friend WithEvents LblItem5Description As Label
+    Friend WithEvents LblItem4Description As Label
+    Friend WithEvents LblItem3Description As Label
+    Friend WithEvents LblItem2Description As Label
+    Friend WithEvents LblItem1Description As Label
+    Friend WithEvents Label28 As Label
+    Friend WithEvents TxtAuthorization As TextBox
+    Friend WithEvents TxtNotes As TextBox
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents RdoPosPhone As RadioButton
     Friend WithEvents Label19 As Label
     Friend WithEvents Label20 As Label
-    Friend WithEvents Label21 As Label
-    Friend WithEvents Label22 As Label
-    Friend WithEvents Label23 As Label
+    Friend WithEvents LblItem5Amount As Label
+    Friend WithEvents LblItem4Amount As Label
+    Friend WithEvents LblItem3Amount As Label
+    Friend WithEvents LblItem2Amount As Label
+    Friend WithEvents LblItem1Amount As Label
+    Friend WithEvents ComboBox5 As ComboBox
+    Friend WithEvents ComboBox4 As ComboBox
+    Friend WithEvents ComboBox3 As ComboBox
+    Friend WithEvents ComboBox2 As ComboBox
+    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents LblCalculatedTotal As Label
+    Friend WithEvents Label14 As Label
+    Friend WithEvents TabPage1 As TabPage
     Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents TextBox19 As TextBox
-    Friend WithEvents TextBox18 As TextBox
-    Friend WithEvents TextBox17 As TextBox
-    Friend WithEvents TextBox16 As TextBox
-    Friend WithEvents TextBox15 As TextBox
-    Friend WithEvents TextBox14 As TextBox
-    Friend WithEvents TextBox13 As TextBox
-    Friend WithEvents TextBox12 As TextBox
-    Friend WithEvents TextBox11 As TextBox
-    Friend WithEvents TextBox10 As TextBox
-    Friend WithEvents TextBox9 As TextBox
-    Friend WithEvents Label13 As Label
+    Friend WithEvents Label40 As Label
+    Friend WithEvents TxtPurchaserEmail As TextBox
+    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents TxtPurchaserPhone2 As TextBox
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents TxtPurchaserPhone1 As TextBox
+    Friend WithEvents TxtPurchaserZip As TextBox
+    Friend WithEvents TxtPurchaserState As TextBox
+    Friend WithEvents TxtPurchaserCity As TextBox
+    Friend WithEvents TxtPurchaserAddress2 As TextBox
+    Friend WithEvents TxtPurchaserAddress1 As TextBox
+    Friend WithEvents TxtPurchaserLastName As TextBox
+    Friend WithEvents TxtPurchaserFirstName As TextBox
     Friend WithEvents Label12 As Label
     Friend WithEvents Label11 As Label
     Friend WithEvents Label10 As Label
@@ -972,38 +1277,38 @@ Partial Class FrmModify
     Friend WithEvents Label5 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents TextBox5 As TextBox
+    Friend WithEvents TabPage2 As TabPage
+    Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents Label21 As Label
+    Friend WithEvents Label22 As Label
+    Friend WithEvents Label23 As Label
+    Friend WithEvents TabControl1 As TabControl
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button1 As Button
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents Label24 As Label
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents RdoDeliveryInPerson As RadioButton
+    Friend WithEvents RdoDeliverUSMailDiscrete As RadioButton
+    Friend WithEvents RdoDeliveryUSMail As RadioButton
+    Friend WithEvents RdoDeliveryEmail As RadioButton
+    Friend WithEvents Label26 As Label
+    Friend WithEvents CBoHearAbout As ComboBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label27 As Label
+    Friend WithEvents TxtId As TextBox
+    Friend WithEvents SfDateTimeEdit1 As Syncfusion.WinForms.Input.SfDateTimeEdit
+    Friend WithEvents CboPayment As ComboBox
+    Friend WithEvents TxtPaymentNotes As TextBox
     Friend WithEvents Label38 As Label
+    Friend WithEvents Label35 As Label
     Friend WithEvents Label34 As Label
     Friend WithEvents Label33 As Label
-    Friend WithEvents GroupBox5 As GroupBox
-    Friend WithEvents TxtSearchLastName As TextBox
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Button4 As Button
-    Friend WithEvents Button3 As Button
-    Friend WithEvents SfDataGrid1 As Syncfusion.WinForms.DataGrid.SfDataGrid
-    Friend WithEvents Label31 As Label
+    Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label30 As Label
+    Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents Label29 As Label
-    Friend WithEvents Label27 As Label
-    Friend WithEvents Label26 As Label
-    Friend WithEvents TextBox4 As TextBox
-    Friend WithEvents TextBox3 As TextBox
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents Panel2 As Panel
-    Friend WithEvents RadioButton4 As RadioButton
-    Friend WithEvents RadioButton3 As RadioButton
-    Friend WithEvents RadioButton2 As RadioButton
-    Friend WithEvents RadioButton1 As RadioButton
-    Friend WithEvents Label25 As Label
-    Friend WithEvents Label24 As Label
-    Friend WithEvents ComboBox1 As ComboBox
-    Friend WithEvents Panel1 As Panel
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents CheckBox4 As CheckBox
-    Friend WithEvents CheckBox3 As CheckBox
-    Friend WithEvents CheckBox2 As CheckBox
-    Friend WithEvents CheckBox1 As CheckBox
-    Friend WithEvents Label2 As Label
+    Friend WithEvents ComboBox6 As ComboBox
+    Friend WithEvents TxtPersonalizedFrom As TextBox
+    Friend WithEvents Label13 As Label
 End Class

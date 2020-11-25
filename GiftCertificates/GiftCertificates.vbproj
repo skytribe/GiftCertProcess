@@ -125,10 +125,40 @@
     <Compile Include="Forms\FrmDevelopmentReset.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\FrmIncompleteItems.Designer.vb">
+      <DependentUpon>FrmIncompleteItems.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmIncompleteItems.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmJumprunItemsSelect.Designer.vb">
+      <DependentUpon>FrmJumprunItemsSelect.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmJumprunItemsSelect.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\FrmModify.Designer.vb">
       <DependentUpon>FrmModify.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmModify.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmPricing.Designer.vb">
+      <DependentUpon>FrmPricing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmPricing.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmReport.Designer.vb">
+      <DependentUpon>FrmReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmReprintShippingLabel.Designer.vb">
+      <DependentUpon>FrmReprintShippingLabel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmReprintShippingLabel.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Mainform.vb">
@@ -162,7 +192,14 @@
     <Compile Include="Forms\FrmProcessPrint.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Module4.vb" />
+    <Compile Include="Models\ClsCertificateItems.vb" />
+    <Compile Include="Models\ClsJumpRunItem.vb" />
+    <Compile Include="Models\ClsPricing.vb" />
+    <Compile Include="Models\ClsPrintCertificateDetails.vb" />
+    <Compile Include="Models\ClsWooLineItem.vb" />
+    <Compile Include="Models\ModEmail.vb" />
+    <Compile Include="Models\ModPublisherIntegration.vb" />
+    <Compile Include="Models\Module4.vb" />
     <Compile Include="Forms\FrmReprint.Designer.vb">
       <DependentUpon>FrmReprint.vb</DependentUpon>
     </Compile>
@@ -170,16 +207,20 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Models\BrotherPrinting.vb" />
+    <Compile Include="Models\ClsAddress.vb" />
+    <Compile Include="Models\ClsGiftCertificate2.vb" />
     <Compile Include="Models\ClsGiftCertificate.vb" />
+    <Compile Include="Models\ClsItem.vb" />
     <Compile Include="Models\ClsJumpRunCustomer.vb" />
     <Compile Include="Models\ClsPersonSearch.vb" />
+    <Compile Include="Models\ClsReportItem.vb" />
     <Compile Include="Models\ClsShopifyLineItem.vb" />
-    <Compile Include="Models\JumpRunPossibles.vb" />
-    <Compile Include="Models\ModShipify.vb" />
+    <Compile Include="Models\ClsJumpRunPossibleCustomers.vb" />
+    <Compile Include="Models\ModLogging.vb" />
+    <Compile Include="Models\ModWooImport.vb" />
     <Compile Include="Models\Enums.vb" />
-    <Compile Include="Models\Module2.vb" />
     <Compile Include="Models\Module3.vb" />
-    <Compile Include="Models\PreferredNameFirstNamePair.vb" />
+    <Compile Include="Models\ClsPreferredNameFirstNamePair.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -206,11 +247,26 @@
     <EmbeddedResource Include="Forms\FrmDevelopmentReset.resx">
       <DependentUpon>FrmDevelopmentReset.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmIncompleteItems.resx">
+      <DependentUpon>FrmIncompleteItems.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmJumprunItemsSelect.resx">
+      <DependentUpon>FrmJumprunItemsSelect.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmModify.resx">
       <DependentUpon>FrmModify.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmPricing.resx">
+      <DependentUpon>FrmPricing.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmReport.resx">
+      <DependentUpon>FrmReport.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmReprint.resx">
       <DependentUpon>FrmReprint.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmReprintShippingLabel.resx">
+      <DependentUpon>FrmReprintShippingLabel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Mainform.resx">
       <DependentUpon>Mainform.vb</DependentUpon>
@@ -238,6 +294,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Files\ReturnAddressDiscreet.lbx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\ReturnAddress.lbx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Files\Address.lbx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -248,10 +310,22 @@
     <None Include="Files\GiftCertificate.pub">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Files\WooExport.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Files\orders_export.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Files\SSGC10-2020.pub">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Files\TandemCertificate.PUB" />
+    <None Include="Files\WooExport2.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\WooExport2Modified.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -271,6 +345,11 @@
     </Content>
     <Content Include="Files\fields.txt" />
     <Content Include="hnet.com-image.ico" />
+    <None Include="Resources\fdarrow2.png" />
+    <None Include="Resources\fdarrowlt2.png" />
+    <None Include="Resources\fdarrowdn2.png" />
+    <None Include="Resources\RightArrow1.png" />
+    <None Include="Resources\DownArrow1.png" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="bpac">

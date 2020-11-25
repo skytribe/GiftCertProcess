@@ -125,7 +125,7 @@ Partial Class FrmReprint
         Me.RdoProcessed.Name = "RdoProcessed"
         Me.RdoProcessed.Size = New System.Drawing.Size(96, 21)
         Me.RdoProcessed.TabIndex = 0
-        Me.RdoProcessed.Text = "Processed"
+        Me.RdoProcessed.Text = "Processing"
         Me.RdoProcessed.UseVisualStyleBackColor = True
         '
         'Panel1

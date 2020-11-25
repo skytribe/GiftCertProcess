@@ -15,7 +15,7 @@ Option Explicit On
 Namespace My
     
     <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0"),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0"),  _
      Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
     Partial Friend NotInheritable Class MySettings
         Inherits Global.System.Configuration.ApplicationSettingsBase
@@ -75,6 +75,128 @@ Namespace My
             End Get
             Set
                 Me("EmailTitle") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-LBU2SR9;Initial Catalog=JumpRunTraining;Integrated Security=T"& _ 
+            "rue;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationInt"& _ 
+            "ent=ReadWrite;MultiSubnetFailover=False")>  _
+        Public Property DBConnectionString() As String
+            Get
+                Return CType(Me("DBConnectionString"),String)
+            End Get
+            Set
+                Me("DBConnectionString") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("C:\TEMP")>  _
+        Public Property PDFOutputFolder() As String
+            Get
+                Return CType(Me("PDFOutputFolder"),String)
+            End Get
+            Set
+                Me("PDFOutputFolder") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("smtp.live.com")>  _
+        Public Property SMTPClient() As String
+            Get
+                Return CType(Me("SMTPClient"),String)
+            End Get
+            Set
+                Me("SMTPClient") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("587")>  _
+        Public Property SMTPPort() As String
+            Get
+                Return CType(Me("SMTPPort"),String)
+            End Get
+            Set
+                Me("SMTPPort") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("skytribe@hotmail.com")>  _
+        Public Property SMTPClientUser() As String
+            Get
+                Return CType(Me("SMTPClientUser"),String)
+            End Get
+            Set
+                Me("SMTPClientUser") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Icarus365")>  _
+        Public Property SMTPClientPassword() As String
+            Get
+                Return CType(Me("SMTPClientPassword"),String)
+            End Get
+            Set
+                Me("SMTPClientPassword") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("1 Airport Way"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"Snohomish"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WA 98999")>  _
+        Public Property ReturnAddress() As String
+            Get
+                Return CType(Me("ReturnAddress"),String)
+            End Get
+            Set
+                Me("ReturnAddress") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("17821 20 ave se"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"Mill Creek"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WA 98012")>  _
+        Public Property ReturnAddressDiscreet() As String
+            Get
+                Return CType(Me("ReturnAddressDiscreet"),String)
+            End Get
+            Set
+                Me("ReturnAddressDiscreet") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("skytribe@spottysworld.com")>  _
+        Public Property DevelopmentModeEmailRecipient() As String
+            Get
+                Return CType(Me("DevelopmentModeEmailRecipient"),String)
+            End Get
+            Set
+                Me("DevelopmentModeEmailRecipient") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property DevelopmentMode() As Boolean
+            Get
+                Return CType(Me("DevelopmentMode"),Boolean)
+            End Get
+            Set
+                Me("DevelopmentMode") = value
             End Set
         End Property
     End Class

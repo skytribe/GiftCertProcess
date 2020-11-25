@@ -8,5 +8,39 @@
     <Setting Name="EmailTitle" Type="System.String" Scope="User">
       <Value Profile="(Default)">Skydive Snohomish Gift Certificate Purchase</Value>
     </Setting>
+    <Setting Name="DBConnectionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source=DESKTOP-LBU2SR9;Initial Catalog=JumpRunTraining;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False</Value>
+    </Setting>
+    <Setting Name="PDFOutputFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\TEMP</Value>
+    </Setting>
+    <Setting Name="SMTPClient" Type="System.String" Scope="User">
+      <Value Profile="(Default)">smtp.live.com</Value>
+    </Setting>
+    <Setting Name="SMTPPort" Type="System.String" Scope="User">
+      <Value Profile="(Default)">587</Value>
+    </Setting>
+    <Setting Name="SMTPClientUser" Type="System.String" Scope="User">
+      <Value Profile="(Default)">skytribe@hotmail.com</Value>
+    </Setting>
+    <Setting Name="SMTPClientPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Icarus365</Value>
+    </Setting>
+    <Setting Name="ReturnAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1 Airport Way
+Snohomish
+WA 98999</Value>
+    </Setting>
+    <Setting Name="ReturnAddressDiscreet" Type="System.String" Scope="User">
+      <Value Profile="(Default)">17821 20 ave se
+Mill Creek
+WA 98012</Value>
+    </Setting>
+    <Setting Name="DevelopmentModeEmailRecipient" Type="System.String" Scope="User">
+      <Value Profile="(Default)">skytribe@spottysworld.com</Value>
+    </Setting>
+    <Setting Name="DevelopmentMode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

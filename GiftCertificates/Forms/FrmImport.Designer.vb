@@ -24,64 +24,70 @@ Partial Class FrmImport
     Private Sub InitializeComponent()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TxtFilename = New System.Windows.Forms.TextBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
+        Me.BtnBrowse = New System.Windows.Forms.Button()
+        Me.BtnImport = New System.Windows.Forms.Button()
+        Me.BtnClose = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(27, 33)
+        Me.Label1.Location = New System.Drawing.Point(20, 27)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(73, 17)
+        Me.Label1.Size = New System.Drawing.Size(55, 13)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Filename :"
         '
         'TxtFilename
         '
-        Me.TxtFilename.Location = New System.Drawing.Point(137, 31)
+        Me.TxtFilename.Location = New System.Drawing.Point(103, 25)
+        Me.TxtFilename.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.TxtFilename.Name = "TxtFilename"
-        Me.TxtFilename.Size = New System.Drawing.Size(417, 22)
+        Me.TxtFilename.Size = New System.Drawing.Size(314, 20)
         Me.TxtFilename.TabIndex = 1
         '
-        'Button1
+        'BtnBrowse
         '
-        Me.Button1.Location = New System.Drawing.Point(561, 30)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 2
-        Me.Button1.Text = "..."
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.BtnBrowse.Location = New System.Drawing.Point(421, 24)
+        Me.BtnBrowse.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.BtnBrowse.Name = "BtnBrowse"
+        Me.BtnBrowse.Size = New System.Drawing.Size(56, 19)
+        Me.BtnBrowse.TabIndex = 2
+        Me.BtnBrowse.Text = "..."
+        Me.BtnBrowse.UseVisualStyleBackColor = True
         '
-        'Button2
+        'BtnImport
         '
-        Me.Button2.Location = New System.Drawing.Point(201, 85)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 42)
-        Me.Button2.TabIndex = 3
-        Me.Button2.Text = "Import"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.BtnImport.Location = New System.Drawing.Point(151, 69)
+        Me.BtnImport.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.BtnImport.Name = "BtnImport"
+        Me.BtnImport.Size = New System.Drawing.Size(56, 34)
+        Me.BtnImport.TabIndex = 3
+        Me.BtnImport.Text = "Import"
+        Me.BtnImport.UseVisualStyleBackColor = True
         '
-        'Button3
+        'BtnClose
         '
-        Me.Button3.Location = New System.Drawing.Point(294, 85)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(75, 42)
-        Me.Button3.TabIndex = 4
-        Me.Button3.Text = "Cancel"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.BtnClose.Location = New System.Drawing.Point(220, 69)
+        Me.BtnClose.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.BtnClose.Name = "BtnClose"
+        Me.BtnClose.Size = New System.Drawing.Size(56, 34)
+        Me.BtnClose.TabIndex = 4
+        Me.BtnClose.Text = "Cancel"
+        Me.BtnClose.UseVisualStyleBackColor = True
         '
         'FrmImport
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(667, 149)
-        Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
+        Me.ClientSize = New System.Drawing.Size(500, 121)
+        Me.Controls.Add(Me.BtnClose)
+        Me.Controls.Add(Me.BtnImport)
+        Me.Controls.Add(Me.BtnBrowse)
         Me.Controls.Add(Me.TxtFilename)
         Me.Controls.Add(Me.Label1)
+        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Name = "FrmImport"
         Me.Text = "Import From Shopify"
         Me.ResumeLayout(False)
@@ -91,7 +97,7 @@ Partial Class FrmImport
 
     Friend WithEvents Label1 As Label
     Friend WithEvents TxtFilename As TextBox
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button3 As Button
+    Friend WithEvents BtnBrowse As Button
+    Friend WithEvents BtnImport As Button
+    Friend WithEvents BtnClose As Button
 End Class

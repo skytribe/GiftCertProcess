@@ -2,45 +2,51 @@
 Imports Microsoft.Office.Interop.Publisher
 Imports Microsoft.Win32
 Imports System.Drawing.Printing
-
+Imports System.Reflection
 Imports System.Runtime.InteropServices
 Module BrotherPrinting
+    Const BrotherPrinterType As String = "Brother QL-700"
 
     '********************************************************
     '   Open and Print a spcified file.
     '********************************************************
-    Public Sub DoPrint(Name As String, Address As String)
+    Public Sub PrintLabel_BrotherPrinter(Name As String, Address As String, PrintLabelType As PrintLabelTypes)
         Dim PrintDocument As String = GetFileFolderDocumentPath("Address.lbx")
+        If PrintLabelType = PrintLabelTypes.Address Then
+            PrintDocument = GetFileFolderDocumentPath("Address.lbx")
+        ElseIf PrintLabelType = PrintLabelTypes.ReturnAddress Then
+            PrintDocument = GetFileFolderDocumentPath("ReturnAddress.lbx")
+        ElseIf PrintLabelType = PrintLabelTypes.ReturnAddressDiscreet Then
+            PrintDocument = GetFileFolderDocumentPath("ReturnAddressDiscreet.lbx")
+        End If
+
         Try
             Dim objDoc As bpac.Document
             objDoc = CreateObject("bpac.Document")
             If (objDoc.Open(PrintDocument) <> False) Then
 
-                Dim test = objDoc.SetPrinter("Brother QL-700", True)
-
+                Dim test = objDoc.SetPrinter(BrotherPrinterType, True)
                 objDoc.GetObject("Name").Text = Name
                 objDoc.GetObject("Address").Text = Address
-                'objDoc.SetMediaByName(objDoc.Printer.GetMediaName, True)
                 objDoc.StartPrint("", bpac.PrintOptionConstants.bpoDefault)
                 objDoc.PrintOut(1, bpac.PrintOptionConstants.bpoDefault)
                 objDoc.EndPrint()
                 objDoc.Close()
             End If
         Catch ex As Exception
-            MsgBox("Printing Problem")
+            Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
+            Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
+            LogError(methodName, ex)
+
+            Dim Sb As New System.Text.StringBuilder
+            Sb.AppendLine("A problem occured trying to print to the label printer")
+            Sb.AppendLine("Exception: " & ex.Message)
+            MessageBox.Show(Sb.ToString, "Brother Printing", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-
-
 
     End Sub
 
-    Private Function GetFileFolderDocumentPath(filename As String) As String
-        Dim appFolder = My.Application.Info.DirectoryPath
-        Dim MasterFileFolder = System.IO.Path.Combine(appFolder, "Files")
-        Dim CertificateToPrint = System.IO.Path.Combine(MasterFileFolder, filename)
-        Dim PrintDocument = System.IO.Path.Combine(appFolder, CertificateToPrint)
-        Return PrintDocument
-    End Function
+
 
     'Dim strPrinterAddress As String = "domain\machinename"
     'Dim strPath As String = "192.168.1.45" + " /D" + strPrinterAddress

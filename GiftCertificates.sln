@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "GiftCertificates", "GiftCertificates\GiftCertificates.vbproj", "{02AC98A7-4939-40B9-961F-F53E7D19D73D}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CertificatePrinting", "..\JumpRunCertificatePrinting\CertificatePrinting\CertificatePrinting.vbproj", "{9ED256CF-9CA2-4B34-AAE7-BF108F9A5032}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SkyDiveImportPay", "..\..\..\Downloads\SkyDiveImportPay_Ver310\SkyDiveImportPay\SkyDiveImportPay\SkyDiveImportPay.vbproj", "{8A139DC8-5361-47B2-9D0B-B01E04E3BC5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,30 @@ Global
 		{02AC98A7-4939-40B9-961F-F53E7D19D73D}.Release|x64.Build.0 = Release|Any CPU
 		{02AC98A7-4939-40B9-961F-F53E7D19D73D}.Release|x86.ActiveCfg = Release|Any CPU
 		{02AC98A7-4939-40B9-961F-F53E7D19D73D}.Release|x86.Build.0 = Release|Any CPU
+		{9ED256CF-9CA2-4B34-AAE7-BF108F9A5032}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ED256CF-9CA2-4B34-AAE7-BF108F9A5032}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9ED256CF-9CA2-4B34-AAE7-BF108F9A5032}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9ED256CF-9CA2-4B34-AAE7-BF108F9A5032}.Debug|x64.Build.0 = Debug|Any CPU
+		{9ED256CF-9CA2-4B34-AAE7-BF108F9A5032}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9ED256CF-9CA2-4B34-AAE7-BF108F9A5032}.Debug|x86.Build.0 = Debug|Any CPU
+		{9ED256CF-9CA2-4B34-AAE7-BF108F9A5032}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9ED256CF-9CA2-4B34-AAE7-BF108F9A5032}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9ED256CF-9CA2-4B34-AAE7-BF108F9A5032}.Release|x64.ActiveCfg = Release|Any CPU
+		{9ED256CF-9CA2-4B34-AAE7-BF108F9A5032}.Release|x64.Build.0 = Release|Any CPU
+		{9ED256CF-9CA2-4B34-AAE7-BF108F9A5032}.Release|x86.ActiveCfg = Release|Any CPU
+		{9ED256CF-9CA2-4B34-AAE7-BF108F9A5032}.Release|x86.Build.0 = Release|Any CPU
+		{8A139DC8-5361-47B2-9D0B-B01E04E3BC5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A139DC8-5361-47B2-9D0B-B01E04E3BC5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A139DC8-5361-47B2-9D0B-B01E04E3BC5F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8A139DC8-5361-47B2-9D0B-B01E04E3BC5F}.Debug|x64.Build.0 = Debug|Any CPU
+		{8A139DC8-5361-47B2-9D0B-B01E04E3BC5F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8A139DC8-5361-47B2-9D0B-B01E04E3BC5F}.Debug|x86.Build.0 = Debug|Any CPU
+		{8A139DC8-5361-47B2-9D0B-B01E04E3BC5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A139DC8-5361-47B2-9D0B-B01E04E3BC5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A139DC8-5361-47B2-9D0B-B01E04E3BC5F}.Release|x64.ActiveCfg = Release|Any CPU
+		{8A139DC8-5361-47B2-9D0B-B01E04E3BC5F}.Release|x64.Build.0 = Release|Any CPU
+		{8A139DC8-5361-47B2-9D0B-B01E04E3BC5F}.Release|x86.ActiveCfg = Release|Any CPU
+		{8A139DC8-5361-47B2-9D0B-B01E04E3BC5F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

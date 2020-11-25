@@ -1,4 +1,4 @@
-﻿Public Class JumpRunPossibles
+﻿Public Class ClsJumpRunPossibleCustomers
 	Public Property PercentageMatch As Integer
 
 	Public Property wCustId As Integer
