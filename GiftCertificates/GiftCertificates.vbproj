@@ -161,6 +161,12 @@
     <Compile Include="Forms\FrmReprintShippingLabel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\FrmSetDefaultPrinter.Designer.vb">
+      <DependentUpon>FrmSetDefaultPrinter.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmSetDefaultPrinter.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Mainform.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -273,6 +279,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmReprintShippingLabel.resx">
       <DependentUpon>FrmReprintShippingLabel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmSetDefaultPrinter.resx">
+      <DependentUpon>FrmSetDefaultPrinter.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Mainform.resx">
       <DependentUpon>Mainform.vb</DependentUpon>

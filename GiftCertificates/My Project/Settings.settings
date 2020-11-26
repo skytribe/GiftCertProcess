@@ -45,5 +45,11 @@ WA 98012</Value>
     <Setting Name="DevelopmentPrinterOrFile" Type="System.String" Scope="User">
       <Value Profile="(Default)">File</Value>
     </Setting>
+    <Setting Name="DefaultPrinterToUse" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DefaultPrinterTray" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

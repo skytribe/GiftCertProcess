@@ -16,20 +16,8 @@
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         Try
-            Dim cls As New ClsGiftCertificate2
-            With cls
-                cls.ID = 1001
-                cls.JR_PurchaserID = 85315
-                cls.Online_OrderNumber = "GC1"
-                cls.Item1.Quantity = 2
-                cls.Item1.ItemId = 1
-                cls.Item2.Quantity = 1
-                cls.Item2.ItemId = 2
-            End With
-
-            '//Process the line items
-            GenerateIndividualCertificateRecordsFromGCOrder(cls, True)
-
+            Dim objdefprint As New FrmSetDefaultPrinter
+            objdefprint.ShowDialog()
 
         Catch ex As Exception
 

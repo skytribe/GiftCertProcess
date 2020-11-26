@@ -76,7 +76,7 @@ Partial Class FrmDevelopmentReset
         'Button1
         '
         Me.Button1.Location = New System.Drawing.Point(596, 9)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(2)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(113, 37)
         Me.Button1.TabIndex = 0
@@ -86,7 +86,7 @@ Partial Class FrmDevelopmentReset
         'Button2
         '
         Me.Button2.Location = New System.Drawing.Point(290, 113)
-        Me.Button2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(2)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(188, 36)
         Me.Button2.TabIndex = 1
@@ -96,7 +96,7 @@ Partial Class FrmDevelopmentReset
         'Button3
         '
         Me.Button3.Location = New System.Drawing.Point(489, 113)
-        Me.Button3.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Button3.Margin = New System.Windows.Forms.Padding(2)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(152, 36)
         Me.Button3.TabIndex = 2
@@ -105,19 +105,18 @@ Partial Class FrmDevelopmentReset
         '
         'Button4
         '
-        Me.Button4.Enabled = False
         Me.Button4.Location = New System.Drawing.Point(478, 9)
-        Me.Button4.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Button4.Margin = New System.Windows.Forms.Padding(2)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(113, 36)
         Me.Button4.TabIndex = 3
-        Me.Button4.Text = "NOT USED"
+        Me.Button4.Text = "Set Default Printer"
         Me.Button4.UseVisualStyleBackColor = True
         '
         'Button5
         '
         Me.Button5.Location = New System.Drawing.Point(28, 152)
-        Me.Button5.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Button5.Margin = New System.Windows.Forms.Padding(2)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(248, 36)
         Me.Button5.TabIndex = 4
@@ -127,7 +126,7 @@ Partial Class FrmDevelopmentReset
         'Button6
         '
         Me.Button6.Location = New System.Drawing.Point(28, 113)
-        Me.Button6.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Button6.Margin = New System.Windows.Forms.Padding(2)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(248, 36)
         Me.Button6.TabIndex = 5
@@ -147,7 +146,7 @@ Partial Class FrmDevelopmentReset
         Me.TabControl1.Controls.Add(Me.TabPage9)
         Me.TabControl1.Controls.Add(Me.TabPage10)
         Me.TabControl1.Location = New System.Drawing.Point(28, 207)
-        Me.TabControl1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TabControl1.Margin = New System.Windows.Forms.Padding(2)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(655, 375)
@@ -157,9 +156,9 @@ Partial Class FrmDevelopmentReset
         '
         Me.TabPage1.Controls.Add(Me.SfDataGrid1)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TabPage1.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(2)
         Me.TabPage1.Size = New System.Drawing.Size(647, 349)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "tPeople"
@@ -171,7 +170,7 @@ Partial Class FrmDevelopmentReset
         Me.SfDataGrid1.AllowEditing = False
         Me.SfDataGrid1.AllowResizingColumns = True
         Me.SfDataGrid1.Location = New System.Drawing.Point(14, 13)
-        Me.SfDataGrid1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.SfDataGrid1.Margin = New System.Windows.Forms.Padding(2)
         Me.SfDataGrid1.Name = "SfDataGrid1"
         Me.SfDataGrid1.PreviewRowHeight = 35
         Me.SfDataGrid1.Size = New System.Drawing.Size(624, 334)
@@ -182,9 +181,9 @@ Partial Class FrmDevelopmentReset
         '
         Me.TabPage2.Controls.Add(Me.SfDataGrid2)
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TabPage2.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(2)
         Me.TabPage2.Size = New System.Drawing.Size(647, 349)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "tPeopleAncillary"
@@ -194,7 +193,7 @@ Partial Class FrmDevelopmentReset
         '
         Me.SfDataGrid2.AccessibleName = "Table"
         Me.SfDataGrid2.Location = New System.Drawing.Point(12, 9)
-        Me.SfDataGrid2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.SfDataGrid2.Margin = New System.Windows.Forms.Padding(2)
         Me.SfDataGrid2.Name = "SfDataGrid2"
         Me.SfDataGrid2.PreviewRowHeight = 35
         Me.SfDataGrid2.Size = New System.Drawing.Size(624, 334)
@@ -205,7 +204,7 @@ Partial Class FrmDevelopmentReset
         '
         Me.TabPage3.Controls.Add(Me.SfDataGrid3)
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage3.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TabPage3.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Size = New System.Drawing.Size(647, 349)
         Me.TabPage3.TabIndex = 2
@@ -216,7 +215,7 @@ Partial Class FrmDevelopmentReset
         '
         Me.SfDataGrid3.AccessibleName = "Table"
         Me.SfDataGrid3.Location = New System.Drawing.Point(12, 9)
-        Me.SfDataGrid3.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.SfDataGrid3.Margin = New System.Windows.Forms.Padding(2)
         Me.SfDataGrid3.Name = "SfDataGrid3"
         Me.SfDataGrid3.PreviewRowHeight = 35
         Me.SfDataGrid3.Size = New System.Drawing.Size(624, 334)
@@ -227,7 +226,7 @@ Partial Class FrmDevelopmentReset
         '
         Me.TabPage4.Controls.Add(Me.SfDataGrid4)
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage4.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TabPage4.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Size = New System.Drawing.Size(647, 349)
         Me.TabPage4.TabIndex = 3
@@ -240,7 +239,7 @@ Partial Class FrmDevelopmentReset
         Me.SfDataGrid4.AllowEditing = False
         Me.SfDataGrid4.AllowResizingColumns = True
         Me.SfDataGrid4.Location = New System.Drawing.Point(12, 9)
-        Me.SfDataGrid4.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.SfDataGrid4.Margin = New System.Windows.Forms.Padding(2)
         Me.SfDataGrid4.Name = "SfDataGrid4"
         Me.SfDataGrid4.PreviewRowHeight = 35
         Me.SfDataGrid4.Size = New System.Drawing.Size(624, 334)
@@ -251,7 +250,7 @@ Partial Class FrmDevelopmentReset
         '
         Me.TabPage5.Controls.Add(Me.SfDataGrid5)
         Me.TabPage5.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage5.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TabPage5.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Size = New System.Drawing.Size(647, 349)
         Me.TabPage5.TabIndex = 4
@@ -262,7 +261,7 @@ Partial Class FrmDevelopmentReset
         '
         Me.SfDataGrid5.AccessibleName = "Table"
         Me.SfDataGrid5.Location = New System.Drawing.Point(12, 9)
-        Me.SfDataGrid5.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.SfDataGrid5.Margin = New System.Windows.Forms.Padding(2)
         Me.SfDataGrid5.Name = "SfDataGrid5"
         Me.SfDataGrid5.PreviewRowHeight = 35
         Me.SfDataGrid5.Size = New System.Drawing.Size(624, 334)
@@ -273,7 +272,7 @@ Partial Class FrmDevelopmentReset
         '
         Me.TabPage6.Controls.Add(Me.SfDataGrid6)
         Me.TabPage6.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage6.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TabPage6.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Size = New System.Drawing.Size(647, 349)
         Me.TabPage6.TabIndex = 5
@@ -286,7 +285,7 @@ Partial Class FrmDevelopmentReset
         Me.SfDataGrid6.AllowEditing = False
         Me.SfDataGrid6.AllowResizingColumns = True
         Me.SfDataGrid6.Location = New System.Drawing.Point(12, 9)
-        Me.SfDataGrid6.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.SfDataGrid6.Margin = New System.Windows.Forms.Padding(2)
         Me.SfDataGrid6.Name = "SfDataGrid6"
         Me.SfDataGrid6.PreviewRowHeight = 35
         Me.SfDataGrid6.Size = New System.Drawing.Size(624, 334)
@@ -297,7 +296,7 @@ Partial Class FrmDevelopmentReset
         '
         Me.TabPage7.Controls.Add(Me.SfDataGrid7)
         Me.TabPage7.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage7.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TabPage7.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage7.Name = "TabPage7"
         Me.TabPage7.Size = New System.Drawing.Size(647, 349)
         Me.TabPage7.TabIndex = 6
@@ -308,7 +307,7 @@ Partial Class FrmDevelopmentReset
         '
         Me.SfDataGrid7.AccessibleName = "Table"
         Me.SfDataGrid7.Location = New System.Drawing.Point(12, 9)
-        Me.SfDataGrid7.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.SfDataGrid7.Margin = New System.Windows.Forms.Padding(2)
         Me.SfDataGrid7.Name = "SfDataGrid7"
         Me.SfDataGrid7.PreviewRowHeight = 35
         Me.SfDataGrid7.Size = New System.Drawing.Size(624, 334)
@@ -319,7 +318,7 @@ Partial Class FrmDevelopmentReset
         '
         Me.TabPage8.Controls.Add(Me.SfDataGrid8)
         Me.TabPage8.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage8.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TabPage8.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage8.Name = "TabPage8"
         Me.TabPage8.Size = New System.Drawing.Size(647, 349)
         Me.TabPage8.TabIndex = 7
@@ -332,7 +331,7 @@ Partial Class FrmDevelopmentReset
         Me.SfDataGrid8.AllowEditing = False
         Me.SfDataGrid8.AllowResizingColumns = True
         Me.SfDataGrid8.Location = New System.Drawing.Point(12, 9)
-        Me.SfDataGrid8.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.SfDataGrid8.Margin = New System.Windows.Forms.Padding(2)
         Me.SfDataGrid8.Name = "SfDataGrid8"
         Me.SfDataGrid8.PreviewRowHeight = 35
         Me.SfDataGrid8.Size = New System.Drawing.Size(624, 334)
@@ -343,7 +342,7 @@ Partial Class FrmDevelopmentReset
         '
         Me.TabPage9.Controls.Add(Me.SfDataGrid9)
         Me.TabPage9.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage9.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TabPage9.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage9.Name = "TabPage9"
         Me.TabPage9.Size = New System.Drawing.Size(647, 349)
         Me.TabPage9.TabIndex = 8
@@ -354,7 +353,7 @@ Partial Class FrmDevelopmentReset
         '
         Me.SfDataGrid9.AccessibleName = "Table"
         Me.SfDataGrid9.Location = New System.Drawing.Point(12, 9)
-        Me.SfDataGrid9.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.SfDataGrid9.Margin = New System.Windows.Forms.Padding(2)
         Me.SfDataGrid9.Name = "SfDataGrid9"
         Me.SfDataGrid9.PreviewRowHeight = 35
         Me.SfDataGrid9.Size = New System.Drawing.Size(624, 334)
@@ -365,7 +364,7 @@ Partial Class FrmDevelopmentReset
         '
         Me.TabPage10.Controls.Add(Me.SfDataGrid10)
         Me.TabPage10.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage10.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TabPage10.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage10.Name = "TabPage10"
         Me.TabPage10.Size = New System.Drawing.Size(647, 349)
         Me.TabPage10.TabIndex = 9
@@ -376,7 +375,7 @@ Partial Class FrmDevelopmentReset
         '
         Me.SfDataGrid10.AccessibleName = "Table"
         Me.SfDataGrid10.Location = New System.Drawing.Point(12, 9)
-        Me.SfDataGrid10.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.SfDataGrid10.Margin = New System.Windows.Forms.Padding(2)
         Me.SfDataGrid10.Name = "SfDataGrid10"
         Me.SfDataGrid10.PreviewRowHeight = 35
         Me.SfDataGrid10.Size = New System.Drawing.Size(624, 334)
@@ -406,7 +405,7 @@ Partial Class FrmDevelopmentReset
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "FrmDevelopmentReset"
         Me.Text = "FrmDevelopmentReset"
         Me.TabControl1.ResumeLayout(False)

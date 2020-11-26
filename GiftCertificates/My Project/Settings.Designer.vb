@@ -211,6 +211,30 @@ Namespace My
                 Me("DevelopmentPrinterOrFile") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property DefaultPrinterToUse() As String
+            Get
+                Return CType(Me("DefaultPrinterToUse"),String)
+            End Get
+            Set
+                Me("DefaultPrinterToUse") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property DefaultPrinterTray() As String
+            Get
+                Return CType(Me("DefaultPrinterTray"),String)
+            End Get
+            Set
+                Me("DefaultPrinterTray") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
