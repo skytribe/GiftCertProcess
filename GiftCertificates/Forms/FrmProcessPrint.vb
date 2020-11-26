@@ -71,7 +71,22 @@ Public Class FrmProcessPrint
             If Certificate.delivery = DeliveryOptions.InOffice OrElse
                     Certificate.delivery = DeliveryOptions.USMail OrElse
                     Certificate.delivery = DeliveryOptions.USDiscreet Then
-                PrintOrderCertificates(Certificate, destination:=Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbMergeToNewPublication, IsReprint:=IsReprint)
+                'If My.Settings.PrintToFileOrPrinter.ToLower.Trim = "file" Then
+                '    PrintCertificate("Mailmerge.txt", Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbMergeToNewPublication, certificatestoprint)
+                'ElseIf My.Settings.PrintToFileOrPrinter.ToLower.Trim = "printer" Then
+                '    PrintCertificate("Mailmerge.txt", Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbSendToPrinter, certificatestoprint)
+                'Else
+                '    MsgBox("Not file or printer")
+                '    PrintCertificate("Mailmerge.txt", Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbMergeToNewPublication, certificatestoprint)
+
+                'End If
+
+                If My.Settings.DevelopmentPrinterOrFile.ToUpper.Trim = "FILE" Then
+                    PrintOrderCertificates(Certificate, destination:=Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbMergeToNewPublication, IsReprint:=IsReprint)
+                ElseIf My.Settings.DevelopmentPrinterOrFile.ToUpper.Trim = "PRINTER" Then
+                    PrintOrderCertificates(Certificate, destination:=Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbSendToPrinter, IsReprint:=IsReprint)
+                End If
+                'PrintOrderCertificates(Certificate, destination:=Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbMergeToNewPublication, IsReprint:=IsReprint)
             ElseIf Certificate.delivery = DeliveryOptions.Email Then
                 Button1.Enabled = False
                 SendEmail(Certificate, destEmail:=

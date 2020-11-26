@@ -123,9 +123,17 @@ Public Class FrmProcess
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Try
-            CurrentGiftCertificate.JR_PurchaserID = 0
-            LblJumprunCustomerStatusPurchaser.Text = "Create a new customer in Jumprun"
-            JRCustomerSpecified = True
+            If CurrentGiftCertificate Is Nothing Then
+                MsgBox("No GC Order has been selected")
+                'CurrentGiftCertificate.JR_PurchaserID = 0
+                'LblJumprunCustomerStatusPurchaser.Text = "Create a new customer in Jumprun"
+                'JRCustomerSpecified = True
+            Else
+                CurrentGiftCertificate.JR_PurchaserID = 0
+                LblJumprunCustomerStatusPurchaser.Text = "Create a new customer in Jumprun"
+                JRCustomerSpecified = True
+            End If
+
         Catch ex As Exception
             Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
             Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
@@ -220,7 +228,7 @@ Public Class FrmProcess
 
 
 
-    Private Sub SfDataGrid1_SelectionChanged(sender As Object, e As SelectionChangedEventArgs)
+    Private Sub SfDataGrid1_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles SfDataGrid1.SelectionChanged
         Try
             If CType(sender, SfDataGrid).SelectedItem IsNot Nothing Then
                 CurrentGiftCertificate = CType(SfDataGrid1.SelectedItem, ClsGiftCertificate2)
@@ -379,7 +387,7 @@ Public Class FrmProcess
         End Try
     End Sub
 
-    Private Sub SfDataGrid1_QueryRowStyle(sender As Object, e As QueryRowStyleEventArgs)
+    Private Sub SfDataGrid1_QueryRowStyle(sender As Object, e As QueryRowStyleEventArgs) Handles SfDGPurchaser.QueryRowStyle
         If e.RowType = RowType.DefaultRow Then
             Dim item = TryCast(e.RowData, ClsJumpRunPossibleCustomers)
             If item IsNot Nothing Then
@@ -402,14 +410,18 @@ Public Class FrmProcess
 
     Function PopulateAuthorizerList() As List(Of KeyValuePair(Of Integer, String))
         Dim AuthorizerList As New List(Of KeyValuePair(Of Integer, String))
+        Try
+            AuthorizerList = RetrieveAuthorizers()
+        Catch ex As Exception
+            ' AuthorizerList.Clear()
+            'AuthorizerList.Add(New KeyValuePair(Of String, String)(6, "Spotty"))
+            'AuthorizerList.Add(New KeyValuePair(Of String, String)("JS", "Jim"))
+            'AuthorizerList.Add(New KeyValuePair(Of String, String)("TH", "Tyson"))
+            'AuthorizerList.Add(New KeyValuePair(Of String, String)("LB", "Leila"))
+            'AuthorizerList.Add(New KeyValuePair(Of String, String)("SS", "SS Office"))
+        End Try
 
-        AuthorizerList = RetrieveAuthorizers()
-        'AuthorizerList.Clear()
-        'AuthorizerList.Add(New KeyValuePair(Of String, String)("SB", "Spotty"))
-        'AuthorizerList.Add(New KeyValuePair(Of String, String)("JS", "Jim"))
-        'AuthorizerList.Add(New KeyValuePair(Of String, String)("TH", "Tyson"))
-        'AuthorizerList.Add(New KeyValuePair(Of String, String)("LB", "Leila"))
-        'AuthorizerList.Add(New KeyValuePair(Of String, String)("SS", "SS Office"))
+
         Return AuthorizerList
 
     End Function

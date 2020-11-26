@@ -192,6 +192,12 @@
     <Compile Include="Forms\FrmProcessPrint.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FrmSQL.Designer.vb">
+      <DependentUpon>FrmSQL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSQL.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Models\ClsCertificateItems.vb" />
     <Compile Include="Models\ClsJumpRunItem.vb" />
     <Compile Include="Models\ClsPricing.vb" />
@@ -282,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmProcessPrint.resx">
       <DependentUpon>FrmProcessPrint.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSQL.resx">
+      <DependentUpon>FrmSQL.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

@@ -42,5 +42,8 @@ WA 98012</Value>
     <Setting Name="DevelopmentMode" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="DevelopmentPrinterOrFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">File</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

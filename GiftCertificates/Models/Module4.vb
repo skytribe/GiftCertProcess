@@ -110,7 +110,6 @@ Public Module Module4
         Return LstPricing
     End Function
 
-
     Public Function RetrieveAuthorizerCode(Id As Integer) As String
 
         Dim sValue As String = ""
@@ -188,6 +187,53 @@ Public Module Module4
                 x.JR_ItemID = reader("JumpRunItemID").ToString()
                 x.Discountable = reader("DiscountableItem").ToString()
                 LstPricing.Add(x)
+            Loop
+
+        Catch ex As Exception
+            Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
+            Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
+            LogError(methodName, ex)
+
+            MessageBox.Show("An error occurred" & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        Finally
+            _sqlCon.Close()
+        End Try
+
+        Return LstPricing
+    End Function
+
+
+    Public Function RetrieveOperators() As List(Of String)
+
+
+        Dim LstPricing As New List(Of String)
+        GetConnectionString()
+        Try
+            Dim cmd As New SqlCommand
+            Dim reader As SqlDataReader
+
+            _sqlCon = New SqlConnection(_strConn)
+
+            cmd.CommandText = "select * from tOperators"
+            cmd.CommandType = CommandType.Text
+
+            cmd.Connection = _sqlCon
+
+            _sqlCon.Open()
+
+            reader = cmd.ExecuteReader()
+            ' Data is accessible through the DataReader object here.
+            ' Use Read method (true/false) to see if reader has records and advance to next record
+            ' You can use a While loop for multiple records (While reader.Read() ... End While)
+            Dct_Discount.Clear()
+
+            Do While reader.Read
+
+                Dim ID = reader("sOperID").ToString()
+                Dim name = reader("sName").ToString()
+
+                LstPricing.Add(ID)
             Loop
 
         Catch ex As Exception
@@ -1225,41 +1271,48 @@ Public Module Module4
                 Dim PossibleRecord As New ClsJumpRunPossibleCustomers
                 sfield = "WCustid"
 
+
                 PossibleRecord.wCustId = reader(0)
                 sfield = "sCust"
                 PossibleRecord.sCust = getString(reader(1))
                 sfield = "sFirstName"
-                PossibleRecord.sFirstName = getString(reader(2))
-                If c.FirstName.ToLower = PossibleRecord.sFirstName.ToLower And String.IsNullOrEmpty(c.FirstName) = False Then
+                PossibleRecord.sFirstName = getString(reader(2)).Trim
+
+                If c.FirstName.ToLower.Trim = PossibleRecord.sFirstName.ToLower.Trim And String.IsNullOrEmpty(c.FirstName.Trim) = False Then
                     PossibleRecord.PercentageMatch = PossibleRecord.PercentageMatch + 15
                 End If
                 sfield = "sLastName"
-                PossibleRecord.sLastName = getString(reader(3))
-                If c.LastName.ToLower = PossibleRecord.sLastName.ToLower And String.IsNullOrEmpty(c.LastName) = False Then
+                PossibleRecord.sLastName = getString(reader(3)).Trim
+                If c.LastName.ToLower.Trim = PossibleRecord.sLastName.ToLower.Trim And String.IsNullOrEmpty(c.LastName.Trim) = False Then
                     PossibleRecord.PercentageMatch = PossibleRecord.PercentageMatch + 20
                 End If
 
                 sfield = "sEmail"
-                PossibleRecord.sEmail = getString(reader(6))
-                If String.IsNullOrEmpty(c.Email) = False AndAlso c.Email.ToLower = PossibleRecord.sEmail.ToLower Then
+                PossibleRecord.sEmail = getString(reader(6)).Trim
+                If String.IsNullOrEmpty(c.Email) = False AndAlso c.Email.ToLower.Trim = PossibleRecord.sEmail.ToLower.Trim Then
                     PossibleRecord.PercentageMatch = PossibleRecord.PercentageMatch + 20
                 End If
 
                 sfield = "sEmail2"
-                PossibleRecord.sEmail2 = getString(reader(7))
-                If String.IsNullOrEmpty(c.Email) = False AndAlso c.Email.ToLower = PossibleRecord.sEmail2.ToLower Then
+                PossibleRecord.sEmail2 = getString(reader(7)).Trim
+                If String.IsNullOrEmpty(c.Email) = False AndAlso c.Email.ToLower.Trim = PossibleRecord.sEmail2.ToLower.Trim Then
                     PossibleRecord.PercentageMatch = PossibleRecord.PercentageMatch + 10
                 End If
 
                 sfield = "sPhone"
-                PossibleRecord.sPhone1 = getString(reader(8))
-                If String.IsNullOrEmpty(c.Phone) = False AndAlso c.Phone = PossibleRecord.sPhone1 Then
+                PossibleRecord.sPhone1 = getString(reader(8)).Trim
+                If String.IsNullOrEmpty(c.Phone) = False AndAlso c.Phone.Trim = PossibleRecord.sPhone1.Trim Then
                     PossibleRecord.PercentageMatch = PossibleRecord.PercentageMatch + 20
+                ElseIf String.IsNullOrEmpty(c.Phone) = False AndAlso "1" & c.Phone.Trim = PossibleRecord.sPhone1.Trim Then
+                    PossibleRecord.PercentageMatch = PossibleRecord.PercentageMatch + 20
+                ElseIf String.IsNullOrEmpty(c.Phone) = False AndAlso c.Phone.Trim = "1" & PossibleRecord.sPhone1.Trim Then
+                    PossibleRecord.PercentageMatch = PossibleRecord.PercentageMatch + 20
+
                 End If
 
                 sfield = "sZip"
-                PossibleRecord.sZip = getString(reader(15))
-                If String.IsNullOrEmpty(c.Zip) = False AndAlso PossibleRecord.sZip.StartsWith(c.Zip) Then
+                PossibleRecord.sZip = getString(reader(15)).Trim
+                If String.IsNullOrEmpty(c.Zip) = False AndAlso PossibleRecord.sZip.StartsWith(c.Zip.Trim) Then
                     PossibleRecord.PercentageMatch = PossibleRecord.PercentageMatch + 10
                 End If
 
@@ -1272,7 +1325,7 @@ Public Module Module4
             Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
             LogError(methodName, ex)
 
-            MessageBox.Show("An error occurred" & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("An Error occurred" & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             _sqlCon.Close()
         End Try
@@ -2399,5 +2452,44 @@ Public Module Module4
 
         End Try
         Return False
+    End Function
+
+
+
+    Public Function ExecuteSQL(sText As String) As Boolean
+        Dim SuccessState As Boolean = False
+        Dim Con1 As SqlConnection
+
+        Try
+            GetConnectionString()
+
+            Con1 = New SqlConnection(_strConn)
+            If Con1.State = ConnectionState.Closed Then Con1.Open()
+
+
+
+            Dim sqlComm As New SqlCommand()
+            sqlComm.Connection = Con1
+
+            '    
+            sqlComm.CommandText = sText
+            sqlComm.CommandType = CommandType.Text
+
+
+
+            sqlComm.ExecuteNonQuery()
+
+
+            If Con1.State = ConnectionState.Open Then Con1.Close()
+        Catch ex As Exception
+            Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
+            Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
+            LogError(methodName, ex)
+
+            MessageBox.Show("An error occurred" & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            Con1 = Nothing
+        End Try
+        Return SuccessState
     End Function
 End Module

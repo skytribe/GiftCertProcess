@@ -199,6 +199,18 @@ Namespace My
                 Me("DevelopmentMode") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("File")>  _
+        Public Property DevelopmentPrinterOrFile() As String
+            Get
+                Return CType(Me("DevelopmentPrinterOrFile"),String)
+            End Get
+            Set
+                Me("DevelopmentPrinterOrFile") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

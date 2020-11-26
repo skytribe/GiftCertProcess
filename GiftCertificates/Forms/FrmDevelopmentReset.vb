@@ -1,15 +1,7 @@
 ﻿Public Class FrmDevelopmentReset
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        'Dim lids = DevelopmentOnly_GetListOfGCCustomers()
-        ''//Remove selected Items
-        'For Each i In lids
-
-        '    '    Dim id = i.Row(0)
-        '    '    DeleteCustomer(id)
-        '    MessageBox.Show(i)
-        'Next
-
-        'MsgBox("To Implement - To delete generate JR Customers > 3xxxxx")
+        Dim objsql As New FrmSQL
+        objsql.ShowDialog()
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -66,5 +58,15 @@
 
         End If
         MsgBox("Completed")
+    End Sub
+
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+        Dim x = RetrieveOperators()
+        Dim sb As New System.Text.StringBuilder
+        For Each i In x
+            sb.AppendLine(i)
+        Next
+        MsgBox(sb.ToString
+               )
     End Sub
 End Class

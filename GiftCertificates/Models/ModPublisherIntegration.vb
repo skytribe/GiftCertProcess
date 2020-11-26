@@ -18,43 +18,6 @@ Public Module ModPublisherIntegration
 
             '//EACH  CERTIFICATES IN A SINGLE DOCUMENT FOR EMAIL ATTACHMENT PURPOSE
             If ToBePrinted = False Then
-                'Dim CertsToGenerate = RetrieveGCOrdersLineItems(certificate)
-                'Dim certificatestoprint As Integer = 0
-                'Dim CertCounter As Integer = 1
-
-                'For Each c In CertsToGenerate
-                '    certificatestoprint = GenerateMailMergeFile(c, MailMergeFile)
-
-                '    If certificatestoprint > 0 And System.IO.File.Exists(MailMergeFile) Then
-                '        '    KillExistingPublisherInstances()
-
-                '        '    Dim Application As Publisher.Application = New Publisher.Application()
-                '        '    Application.ActiveWindow.Visible = True
-                '        '    Dim Path As String = PrintCertificateDocument
-                '        '    Try
-                '        '        Application.Open(Path, False, True)
-                '        '        Application.ActiveDocument.MailMerge.Execute(True, Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbMergeToNewPublication)
-
-                '        '        If destination = PbMailMergeDestination.pbSendToPrinter Then
-                '        '            Application.Quit()
-                '        '        ElseIf destination = PbMailMergeDestination.pbMergeToNewPublication Then
-                '        '            'Certificate 123-1 Spotty Bowles.pdb
-                '        '            Dim filename = String.Format("Certificate {0}-{1} {2} {3}.pdf", certificate.ID, CertCounter, certificate.Purchaser_FirstName.Trim, certificate.Purchaser_LastName.Trim)
-                '        '            Application.ActiveDocument.ExportAsFixedFormat(Format:=PbFixedFormatType.pbFixedFormatTypePDF, Filename:=System.IO.Path.Combine(My.Settings.PDFOutputFolder, filename))
-                '        '        End If
-                '        '    Catch ex As Exception
-                '        '        MessageBox.Show(ex.Message)
-                '        '    End Try
-                '    End If
-
-                '    CertCounter += 1
-                'Next
-
-
-
-
-
-
                 '//AL CERTIFICATES IN A SINGLE DOCUMENT FOR EMAIL PURPOSE
                 Dim certificatestoprint1 = GenerateMailMergeFileForOrder(certificate, MailMergeSourceDocument)
 
@@ -64,14 +27,14 @@ Public Module ModPublisherIntegration
                 Application.ActiveWindow.Visible = True
                 Dim Path As String = PrintCertificateDocument
 
-                Application.Open(Path, False, True)
-                Application.ActiveDocument.MailMerge.Execute(True, Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbMergeToNewPublication)
 
                 Try
+                    Application.Open(Path, False, True)
 
                     If destination = PbMailMergeDestination.pbSendToPrinter Then
-                        Application.Quit()
+                        Application.ActiveDocument.MailMerge.Execute(True, Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbSendToPrinter)
                     ElseIf destination = PbMailMergeDestination.pbMergeToNewPublication Then
+                        Application.ActiveDocument.MailMerge.Execute(True, Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbMergeToNewPublication)
 
                         Dim filename = String.Format("Certificate {0}-{1} {2} {3}.pdf", certificate.ID, "ALL", certificate.Purchaser_FirstName.Trim, certificate.Purchaser_LastName.Trim)
                         Dim d1 As Document = Nothing
@@ -110,15 +73,12 @@ Public Module ModPublisherIntegration
                 Application.ActiveWindow.Visible = True
                 Dim Path As String = PrintCertificateDocument
 
-                Application.Open(Path, False, True)
-                Application.ActiveDocument.MailMerge.Execute(True, Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbMergeToNewPublication)
-
                 Try
                     Application.Open(Path, False, True)
                     If destination = PbMailMergeDestination.pbSendToPrinter Then
-                        Application.Quit()
+                        Application.ActiveDocument.MailMerge.Execute(True, Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbSendToPrinter)
                     ElseIf destination = PbMailMergeDestination.pbMergeToNewPublication Then
-
+                        Application.ActiveDocument.MailMerge.Execute(True, Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbMergeToNewPublication)
                         Dim filename = String.Format("Certificate {0}-{1} {2} {3}.pdf", certificate.ID, "ALL", certificate.Purchaser_FirstName.Trim, certificate.Purchaser_LastName.Trim)
                         If Application.Documents.Count() = 2 Then
                             Dim MergedDocument As Document = Application.Documents(2)
