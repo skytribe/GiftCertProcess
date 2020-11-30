@@ -306,19 +306,19 @@ Public Class FrmModify
             GC.GC_DiscountCode = ComboBox6.Text.Trim.ToUpper
 
 
-            'Point Of Sale
-            If RdoPOSOnline.Checked Then
-                GC.PointOfSale = PointOfSale.Online
-            Else
-                If RdoPosPhone.Checked Then
-                End If
+        'Point Of Sale
+        If RdoPOSOnline.Checked Then
+            GC.PointOfSale = PointOfSale.Online
+        Else
+            If RdoPosPhone.Checked Then
             End If
+        End If
+        GC.PersonalizedFrom = TxtPersonalizedFrom.Text
 
-            UpdateGiftCertificatesFromCertificateRecord(GC)
+
+        UpdateGiftCertificatesFromCertificateRecord(GC)
 
 
-
-            MsgBox("Update Save TO BE IMPLEMENTED")
         'End If
     End Sub
 

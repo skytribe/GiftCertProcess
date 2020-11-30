@@ -57,4 +57,14 @@
         MsgBox(sb.ToString
                )
     End Sub
+
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+        'Locate all GCO Customers
+        'Get Balance for each customer
+        'Select Case wCustId,sCust, cTotBal  from tPeople where sOperInsert = 'GCProcess'
+        'Select Case JR_PurchaseID from dbo.GiftCertificate where JR_PurchaseID <> 0
+        Dim lst1 = DevelopmentGetCustomerBalancesEffect()
+        SfDataGrid11.DataSource = lst1
+
+    End Sub
 End Class

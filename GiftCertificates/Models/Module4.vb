@@ -648,6 +648,7 @@ Public Module Module4
                 ObjOrderRecord.GC_Status = reader("Status")
                 ObjOrderRecord.Online_OrderNumber = reader("Online_Certificate_Number").ToString
                 ObjOrderRecord.PaymentMethod = reader("PaymentMethod").ToString
+                ObjOrderRecord.PersonalizedFrom = reader("PersonalizedFrom").ToString
                 LstPossibles.Add(ObjOrderRecord)
             Loop
 
@@ -751,6 +752,7 @@ Public Module Module4
                 ObjOrderRecord.GC_Status = reader("Status")
                 ObjOrderRecord.Online_OrderNumber = reader("Online_Certificate_Number").ToString
                 ObjOrderRecord.PaymentMethod = reader("PaymentMethod").ToString
+                ObjOrderRecord.PersonalizedFrom = reader("PersonalizedFrom").ToString
                 LstPossibles.Add(ObjOrderRecord)
             Loop
 
@@ -962,6 +964,7 @@ Public Module Module4
 
                 ' PossibleRecord.GC_TotalDiscount = reader("DiscountAmount").ToString
                 PossibleRecord.GC_DiscountCode = reader("DiscountCode").ToString
+                PossibleRecord.PersonalizedFrom = reader("PersonalizedFrom").ToString
 
                 LstPossibles.Add(PossibleRecord)
             Loop
@@ -1828,7 +1831,7 @@ Public Module Module4
             Else
                 sqlComm.Parameters.AddWithValue("DiscountCode", c.GC_DiscountCode)
             End If
-
+            sqlComm.Parameters.AddWithValue("PersonalizedFrom", c.PersonalizedFrom)
 
             sqlComm.ExecuteNonQuery()
             SuccessState = True
@@ -1897,6 +1900,7 @@ Public Module Module4
                 sqlComm.Parameters.AddWithValue("DiscountCode", c.GC_DiscountCode)
             End If
 
+            sqlComm.Parameters.AddWithValue("PersonalizedFrom", c.PersonalizedFrom)
 
             sqlComm.ExecuteNonQuery()
             SuccessState = True
@@ -2177,7 +2181,100 @@ Public Module Module4
         Return SuccessState
     End Function
 
+    Public Function DevelopmentGetCustomerBalancesEffect() As List(Of Object)
+        Dim sfield As String = ""
 
+        Dim LstPossibles As New List(Of Integer)
+        GetConnectionString()
+        Try
+            Dim cmd As New SqlCommand
+            Dim reader As SqlDataReader
+
+            _sqlCon = New SqlConnection(_strConn)
+
+            'Dim sqlstring = String.Format("Select * from dbo.GiftCertificatePricing WHERE IsItem=1")
+            cmd.CommandText = "select wCustId,sCust, cTotBal  from tPeople where sOperInsert = 'GCProcess'"
+            cmd.CommandType = CommandType.Text
+
+            cmd.Connection = _sqlCon
+            _sqlCon.Open()
+            reader = cmd.ExecuteReader()
+            ' Data is accessible through the DataReader object here.
+            ' Use Read method (true/false) to see if reader has records and advance to next record
+            ' You can use a While loop for multiple records (While reader.Read() ... End While)
+            Do While reader.Read
+                Dim c = reader("wCustId").ToString()
+
+                If LstPossibles.Contains(c) = False Then
+                    LstPossibles.Add(c)
+                End If
+            Loop
+            _sqlCon.Close()
+
+
+            'Dim sqlstring = String.Format("Select * from dbo.GiftCertificatePricing WHERE IsItem=1")
+            cmd.CommandText = "select JR_PurchaseID from dbo.GiftCertificate where JR_PurchaseID <> 0"
+            cmd.CommandType = CommandType.Text
+            cmd.Connection = _sqlCon
+
+            _sqlCon.Open()
+
+            reader = cmd.ExecuteReader()
+            ' Data is accessible through the DataReader object here.
+            ' Use Read method (true/false) to see if reader has records and advance to next record
+            ' You can use a While loop for multiple records (While reader.Read() ... End While)
+
+
+            Do While reader.Read
+                Dim CId = reader("JR_PurchaseID")
+                If LstPossibles.Contains(CId) = False Then
+                    LstPossibles.Add(CId)
+                End If
+            Loop
+            _sqlCon.Close()
+
+            Dim strInstring As String = ""
+            For i = 0 To LstPossibles.Count - 1
+                strInstring = strInstring & LstPossibles(i)
+                If i < LstPossibles.Count - 1 Then
+                    strInstring = strInstring & ","
+                End If
+
+            Next
+
+            Dim retdata As New List(Of Object)
+            'Dim sqlstring = String.Format("Select * from dbo.GiftCertificatePricing WHERE IsItem=1")
+            cmd.CommandText = String.Format("select wCustId, sCust, cTotBal  from tPeople where wCustId in ({0})", strInstring)
+            cmd.CommandType = CommandType.Text
+
+            cmd.Connection = _sqlCon
+            _sqlCon.Open()
+            reader = cmd.ExecuteReader()
+            ' Data is accessible through the DataReader object here.
+            ' Use Read method (true/false) to see if reader has records and advance to next record
+            ' You can use a While loop for multiple records (While reader.Read() ... End While)
+            Do While reader.Read
+                Dim c = reader("wCustId").ToString()
+                Dim sname = reader("sCust").ToString()
+                Dim dbal = CDbl(reader("cTotBal").ToString())
+                Dim newobj = New With {.id = c, .name = sname, .balance = dbal}
+                retdata.Add(newobj)
+            Loop
+            _sqlCon.Close()
+            Return retdata
+        Catch ex As Exception
+            Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
+            Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
+            LogError(methodName, ex)
+
+            MessageBox.Show("An error occurred" & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        Finally
+            _sqlCon.Close()
+        End Try
+
+
+    End Function
 
     Function DevelopmentOnly_GetListOfGCCustomers() As IEnumerable(Of Integer)
         Dim LstCustomers As New List(Of Integer)

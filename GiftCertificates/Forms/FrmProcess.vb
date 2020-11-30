@@ -1,7 +1,9 @@
 ﻿Imports System.Reflection
+Imports Newtonsoft.Json
 Imports Syncfusion.WinForms.DataGrid
 Imports Syncfusion.WinForms.DataGrid.Enums
 Imports Syncfusion.WinForms.DataGrid.Events
+
 
 Public Class FrmProcess
 
@@ -89,7 +91,7 @@ Public Class FrmProcess
                 StrAuthorizer = "UNK"
             End If
 
-            UpdateGCOrderAuthorizer(CurrentGiftCertificate, StrAuthorizer)
+            UpdateGCOrderAuthorizer(CurrentGiftCertificate, StrAuthorizer, TextBox3.Text.Trim)
             UpdateCertificateJumpRunCustomers(CurrentGiftCertificate, CurrentGiftCertificate.JR_PurchaserID)
 
             '//Create the appropriate certificate Items for this certificate
@@ -97,6 +99,10 @@ Public Class FrmProcess
             GenerateIndividualCertificateRecordsFromGCOrder(CurrentGiftCertificate)
 
             UpdateGCOrderStatus(CurrentGiftCertificate, CertificateStatus.Processing, dteInsertDate)
+
+            Dim output = JsonConvert.SerializeObject(CurrentGiftCertificate)
+            SendProcessDetails(output)
+
 
             Dim x As New FrmProcessPrint
             x.Certificate = CurrentGiftCertificate
@@ -322,6 +328,7 @@ Public Class FrmProcess
             SfDataGrid1.AllowResizingColumns = True
             SfDataGrid1.Columns.Clear()
             SfDataGrid1.Columns.Add(New GridTextColumn() With {.MappingName = "ID", .HeaderText = "Id"})
+
             'SfDataGrid1.Columns.Add(New GridTextColumn() With {.MappingName = "Purchaser_FirstName", .HeaderText = "Purchase First"})
             'SfDataGrid1.Columns.Add(New GridTextColumn() With {.MappingName = "Purchaser_LastName", .HeaderText = "Purchase Last"})
             SfDataGrid1.Columns.Add(New GridTextColumn() With {.MappingName = "Purchaser_Name", .HeaderText = "Purchaser Name"})
@@ -333,8 +340,9 @@ Public Class FrmProcess
             SfDataGrid1.Columns.Add(New GridTextColumn() With {.MappingName = "Item3.Quantity", .HeaderText = "Tandem 10k With Vid"})
             SfDataGrid1.Columns.Add(New GridTextColumn() With {.MappingName = "Item4.Quantity", .HeaderText = "Tandem 12k With Vid"})
             SfDataGrid1.Columns.Add(New GridTextColumn() With {.MappingName = "Item5.Quantity", .HeaderText = "Video"})
-            SfDataGrid1.Columns.Add(New GridTextColumn() With {.MappingName = "GC_TotalAmount", .HeaderText = "OrderAmount-TBD"})
-            SfDataGrid1.Columns.Add(New GridTextColumn() With {.MappingName = "GC_TotalDiscount", .HeaderText = "DiscountAmount-TBD"})
+            SfDataGrid1.Columns.Add(New GridTextColumn() With {.MappingName = "GC_TotalAmount", .HeaderText = "OrderAmount"})
+            SfDataGrid1.Columns.Add(New GridTextColumn() With {.MappingName = "GC_TotalDiscount", .HeaderText = "DiscountAmount"})
+            SfDataGrid1.Columns.Add(New GridTextColumn() With {.MappingName = "PersonalizedFrom", .HeaderText = "Personalized From"})
 
             'Setup the Jumprun Datagrid columns (for bothg grids)
             SfDGPurchaser.AutoGenerateColumns = False
@@ -351,19 +359,19 @@ Public Class FrmProcess
             SfDGPurchaser.Columns.Add(New GridTextColumn() With {.MappingName = "sPhone1", .HeaderText = "Phone 1"})
             SfDGPurchaser.Columns.Add(New GridTextColumn() With {.MappingName = "sPhone2", .HeaderText = "Phone 2"})
 
-            SfDGRecipient.AutoGenerateColumns = False
-            SfDGRecipient.AllowResizingColumns = True
-            SfDGRecipient.Columns.Clear()
-            SfDGRecipient.Columns.Add(New GridTextColumn() With {.MappingName = "wCustId", .HeaderText = "Id"})
-            SfDGRecipient.Columns.Add(New GridTextColumn() With {.MappingName = "PercentageMatch", .HeaderText = "Score"})
-            SfDGRecipient.Columns.Add(New GridTextColumn() With {.MappingName = "sCust", .HeaderText = "Name"})
-            SfDGRecipient.Columns.Add(New GridTextColumn() With {.MappingName = "sStreet1", .HeaderText = "Address"})
-            SfDGRecipient.Columns.Add(New GridTextColumn() With {.MappingName = "sCity", .HeaderText = "City"})
-            SfDGRecipient.Columns.Add(New GridTextColumn() With {.MappingName = "sState", .HeaderText = "State"})
-            SfDGRecipient.Columns.Add(New GridTextColumn() With {.MappingName = "sZip", .HeaderText = "Zip"})
-            SfDGRecipient.Columns.Add(New GridTextColumn() With {.MappingName = "sEmail", .HeaderText = "Email"})
-            SfDGRecipient.Columns.Add(New GridTextColumn() With {.MappingName = "sPhone1", .HeaderText = "Phone 1"})
-            SfDGRecipient.Columns.Add(New GridTextColumn() With {.MappingName = "sPhone2", .HeaderText = "Phone 2"})
+            'SfDGRecipient.AutoGenerateColumns = False
+            'SfDGRecipient.AllowResizingColumns = True
+            'SfDGRecipient.Columns.Clear()
+            'SfDGRecipient.Columns.Add(New GridTextColumn() With {.MappingName = "wCustId", .HeaderText = "Id"})
+            'SfDGRecipient.Columns.Add(New GridTextColumn() With {.MappingName = "PercentageMatch", .HeaderText = "Score"})
+            'SfDGRecipient.Columns.Add(New GridTextColumn() With {.MappingName = "sCust", .HeaderText = "Name"})
+            'SfDGRecipient.Columns.Add(New GridTextColumn() With {.MappingName = "sStreet1", .HeaderText = "Address"})
+            'SfDGRecipient.Columns.Add(New GridTextColumn() With {.MappingName = "sCity", .HeaderText = "City"})
+            'SfDGRecipient.Columns.Add(New GridTextColumn() With {.MappingName = "sState", .HeaderText = "State"})
+            'SfDGRecipient.Columns.Add(New GridTextColumn() With {.MappingName = "sZip", .HeaderText = "Zip"})
+            'SfDGRecipient.Columns.Add(New GridTextColumn() With {.MappingName = "sEmail", .HeaderText = "Email"})
+            'SfDGRecipient.Columns.Add(New GridTextColumn() With {.MappingName = "sPhone1", .HeaderText = "Phone 1"})
+            'SfDGRecipient.Columns.Add(New GridTextColumn() With {.MappingName = "sPhone2", .HeaderText = "Phone 2"})
 
 
             LblItem1.Text = GetDescriptionForItemId(1)
@@ -451,6 +459,7 @@ Public Class FrmProcess
 
             SetTextField(Me.lblDiscountAmount, gc.GC_Authorization)
             SetTextField(Me.LblDateEntered, gc.GC_DateEntered.ToShortDateString)
+            SetTextField(Me.TextBox3, gc.PersonalizedFrom)
 
             'Item Fields
             LblItem1Qty.Text = gc.Item1.Quantity
@@ -608,7 +617,19 @@ Public Class FrmProcess
             LogError(methodName, ex)
         End Try
     End Sub
-
+    Private Sub SetTextField(control As TextBox, item As String)
+        Try
+            If String.IsNullOrEmpty(item) Then
+                control.Text = ""
+            Else
+                control.Text = item
+            End If
+        Catch ex As Exception
+            Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
+            Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
+            LogError(methodName, ex)
+        End Try
+    End Sub
 
 
 
@@ -830,22 +851,22 @@ Public Class FrmProcess
     Public Sub initializegrid()
         AllowColumnReordering()
 
-        If IO.File.Exists("FrmProcess1.xml") Then
-            Try
-                Using file = System.IO.File.Open("FrmProcess1.xml", System.IO.FileMode.Open)
-                    Me.SfDataGrid1.Deserialize(file)
-                End Using
-            Catch ex As Exception
-            End Try
-        End If
-        If IO.File.Exists("FrmProcess2.xml") Then
-            Try
-                Using file = System.IO.File.Open("FrmProcess2.xml", System.IO.FileMode.Open)
-                    Me.SfDGPurchaser.Deserialize(file)
-                End Using
-            Catch ex As Exception
-            End Try
-        End If
+        'If IO.File.Exists("FrmProcess1.xml") Then
+        '    Try
+        '        Using file = System.IO.File.Open("FrmProcess1.xml", System.IO.FileMode.Open)
+        '            Me.SfDataGrid1.Deserialize(file)
+        '        End Using
+        '    Catch ex As Exception
+        '    End Try
+        'End If
+        'If IO.File.Exists("FrmProcess2.xml") Then
+        '    Try
+        '        Using file = System.IO.File.Open("FrmProcess2.xml", System.IO.FileMode.Open)
+        '            Me.SfDGPurchaser.Deserialize(file)
+        '        End Using
+        '    Catch ex As Exception
+        '    End Try
+        'End If
     End Sub
 
     Private Sub AllowColumnReordering()

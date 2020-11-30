@@ -12,6 +12,7 @@ Public Class FrmImport
                 'ImportShopifyCSVFile(TxtFilename.Text)
                 ImportWooCSVFile(TxtFilename.Text)
                 Me.Close()
+                SendImportDetails(TxtFilename.Text)
             Else
                 MessageBox.Show("The selected file does not exist.", "Import", MessageBoxButtons.OK)
             End If

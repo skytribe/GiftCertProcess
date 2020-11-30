@@ -38,7 +38,7 @@
     End Property
 
     Public Property PersonalizedFrom As String = ""
-    Public Property PersonalizedTo As String = ""
+
 
 
     'Items  - storing the amount which allows for recalculation of totals

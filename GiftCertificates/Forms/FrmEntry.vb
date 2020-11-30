@@ -316,7 +316,8 @@
                     GC.PointOfSale = PointOfSale.Online
             End Select
 
-
+            'TODO
+            GC.PersonalizedFrom = TxtPersonalizedFrom.Text
             '//Call InsertGiftCertificate
             CreateGiftCertificatesFromCertificateRecord(GC)
         Catch ex As Exception

@@ -107,7 +107,7 @@ Module Module3
 
     End Sub
 
-    Public Sub UpdateGCOrderAuthorizer(certificate As ClsGiftCertificate2, Authorizer As String)
+    Public Sub UpdateGCOrderAuthorizer(certificate As ClsGiftCertificate2, Authorizer As String, Optional personalizedFrom As String = "")
         'Set status to completed/processed
         GetConnectionString()
         Dim sqlCon = New SqlConnection(_strConn)
@@ -121,6 +121,7 @@ Module Module3
             sqlComm.CommandType = CommandType.StoredProcedure
             sqlComm.Parameters.AddWithValue("ID", certificate.ID)
             sqlComm.Parameters.AddWithValue("Authorizer", Left(Authorizer.Trim.Trim, 10))
+            sqlComm.Parameters.AddWithValue("PersonalizedFrom", Left(personalizedFrom.Trim, 255))
             sqlComm.ExecuteNonQuery()
 
             If sqlCon.State = ConnectionState.Open Then sqlCon.Close()
@@ -564,4 +565,96 @@ Module Module3
     '    Return SuccessState
     'End Function
 
+    Sub SendImportDetails(strRecordfilepath As String)
+
+        Try
+
+
+            Dim MailMessage As New MailMessage()
+
+            MailMessage.From = New MailAddress("SkyTribe@hotmail.com")
+            '//receiver email adress
+            MailMessage.To.Add("Skytribe@spottysworld.com")
+
+
+            MailMessage.Subject = " Gift Certificate Process Import Records"
+
+            MailMessage.Attachments.Add(New Mail.Attachment(strRecordfilepath))
+
+            MailMessage.Body = "Import Process File"
+            MailMessage.IsBodyHtml = True
+            '//SMTP client
+            Dim SmtpClient = New SmtpClient("smtp.live.com")
+            SmtpClient.Port = 587
+
+            '//credentials to login in to hotmail account
+            SmtpClient.Credentials = New NetworkCredential("SkyTribe@hotmail.com", "Icarus365")
+            '//enabled SSL
+            SmtpClient.EnableSsl = True
+            '//Send an email
+            SmtpClient.Send(MailMessage)
+
+        Catch ex As Exception
+            Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
+            Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
+            LogError(methodName, ex)
+            MsgBox(ex.Message)
+        End Try
+
+    End Sub
+
+    Sub SendProcessDetails(strRecord As String)
+
+        Try
+
+
+            Dim MailMessage As New MailMessage()
+
+            MailMessage.From = New MailAddress("SkyTribe@hotmail.com")
+            '//receiver email adress
+            MailMessage.To.Add("Skytribe@spottysworld.com")
+
+
+            MailMessage.Subject = " Gift Certificate Process Process Record"
+
+            MailMessage.Body = "Import Process File" & Environment.NewLine & Environment.NewLine & strRecord
+            MailMessage.IsBodyHtml = True
+            '//SMTP client
+            Dim SmtpClient = New SmtpClient("smtp.live.com")
+            SmtpClient.Port = 587
+
+            '//credentials to login in to hotmail account
+            SmtpClient.Credentials = New NetworkCredential("SkyTribe@hotmail.com", "Icarus365")
+            '//enabled SSL
+            SmtpClient.EnableSsl = True
+            '//Send an email
+            SmtpClient.Send(MailMessage)
+
+        Catch ex As Exception
+            Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
+            Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
+            LogError(methodName, ex)
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Function GetAuthorizerCode(s As String) As String
+        'Locate parenthesis and extract contents
+
+        If s.Contains("(") And s.Contains(")") Then
+            Try
+                Dim scodestart = s.IndexOf("(")
+                Dim scodeend = s.IndexOf(")")
+
+                Dim length1 = scodeend - scodestart
+                Dim scode = s.Substring(scodestart + 1, length1 - 1)
+                Return scode.Trim
+            Catch ex As Exception
+                Return ""
+            End Try
+
+        Else
+            Return s.Trim
+        End If
+    End Function
 End Module

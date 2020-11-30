@@ -50,6 +50,8 @@ Public Module ModPublisherIntegration
                             Next
                             If d1 IsNot Nothing Then
                                 For i = 1 To certificatestoprint1
+
+
                                     Dim filename1 = String.Format("Certificate {0}-{1} {2} {3}.pdf", certificate.ID, i, certificate.Purchaser_FirstName.Trim, certificate.Purchaser_LastName.Trim)
                                     d1.ExportAsFixedFormat(Format:=PbFixedFormatType.pbFixedFormatTypePDF, Filename:=System.IO.Path.Combine(My.Settings.PDFOutputFolder, filename1), From:=i, [To]:=i)
                                 Next
@@ -145,18 +147,18 @@ Public Module ModPublisherIntegration
             Dim name As String = ""
             Dim GCFrom As String
 
-            'If String.IsNullOrEmpty(certificate.PersonalizedFrom) Then
-            'GCFrom = String.Format("{0} {1}", certificate.Purchaser_FirstName.Trim, certificate.Purchaser_LastName.Trim)
-            'Else
-            GCFrom = certificate.PersonalizedFrom.Trim
-            'End If
+            If String.IsNullOrEmpty(certificate.PersonalizedFrom) Then
+                GCFrom = String.Format("{0} {1}", certificate.Purchaser_FirstName.Trim, certificate.Purchaser_LastName.Trim)
+            Else
+                GCFrom = certificate.PersonalizedFrom.Trim
+            End If
 
             For Each i In lstItems
                 Dim st1 = String.Format("{0},{1},{2},{3},{4}", i.JumpRunCertificateNumber,
                                                                 i.OrderDate,
-                                                                i.PersoanlizedFrom,
+                                                                GCFrom,
                                                                 i.Description,
-                                                                i.Authorizer
+                                                                GetAuthorizerCode(i.Authorizer)
 )
 
                 sb.AppendLine(st1)
@@ -181,43 +183,45 @@ Public Module ModPublisherIntegration
         Return icount
     End Function
 
-    Private Function GenerateMailMergeFile(Cert As ClsPrintCertificateDetails, mmsource As String) As Integer
-        Try
-            Dim sb As New StringBuilder
+    '    Private Function GenerateMailMergeFile(Cert As ClsPrintCertificateDetails, mmsource As String) As Integer
+    '        Try
+    '            Dim sb As New StringBuilder
 
-            sb.AppendLine("Number" & "," & "OrderDate" & "," & "From" & "," & "Description" & "," & "Authorized")
-            Dim certificatestoprint As Integer = 0
+    '            sb.AppendLine("Number" & "," & "OrderDate" & "," & "From" & "," & "Description" & "," & "Authorized")
+    '            Dim certificatestoprint As Integer = 0
 
-            Dim ActualAltitude = ""
-            Dim name As String = ""
-            Dim GCFrom As String
+    '            Dim ActualAltitude = ""
+    '            Dim name As String = ""
+    '            Dim GCFrom As String
 
-            GCFrom = Cert.PersoanlizedFrom
 
-            Dim st1 = String.Format("{0},{1},{2},{3},{4}", Cert.JumpRunCertificateNumber,
-                                                                Cert.OrderDate,
-                                                                Cert.PersoanlizedFrom,
-                                                                Cert.Description,
-                                                                Cert.Authorizer
-)
+    '            GCFrom = Cert.PersoanlizedFrom.Trim
 
-            sb.AppendLine(st1)
 
-            mmsource = System.IO.Path.Combine(My.Application.Info.DirectoryPath, mmsource)
-            Dim StdEncoder As New System.Text.ASCIIEncoding
-            Dim orfWriter As System.IO.StreamWriter = New System.IO.StreamWriter(mmsource, False, StdEncoder)
-            orfWriter.Write(sb.ToString)
-            orfWriter.Close()
+    '            Dim st1 = String.Format("{0},{1},{2},{3},{4}", Cert.JumpRunCertificateNumber,
+    '                                                                Cert.OrderDate,
+    '                                                                GCFrom,
+    '                                                                Cert.Description,
+    '                                                                Cert.Authorizer
+    ')
 
-        Catch ex As Exception
-            Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
-            Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
-            LogError(methodName, ex)
+    '            sb.AppendLine(st1)
 
-            MessageBox.Show(ex.Message)
-        End Try
+    '            mmsource = System.IO.Path.Combine(My.Application.Info.DirectoryPath, mmsource)
+    '            Dim StdEncoder As New System.Text.ASCIIEncoding
+    '            Dim orfWriter As System.IO.StreamWriter = New System.IO.StreamWriter(mmsource, False, StdEncoder)
+    '            orfWriter.Write(sb.ToString)
+    '            orfWriter.Close()
 
-        Return 1
-    End Function
+    '        Catch ex As Exception
+    '            Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
+    '            Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
+    '            LogError(methodName, ex)
+
+    '            MessageBox.Show(ex.Message)
+    '        End Try
+
+    '        Return 1
+    '    End Function
 
 End Module
