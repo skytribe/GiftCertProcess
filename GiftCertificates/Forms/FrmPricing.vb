@@ -1,16 +1,16 @@
 ﻿Imports System.Reflection
+Imports System.Text
 
 Public Class FrmPricing
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Me.Close()
     End Sub
+    Dim CurrentPromoID As Integer = 0
+
 
     Private Sub FrmPricing_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            Dim x = RetrievePricingPromos(True)
-            ComboBox1.DataSource = x
-            ComboBox1.DisplayMember = "Value"
-            ComboBox1.ValueMember = "Key"
+            GetPromoPricingListItems()
 
             PopulatePricing()
             PopulateDiscounts()
@@ -126,178 +126,49 @@ Public Class FrmPricing
 
     End Sub
 
-
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim bln As Boolean = ValidateData()
-
-        If bln = True Then
-            SavePricingInfo()
-        End If
-
+    Private Sub GetPromoPricingListItems()
+        Dim x = RetrievePricingPromos(False, DisplayAll:=True)
+        ComboBox1.DataSource = x
+        ComboBox1.DisplayMember = "Value"
+        ComboBox1.ValueMember = "Key"
     End Sub
 
-    Private Function ValidateData() As Boolean
-        Dim retval As Boolean = True
-
-        If String.IsNullOrEmpty(TxtItemPrice1.Text) Or IsNumeric(TxtItemPrice1.Text) = False Then
-            retval = False
-            MsgBox("Item1 price is not valid")
-        End If
-
-        If String.IsNullOrEmpty(TxtItemPrice2.Text) Or IsNumeric(TxtItemPrice2.Text) = False Then
-            retval = False
-            MsgBox("Item2 price is not valid")
-        End If
-
-        If String.IsNullOrEmpty(TxtItemPrice3.Text) Or IsNumeric(TxtItemPrice3.Text) = False Then
-            retval = False
-            MsgBox("Item3 price is not valid")
-        End If
-
-        If String.IsNullOrEmpty(TxtItemPrice4.Text) Or IsNumeric(TxtItemPrice4.Text) = False Then
-            retval = False
-            MsgBox("Item4 price is not valid")
-        End If
-        If String.IsNullOrEmpty(TxtItemPrice5.Text) Or IsNumeric(TxtItemPrice5.Text) = False Then
-            retval = False
-            MsgBox("Item5 price is not valid")
-        End If
-
-        If String.IsNullOrEmpty(TxtJRItemCode1.Text) Or IsNumeric(TxtJRItemCode1.Text) = False Then
-            retval = False
-            MsgBox("Item1 JumpRun is not valid")
-        End If
-
-        If String.IsNullOrEmpty(TxtJRItemCode2.Text) Or IsNumeric(TxtJRItemCode2.Text) = False Then
-            retval = False
-            MsgBox("Item2 JumpRun is not valid")
-        End If
-
-        If String.IsNullOrEmpty(TxtJRItemCode3.Text) Or IsNumeric(TxtJRItemCode3.Text) = False Then
-            retval = False
-            MsgBox("Item3 JumpRun is not valid")
-        End If
-
-        If String.IsNullOrEmpty(TxtJRItemCode4.Text) Or IsNumeric(TxtJRItemCode4.Text) = False Then
-            retval = False
-            MsgBox("Item4 JumpRun is not valid")
-        End If
-
-        If String.IsNullOrEmpty(TxtJRItemCode5.Text) Or IsNumeric(TxtJRItemCode5.Text) = False Then
-            retval = False
-            MsgBox("Item5 JumpRun is not valid")
-        End If
-        Return retval
-    End Function
-
-    Private Sub SavePricingInfo()
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Try
-            Dim obj As New ClsPricing
+            Dim sb As New System.Text.StringBuilder
+            Dim PricingProblem As Boolean = False
 
-            If Not String.IsNullOrEmpty(LblItemDescription1.Tag) Then
-                With obj
-                    .ID = LblItemDescription1.Tag
-                    .Price = CDbl(TxtItemPrice1.Text)
-                    .JR_ItemID = CInt(TxtJRItemCode1.Text)
-                    .Discountable = ChkDiscountable1.Checked
-                    .SKU = LblItemSku1.Text
+            '//Check that all TXtItemPrices1 item is not blank
+            '//Check that JRPrice1 is set to a non zero value
+            '//Ensure that the JR Price item actually exists in JR
+            PricingProblem = ValidatePriceItem(sb, PricingProblem, TxtJRItemCode1, JRPrice1, 1)
+            PricingProblem = ValidatePriceItem(sb, PricingProblem, TxtJRItemCode2, JRPrice2, 2)
+            PricingProblem = ValidatePriceItem(sb, PricingProblem, TxtJRItemCode3, JRPrice3, 3)
+            PricingProblem = ValidatePriceItem(sb, PricingProblem, TxtJRItemCode4, JRPrice4, 4)
+            PricingProblem = ValidatePriceItem(sb, PricingProblem, TxtJRItemCode5, JRPrice5, 5)
+
+            If PricingProblem = False Then
+                Dim Obj As New ClsPromoPricing
+                With Obj
+                    .ID = CurrentPromoID
+                    .PromoDescription = ComboBox1.Text
+                    .Status = ChkStatus.Checked
+                    .DisplayInList = ChkDisplayInList.Checked
+                    .DiscountCode = ""
+                    .ItemCode1 = CInt(TxtJRItemCode1.Text)
+                    .ItemCode2 = CInt(TxtJRItemCode2.Text)
+                    .ItemCode3 = CInt(TxtJRItemCode3.Text)
+                    .ItemCode4 = CInt(TxtJRItemCode4.Text)
+                    .ItemCode5 = CInt(TxtJRItemCode5.Text)
+                    .ItemPrice1 = CDbl(JRPrice1.Text)
+                    .ItemPrice2 = CDbl(JRPrice2.Text)
+                    .ItemPrice3 = CDbl(JRPrice3.Text)
+                    .ItemPrice4 = CDbl(JRPrice4.Text)
+                    .ItemPrice5 = CDbl(JRPrice5.Text)
                 End With
-                UpdatePricing(obj, True)
-            End If
-
-
-            obj = New ClsPricing
-
-            If Not String.IsNullOrEmpty(LblItemDescription2.Tag) Then
-                With obj
-                    .ID = LblItemDescription2.Tag
-                    .Price = CDbl(TxtItemPrice2.Text)
-                    .JR_ItemID = CInt(TxtJRItemCode2.Text)
-                    .Discountable = ChkDiscountable2.Checked
-                    .SKU = LblItemSku2.Text
-                End With
-                UpdatePricing(obj, True)
-            End If
-
-            obj = New ClsPricing
-
-            If Not String.IsNullOrEmpty(LblItemDescription3.Tag) Then
-                With obj
-                    .ID = LblItemDescription3.Tag
-                    .Price = CDbl(TxtItemPrice3.Text)
-                    .JR_ItemID = CInt(TxtJRItemCode3.Text)
-                    .Discountable = ChkDiscountable3.Checked
-                    .SKU = LblItemSku3.Text
-                End With
-                UpdatePricing(obj, True)
-            End If
-
-
-            obj = New ClsPricing
-
-            If Not String.IsNullOrEmpty(LblItemDescription4.Tag) Then
-                With obj
-                    .ID = LblItemDescription4.Tag
-                    .Price = CDbl(TxtItemPrice4.Text)
-                    .JR_ItemID = CInt(TxtJRItemCode4.Text)
-                    .Discountable = ChkDiscountable4.Checked
-                    .SKU = LblItemSku4.Text
-                End With
-                UpdatePricing(obj, True)
-            End If
-
-
-            obj = New ClsPricing
-
-            If Not String.IsNullOrEmpty(LblItemDescription5.Tag) Then
-                With obj
-                    .ID = LblItemDescription5.Tag
-                    .Price = CDbl(TxtItemPrice5.Text)
-                    .JR_ItemID = CInt(TxtJRItemCode5.Text)
-                    .Discountable = ChkDiscountable5.Checked
-                    .SKU = LblItemSku5.Text
-                End With
-                UpdatePricing(obj, True)
-            End If
-
-
-
-            obj = New ClsPricing
-
-            If Not String.IsNullOrEmpty(TxtDiscountSku1.Text) Then
-                With obj
-                    .ID = lblDiscountDesc1.Tag
-                    .Price = CDbl(TxtDiscountCode1.Text)
-                    .JR_ItemID = CInt(TxtJRItemDiscountCode1.Text)
-                    .SKU = TxtDiscountSku1.Text
-                End With
-                UpdatePricing(obj, False)
-            End If
-
-            obj = New ClsPricing
-
-            If Not String.IsNullOrEmpty(TxtDiscountSku2.Text) Then
-                With obj
-                    .ID = lblDiscountDesc2.Tag
-                    .Price = CDbl(TxtDiscountCode2.Text)
-                    .JR_ItemID = CInt(TxtJRItemDiscountCode2.Text)
-                    .SKU = TxtDiscountSku2.Text
-                End With
-                UpdatePricing(obj, False)
-            End If
-
-
-            obj = New ClsPricing
-
-            If Not String.IsNullOrEmpty(TxtDiscountSku3.Text) Then
-                With obj
-                    .ID = lblDiscountDesc3.Tag
-                    .Price = CDbl(TxtDiscountCode3.Text)
-                    .JR_ItemID = CInt(TxtJRItemDiscountCode3.Text)
-                    .SKU = TxtDiscountSku3.Text
-                End With
-                UpdatePricing(obj, False)
+                UpdatePromoPricing(Obj)
+            Else
+                MessageBox.Show("We have a problem with pricing" & Environment.NewLine & sb.ToString, "Pricing Validation", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
         Catch ex As Exception
             Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
@@ -306,76 +177,283 @@ Public Class FrmPricing
         End Try
     End Sub
 
+    'Private Function ValidateData() As Boolean
+    '    Dim retval As Boolean = True
+
+    '    If String.IsNullOrEmpty(TxtItemPrice1.Text) Or IsNumeric(TxtItemPrice1.Text) = False Then
+    '        retval = False
+    '        MsgBox("Item1 price is not valid")
+    '    End If
+
+    '    If String.IsNullOrEmpty(TxtItemPrice2.Text) Or IsNumeric(TxtItemPrice2.Text) = False Then
+    '        retval = False
+    '        MsgBox("Item2 price is not valid")
+    '    End If
+
+    '    If String.IsNullOrEmpty(TxtItemPrice3.Text) Or IsNumeric(TxtItemPrice3.Text) = False Then
+    '        retval = False
+    '        MsgBox("Item3 price is not valid")
+    '    End If
+
+    '    If String.IsNullOrEmpty(TxtItemPrice4.Text) Or IsNumeric(TxtItemPrice4.Text) = False Then
+    '        retval = False
+    '        MsgBox("Item4 price is not valid")
+    '    End If
+    '    If String.IsNullOrEmpty(TxtItemPrice5.Text) Or IsNumeric(TxtItemPrice5.Text) = False Then
+    '        retval = False
+    '        MsgBox("Item5 price is not valid")
+    '    End If
+
+    '    If String.IsNullOrEmpty(TxtJRItemCode1.Text) Or IsNumeric(TxtJRItemCode1.Text) = False Then
+    '        retval = False
+    '        MsgBox("Item1 JumpRun is not valid")
+    '    End If
+
+    '    If String.IsNullOrEmpty(TxtJRItemCode2.Text) Or IsNumeric(TxtJRItemCode2.Text) = False Then
+    '        retval = False
+    '        MsgBox("Item2 JumpRun is not valid")
+    '    End If
+
+    '    If String.IsNullOrEmpty(TxtJRItemCode3.Text) Or IsNumeric(TxtJRItemCode3.Text) = False Then
+    '        retval = False
+    '        MsgBox("Item3 JumpRun is not valid")
+    '    End If
+
+    '    If String.IsNullOrEmpty(TxtJRItemCode4.Text) Or IsNumeric(TxtJRItemCode4.Text) = False Then
+    '        retval = False
+    '        MsgBox("Item4 JumpRun is not valid")
+    '    End If
+
+    '    If String.IsNullOrEmpty(TxtJRItemCode5.Text) Or IsNumeric(TxtJRItemCode5.Text) = False Then
+    '        retval = False
+    '        MsgBox("Item5 JumpRun is not valid")
+    '    End If
+    '    Return retval
+    'End Function
+
+    'Private Sub SavePricingInfo()
+    '    Try
+    '        Dim obj As New ClsPricing
+
+    '        If Not String.IsNullOrEmpty(LblItemDescription1.Tag) Then
+    '            With obj
+    '                .ID = LblItemDescription1.Tag
+    '                .Price = CDbl(TxtItemPrice1.Text)
+    '                .JR_ItemID = CInt(TxtJRItemCode1.Text)
+    '                .Discountable = ChkDiscountable1.Checked
+    '                .SKU = LblItemSku1.Text
+    '            End With
+    '            UpdatePricing(obj, True)
+    '        End If
+
+
+    '        obj = New ClsPricing
+
+    '        If Not String.IsNullOrEmpty(LblItemDescription2.Tag) Then
+    '            With obj
+    '                .ID = LblItemDescription2.Tag
+    '                .Price = CDbl(TxtItemPrice2.Text)
+    '                .JR_ItemID = CInt(TxtJRItemCode2.Text)
+    '                .Discountable = ChkDiscountable2.Checked
+    '                .SKU = LblItemSku2.Text
+    '            End With
+    '            UpdatePricing(obj, True)
+    '        End If
+
+    '        obj = New ClsPricing
+
+    '        If Not String.IsNullOrEmpty(LblItemDescription3.Tag) Then
+    '            With obj
+    '                .ID = LblItemDescription3.Tag
+    '                .Price = CDbl(TxtItemPrice3.Text)
+    '                .JR_ItemID = CInt(TxtJRItemCode3.Text)
+    '                .Discountable = ChkDiscountable3.Checked
+    '                .SKU = LblItemSku3.Text
+    '            End With
+    '            UpdatePricing(obj, True)
+    '        End If
+
+
+    '        obj = New ClsPricing
+
+    '        If Not String.IsNullOrEmpty(LblItemDescription4.Tag) Then
+    '            With obj
+    '                .ID = LblItemDescription4.Tag
+    '                .Price = CDbl(TxtItemPrice4.Text)
+    '                .JR_ItemID = CInt(TxtJRItemCode4.Text)
+    '                .Discountable = ChkDiscountable4.Checked
+    '                .SKU = LblItemSku4.Text
+    '            End With
+    '            UpdatePricing(obj, True)
+    '        End If
+
+
+    '        obj = New ClsPricing
+
+    '        If Not String.IsNullOrEmpty(LblItemDescription5.Tag) Then
+    '            With obj
+    '                .ID = LblItemDescription5.Tag
+    '                .Price = CDbl(TxtItemPrice5.Text)
+    '                .JR_ItemID = CInt(TxtJRItemCode5.Text)
+    '                .Discountable = ChkDiscountable5.Checked
+    '                .SKU = LblItemSku5.Text
+    '            End With
+    '            UpdatePricing(obj, True)
+    '        End If
+
+
+
+    '        obj = New ClsPricing
+
+    '        If Not String.IsNullOrEmpty(TxtDiscountSku1.Text) Then
+    '            With obj
+    '                .ID = lblDiscountDesc1.Tag
+    '                .Price = CDbl(TxtDiscountCode1.Text)
+    '                .JR_ItemID = CInt(TxtJRItemDiscountCode1.Text)
+    '                .SKU = TxtDiscountSku1.Text
+    '            End With
+    '            UpdatePricing(obj, False)
+    '        End If
+
+    '        obj = New ClsPricing
+
+    '        If Not String.IsNullOrEmpty(TxtDiscountSku2.Text) Then
+    '            With obj
+    '                .ID = lblDiscountDesc2.Tag
+    '                .Price = CDbl(TxtDiscountCode2.Text)
+    '                .JR_ItemID = CInt(TxtJRItemDiscountCode2.Text)
+    '                .SKU = TxtDiscountSku2.Text
+    '            End With
+    '            UpdatePricing(obj, False)
+    '        End If
+
+
+    '        obj = New ClsPricing
+
+    '        If Not String.IsNullOrEmpty(TxtDiscountSku3.Text) Then
+    '            With obj
+    '                .ID = lblDiscountDesc3.Tag
+    '                .Price = CDbl(TxtDiscountCode3.Text)
+    '                .JR_ItemID = CInt(TxtJRItemDiscountCode3.Text)
+    '                .SKU = TxtDiscountSku3.Text
+    '            End With
+    '            UpdatePricing(obj, False)
+    '        End If
+    '    Catch ex As Exception
+    '        Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
+    '        Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
+    '        LogError(methodName, ex)
+    '    End Try
+    'End Sub
+
+    'Sub SavePromoPricing()
+    '    Dim ObjPromo As New ClsPromoPricing
+
+    '    With ObjPromo
+    '        .ID = -1
+    '        .PromoDescription = "New Item"
+    '        .ItemCode1 = CInt(TxtJRItemCode1.Text)
+    '        .ItemPrice1 = CDbl(JRPrice1.Text)
+    '        .ItemCode2 = CInt(TxtJRItemCode2.Text)
+    '        .ItemPrice2 = CDbl(JRPrice2.Text)
+    '        .ItemCode3 = CInt(TxtJRItemCode3.Text)
+    '        .ItemPrice3 = CDbl(JRPrice3.Text)
+    '        .ItemCode4 = CInt(TxtJRItemCode4.Text)
+    '        .ItemPrice4 = CDbl(JRPrice4.Text)
+    '        .ItemCode5 = CInt(TxtJRItemCode5.Text)
+    '        .ItemPrice5 = CDbl(JRPrice5.Text)
+    '        .Status = CheckBox2.Checked
+
+    '    End With
+
+    '    InsertPromoPricing(ObjPromo)
+
+    'End Sub
+
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        GetPricingForJumpRunItems()
+        Try
+            GetPricingForJumpRunItems()
+        Catch ex As Exception
+            Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
+            Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
+            LogError(methodName, ex)
+        End Try
+
     End Sub
 
     Private Sub GetPricingForJumpRunItems()
-        'for each of the items get the price.
-        If IsNumeric(TxtJRItemCode1.Text) Then
-            Dim p1 = GetJumpRunItemPrice(CInt(TxtJRItemCode1.Text))
-            JRPrice1.Text = p1.ToString
-        Else
-            JRPrice1.Text = ""
-        End If
+        Try
+            'for each of the items get the price.
+            If IsNumeric(TxtJRItemCode1.Text) Then
+                Dim p1 = GetJumpRunItemPrice(CInt(TxtJRItemCode1.Text))
+                JRPrice1.Text = p1.ToString
+            Else
+                JRPrice1.Text = ""
+            End If
 
-        If IsNumeric(TxtJRItemCode2.Text) Then
-            Dim p2 = GetJumpRunItemPrice(CInt(TxtJRItemCode2.Text))
-            JRPrice2.Text = p2.ToString
-        Else
-            JRPrice2.Text = ""
-        End If
-        If IsNumeric(TxtJRItemCode3.Text) Then
-            Dim p3 = GetJumpRunItemPrice(CInt(TxtJRItemCode3.Text))
-            JRPrice3.Text = p3.ToString
-        Else
-            JRPrice3.Text = ""
-        End If
-        If IsNumeric(TxtJRItemCode4.Text) Then
-            Dim p4 = GetJumpRunItemPrice(CInt(TxtJRItemCode4.Text))
-            JRPrice4.Text = p4.ToString
-        Else
-            JRPrice4.Text = ""
-        End If
-        If IsNumeric(TxtJRItemCode5.Text) Then
-            Dim p5 = GetJumpRunItemPrice(CInt(TxtJRItemCode5.Text))
-            JRPrice5.Text = p5.ToString
-        Else
-            JRPrice5.Text = ""
-        End If
-
-
-        If IsNumeric(TxtJRItemDiscountCode1.Text) Then
-            Dim pd1 = GetJumpRunItemPrice(CInt(TxtJRItemDiscountCode1.Text))
-            JRDiscPrice1.Text = pd1.ToString
-        Else
-            JRDiscPrice1.Text = ""
-        End If
+            If IsNumeric(TxtJRItemCode2.Text) Then
+                Dim p2 = GetJumpRunItemPrice(CInt(TxtJRItemCode2.Text))
+                JRPrice2.Text = p2.ToString
+            Else
+                JRPrice2.Text = ""
+            End If
+            If IsNumeric(TxtJRItemCode3.Text) Then
+                Dim p3 = GetJumpRunItemPrice(CInt(TxtJRItemCode3.Text))
+                JRPrice3.Text = p3.ToString
+            Else
+                JRPrice3.Text = ""
+            End If
+            If IsNumeric(TxtJRItemCode4.Text) Then
+                Dim p4 = GetJumpRunItemPrice(CInt(TxtJRItemCode4.Text))
+                JRPrice4.Text = p4.ToString
+            Else
+                JRPrice4.Text = ""
+            End If
+            If IsNumeric(TxtJRItemCode5.Text) Then
+                Dim p5 = GetJumpRunItemPrice(CInt(TxtJRItemCode5.Text))
+                JRPrice5.Text = p5.ToString
+            Else
+                JRPrice5.Text = ""
+            End If
 
 
-        If IsNumeric(TxtJRItemDiscountCode2.Text) Then
-            Dim pd2 = GetJumpRunItemPrice(CInt(TxtJRItemDiscountCode2.Text))
-            JRDiscPrice2.Text = pd2.ToString
-        Else
-            JRDiscPrice1.Text = ""
-        End If
+            If IsNumeric(TxtJRItemDiscountCode1.Text) Then
+                Dim pd1 = GetJumpRunItemPrice(CInt(TxtJRItemDiscountCode1.Text))
+                JRDiscPrice1.Text = pd1.ToString
+            Else
+                JRDiscPrice1.Text = ""
+            End If
 
 
-        If IsNumeric(TxtJRItemDiscountCode3.Text) Then
-            Dim pd3 = GetJumpRunItemPrice(CInt(TxtJRItemDiscountCode3.Text))
-            JRDiscPrice3.Text = pd3.ToString
-        Else
-            JRDiscPrice3.Text = ""
-        End If
+            If IsNumeric(TxtJRItemDiscountCode2.Text) Then
+                Dim pd2 = GetJumpRunItemPrice(CInt(TxtJRItemDiscountCode2.Text))
+                JRDiscPrice2.Text = pd2.ToString
+            Else
+                JRDiscPrice1.Text = ""
+            End If
+
+
+            If IsNumeric(TxtJRItemDiscountCode3.Text) Then
+                Dim pd3 = GetJumpRunItemPrice(CInt(TxtJRItemDiscountCode3.Text))
+                JRDiscPrice3.Text = pd3.ToString
+            Else
+                JRDiscPrice3.Text = ""
+            End If
 
 
 
-        If IsNumeric(TxtJRItemDiscountCodeFreeAlt.Text) Then
-            Dim pd4 = GetJumpRunItemPrice(CInt(TxtJRItemDiscountCodeFreeAlt.Text))
-            JRDiscPriceFreeAlt.Text = pd4.ToString
-        Else
-            JRDiscPriceFreeAlt.Text = ""
-        End If
+            If IsNumeric(TxtJRItemDiscountCodeFreeAlt.Text) Then
+                Dim pd4 = GetJumpRunItemPrice(CInt(TxtJRItemDiscountCodeFreeAlt.Text))
+                JRDiscPriceFreeAlt.Text = pd4.ToString
+            Else
+                JRDiscPriceFreeAlt.Text = ""
+            End If
+        Catch ex As Exception
+            Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
+            Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
+            LogError(methodName, ex)
+        End Try
+
     End Sub
 
     Private Sub BtnSelect1_Click(sender As Object, e As EventArgs) Handles BtnSelect1.Click
@@ -386,41 +464,60 @@ Public Class FrmPricing
             TxtItemPrice1.Text = obj.CurrentPrice
             TxtJRItemCode1.Text = obj.CurrentSelectedItem
         End If
-
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        '//We need to determine that the Jumprun and web store pricing items match.  If they don't then we will have problems.
-        Dim sb As New System.Text.StringBuilder
-        Dim PricingProblem As Boolean = False
+        Try
+            ''//We need to determine that the Jumprun and web store pricing items match.  If they don't then we will have problems.
+            Dim sb As New System.Text.StringBuilder
+            Dim PricingProblem As Boolean = False
 
-        If CDbl(TxtItemPrice1.Text) <> CDbl(JRPrice1.Text) Then
-            sb.AppendLine("Discrepency between WebStore and Jumprun item prices for Item 1")
-            PricingProblem = True
+            '//Check that all TXtItemPrices1 item is not blank
+            '//Check that JRPrice1 is set to a non zero value
+            '//Ensure that the JR Price item actually exists in JR
+            PricingProblem = ValidatePriceItem(sb, PricingProblem, TxtJRItemCode1, JRPrice1, 1)
+            PricingProblem = ValidatePriceItem(sb, PricingProblem, TxtJRItemCode2, JRPrice2, 2)
+            PricingProblem = ValidatePriceItem(sb, PricingProblem, TxtJRItemCode3, JRPrice3, 3)
+            PricingProblem = ValidatePriceItem(sb, PricingProblem, TxtJRItemCode4, JRPrice4, 4)
+            PricingProblem = ValidatePriceItem(sb, PricingProblem, TxtJRItemCode5, JRPrice5, 5)
 
-        End If
-        If CDbl(TxtItemPrice2.Text) <> CDbl(JRPrice2.Text) Then
-            sb.AppendLine("Discrepency between WebStore and Jumprun item prices for Item 2")
-            PricingProblem = True
-        End If
-        If CDbl(TxtItemPrice3.Text) <> CDbl(JRPrice3.Text) Then
-            sb.AppendLine("Discrepency between WebStore and Jumprun item prices for Item 3")
-            PricingProblem = True
-        End If
+            If PricingProblem = True Then
+                MessageBox.Show("We have a problem with pricing" & Environment.NewLine & sb.ToString, "Pricing Validation", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Else
+                MessageBox.Show("Pricing Validation Is Successful" & Environment.NewLine & sb.ToString, "Pricing Validation", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-        If CDbl(TxtItemPrice4.Text) <> CDbl(JRPrice4.Text) Then
-            sb.AppendLine("Discrepency between WebStore and Jumprun item prices for Item 4")
-            PricingProblem = True
-        End If
-        If CDbl(TxtItemPrice5.Text) <> CDbl(JRPrice5.Text) Then
-            sb.AppendLine("Discrepency between WebStore and Jumprun item prices for Item 5")
-            PricingProblem = True
-        End If
+            End If
+        Catch ex As Exception
+            Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
+            Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
+            LogError(methodName, ex)
+        End Try
 
-        If PricingProblem = True Then
-            MessageBox.Show("We have a problem with pricing" & Environment.NewLine & sb.ToString, "Pricing Validation", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End If
     End Sub
+
+    Private Function ValidatePriceItem(ByRef sb As StringBuilder, PricingProblem As Boolean, TxtItemPrice As TextBox, JRPrice As Label, index As Integer) As Boolean
+        If TxtItemPrice.Text.Trim = String.Empty Then
+            PricingProblem = True
+            sb.AppendLine(String.Format("No Item set for  Item {0}", index))
+        End If
+        If JRPrice.Text.Trim = String.Empty Or CDbl(JRPrice.Text) = 0 Then
+            PricingProblem = True
+            sb.AppendLine(String.Format("No Price set for  Item {0}", index))
+        End If
+        If IsNumeric(TxtItemPrice.Text.Trim) Then
+            Dim pfjr1 = GetJumpRunItemPrice(CInt(TxtItemPrice.Text.Trim))
+            If pfjr1 <> CDbl(JRPrice.Text.Trim) Then
+                PricingProblem = True
+                sb.AppendLine(String.Format("Price set is different from current price in Jumprun for this item {0} - {1}", pfjr1, JRPrice.Text))
+            End If
+        Else
+            PricingProblem = True
+            sb.AppendLine(String.Format("Non Numeric code set for item {0}", index))
+        End If
+
+
+        Return PricingProblem
+    End Function
 
     Private Sub BtnSelect2_Click(sender As Object, e As EventArgs) Handles BtnSelect2.Click
         '//We need to display a list of Items which the user can select
@@ -463,18 +560,69 @@ Public Class FrmPricing
     End Sub
 
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
-        '
-        Dim x = RetrievePricingPromoForId(CType(ComboBox1.SelectedItem, KeyValuePair(Of Integer, String)).Key)
-        LblCode1.Text = x.ItemCode1.ToString
-        LblCode2.Text = x.ItemCode2.ToString
-        lblCode3.Text = x.ItemCode3.ToString
-        lblCode4.Text = x.ItemCode4.ToString
-        lblCode5.Text = x.ItemCode5.ToString
-        lblPrice1.Text = x.ItemPrice1.ToString
-        lblprice2.Text = x.ItemPrice2.ToString
-        Lblprice3.Text = x.ItemPrice3.ToString
-        lblprice4.Text = x.ItemPrice4.ToString
-        lblprice5.Text = x.ItemPrice5.ToString
+        Try
+            CurrentPromoID = CType(ComboBox1.SelectedItem, KeyValuePair(Of Integer, String)).Key
+
+            Dim x = RetrievePricingPromoForId(CurrentPromoID)
+
+            '//So lets populate the Items in the GroupBox and then get the latest from JumprUN
+            TxtJRItemCode1.Text = x.ItemCode1.ToString
+            TxtJRItemCode2.Text = x.ItemCode2.ToString
+            TxtJRItemCode3.Text = x.ItemCode3.ToString
+            TxtJRItemCode4.Text = x.ItemCode4.ToString
+            TxtJRItemCode5.Text = x.ItemCode5.ToString
+
+            JRPrice1.Text = x.ItemPrice1.ToString
+            JRPrice2.Text = x.ItemPrice2.ToString
+            JRPrice3.Text = x.ItemPrice3.ToString
+            JRPrice4.Text = x.ItemPrice4.ToString
+            JRPrice5.Text = x.ItemPrice5.ToString
+
+            ChkStatus.Checked = x.Status
+            ChkDisplayInList.Checked = x.DisplayInList
+
+            GetPricingForJumpRunItems()
+        Catch ex As Exception
+            Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
+            Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
+            LogError(methodName, ex)
+        End Try
+
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        Try
+            Dim x As New FrmNewPromo
+            If x.ShowDialog = DialogResult.OK Then
+                '//Get standard Pricing and create a new Promo Item
+                Dim defaultPromo = RetrievePricingPromoForId(1)
+                Dim Obj As New ClsPromoPricing
+                With Obj
+                    .ID = -1
+                    .PromoDescription = x.PromoName
+                    .Status = 1
+                    .DisplayInList = 1
+                    .DiscountCode = ""
+                    .ItemCode1 = defaultPromo.ItemCode1
+                    .ItemCode2 = defaultPromo.ItemCode2
+                    .ItemCode3 = defaultPromo.ItemCode3
+                    .ItemCode4 = defaultPromo.ItemCode4
+                    .ItemCode5 = defaultPromo.ItemCode5
+                    .ItemPrice1 = defaultPromo.ItemPrice1
+                    .ItemPrice2 = defaultPromo.ItemPrice2
+                    .ItemPrice3 = defaultPromo.ItemPrice3
+                    .ItemPrice4 = defaultPromo.ItemPrice4
+                    .ItemPrice5 = defaultPromo.ItemPrice5
+                End With
+                InsertPromoPricing(Obj)
+                GetPromoPricingListItems()
+            End If
+
+        Catch ex As Exception
+            Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
+            Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
+            LogError(methodName, ex)
+        End Try
 
     End Sub
 End Class

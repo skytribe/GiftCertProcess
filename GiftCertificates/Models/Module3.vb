@@ -163,7 +163,90 @@ Module Module3
         End Try
 
     End Sub
+    Public Sub InsertPromoPricing(pricing As ClsPromoPricing)
+        GetConnectionString()
+        Dim sqlCon1 = New SqlConnection(_strConn)
+        Try
+            If sqlCon1.State = ConnectionState.Closed Then sqlCon1.Open()
 
+            Dim sqlComm As New SqlCommand()
+            sqlComm.Connection = sqlCon1
+
+            sqlComm.CommandText = "dbo.GCO_InsertGiftCertificatePricingPromotions"
+            sqlComm.CommandType = CommandType.StoredProcedure
+
+            sqlComm.Parameters.AddWithValue("ID", pricing.ID)
+            sqlComm.Parameters.AddWithValue("PromoDescription", pricing.PromoDescription)
+            sqlComm.Parameters.AddWithValue("DiscountCode", "")
+            sqlComm.Parameters.AddWithValue("itemCode1", pricing.ItemCode1)
+            sqlComm.Parameters.AddWithValue("itemPricing1", pricing.ItemPrice1)
+            sqlComm.Parameters.AddWithValue("itemCode2", pricing.ItemCode2)
+            sqlComm.Parameters.AddWithValue("itemPricing2", pricing.ItemPrice2)
+            sqlComm.Parameters.AddWithValue("itemCode3", pricing.ItemCode3)
+            sqlComm.Parameters.AddWithValue("itemPricing3", pricing.ItemPrice3)
+            sqlComm.Parameters.AddWithValue("itemCode4", pricing.ItemCode4)
+            sqlComm.Parameters.AddWithValue("itemPricing4", pricing.ItemPrice4)
+            sqlComm.Parameters.AddWithValue("itemCode5", pricing.ItemCode5)
+            sqlComm.Parameters.AddWithValue("itemPricing5", pricing.ItemPrice5)
+            sqlComm.Parameters.AddWithValue("status", pricing.Status)
+            sqlComm.Parameters.AddWithValue("displayInList", 1)
+
+            sqlComm.ExecuteNonQuery()
+
+            If sqlCon1.State = ConnectionState.Open Then sqlCon1.Close()
+        Catch ex As Exception
+            Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
+            Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
+            LogError(methodName, ex)
+
+            MessageBox.Show("An error occurred" & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            sqlCon1 = Nothing
+        End Try
+
+    End Sub
+    Public Sub UpdatePromoPricing(pricing As ClsPromoPricing)
+        GetConnectionString()
+        Dim sqlCon1 = New SqlConnection(_strConn)
+        Try
+            If sqlCon1.State = ConnectionState.Closed Then sqlCon1.Open()
+
+            Dim sqlComm As New SqlCommand()
+            sqlComm.Connection = sqlCon1
+
+            sqlComm.CommandText = "dbo.GCO_UpdateGiftCertificatePricingPromotions"
+            sqlComm.CommandType = CommandType.StoredProcedure
+
+            sqlComm.Parameters.AddWithValue("ID", pricing.ID)
+            sqlComm.Parameters.AddWithValue("PromoDescription", pricing.PromoDescription)
+            sqlComm.Parameters.AddWithValue("DiscountCode", "")
+            sqlComm.Parameters.AddWithValue("itemCode1", pricing.ItemCode1)
+            sqlComm.Parameters.AddWithValue("itemPricing1", pricing.ItemPrice1)
+            sqlComm.Parameters.AddWithValue("itemCode2", pricing.ItemCode2)
+            sqlComm.Parameters.AddWithValue("itemPricing2", pricing.ItemPrice2)
+            sqlComm.Parameters.AddWithValue("itemCode3", pricing.ItemCode3)
+            sqlComm.Parameters.AddWithValue("itemPricing3", pricing.ItemPrice3)
+            sqlComm.Parameters.AddWithValue("itemCode4", pricing.ItemCode4)
+            sqlComm.Parameters.AddWithValue("itemPricing4", pricing.ItemPrice4)
+            sqlComm.Parameters.AddWithValue("itemCode5", pricing.ItemCode5)
+            sqlComm.Parameters.AddWithValue("itemPricing5", pricing.ItemPrice5)
+            sqlComm.Parameters.AddWithValue("status", Math.Abs(pricing.Status))
+            sqlComm.Parameters.AddWithValue("displayInList", Math.Abs(pricing.DisplayInList))
+
+            sqlComm.ExecuteNonQuery()
+
+            If sqlCon1.State = ConnectionState.Open Then sqlCon1.Close()
+        Catch ex As Exception
+            Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
+            Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
+            LogError(methodName, ex)
+
+            MessageBox.Show("An error occurred" & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            sqlCon1 = Nothing
+        End Try
+
+    End Sub
     Public Sub UpdateGCOrderAuthorizer(certificate As ClsGiftCertificate2, Authorizer As String, Optional personalizedFrom As String = "")
         'Set status to completed/processed
         GetConnectionString()

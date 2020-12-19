@@ -51,5 +51,7 @@
     End Property
 
     Property Status As Integer
+    Property DisplayInList As Integer
+    Property DiscountCode As String
 
 End Class

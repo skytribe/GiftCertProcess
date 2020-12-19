@@ -110,7 +110,7 @@ Public Module Module4
         Return LstPricing
     End Function
 
-    Public Function RetrievePricingPromos(Optional OnlyDisplay As Integer = False) As List(Of KeyValuePair(Of Integer, String))
+    Public Function RetrievePricingPromos(Optional OnlyDisplay As Integer = False, Optional DisplayAll As Boolean = True) As List(Of KeyValuePair(Of Integer, String))
 
 
         Dim LstPricing As New List(Of KeyValuePair(Of Integer, String))
@@ -124,7 +124,12 @@ Public Module Module4
             cmd.CommandText = "dbo.GCO_GetPricingPromos"
             cmd.CommandType = CommandType.StoredProcedure
             cmd.Connection = _sqlCon
-            cmd.Parameters.AddWithValue("Active", 1)
+
+            If DisplayAll Then
+                cmd.Parameters.AddWithValue("Active", -1)
+            Else
+                cmd.Parameters.AddWithValue("Active", 1)
+            End If
             _sqlCon.Open()
 
             reader = cmd.ExecuteReader()
@@ -145,7 +150,7 @@ Public Module Module4
                         LstPricing.Add(x)
                     End If
                 Else
-
+                    LstPricing.Add(x)
                 End If
 
             Loop
@@ -193,6 +198,8 @@ Public Module Module4
                 RetVAlue.ID = CInt(reader("Id").ToString())
                 RetVAlue.PromoDescription = String.Format("{0}", reader("PromoDescription").ToString())
                 RetVAlue.Status = CInt(reader("Status").ToString())
+                RetVAlue.DisplayInList = CInt(reader("DisplayInList").ToString())
+                RetVAlue.DiscountCode = reader("DiscountCode").ToString()
                 RetVAlue.ItemCode1 = CInt(reader("ItemCode1").ToString())
                 RetVAlue.ItemPrice1 = CInt(reader("ItemPricing1").ToString())
                 RetVAlue.ItemCode2 = CInt(reader("ItemCode2").ToString())

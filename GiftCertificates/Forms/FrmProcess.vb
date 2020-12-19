@@ -781,6 +781,18 @@ Public Class FrmProcess
             lblDiscountAmount.Text = String.Format("{0}", gc.GC_TotalDiscount)
             lblDiscountCode.Text = gc.GC_DiscountCode
 
+            Select Case gc.GC_DiscountCode.ToUpper
+                Case "SANTA20"
+                    PicDiscount.Image = My.Resources.Santa
+                Case "ELF20"
+                    PicDiscount.Image = My.Resources.Elf
+                Case "CC20"
+                    PicDiscount.Image = My.Resources.CandyCane
+                Case Else
+                    PicDiscount.Image = Nothing
+            End Select
+            PicDiscount.Visible = True
+
             'IS recipient even specified if not then 
             If String.IsNullOrEmpty(lblRecipient_FirstName.Text) AndAlso
                     String.IsNullOrEmpty(lblRecipient_LastName.Text) AndAlso

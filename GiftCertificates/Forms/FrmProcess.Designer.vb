@@ -127,6 +127,7 @@ Partial Class FrmProcess
         Me.SfDataGrid1 = New Syncfusion.WinForms.DataGrid.SfDataGrid()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.CboPromoPricing = New System.Windows.Forms.ComboBox()
+        Me.PicDiscount = New System.Windows.Forms.PictureBox()
         Me.Panel1.SuspendLayout()
         CType(Me.SfDGPurchaser, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
@@ -141,6 +142,7 @@ Partial Class FrmProcess
         Me.TabPageBillingAddress.SuspendLayout()
         Me.TabPageShippingAddress.SuspendLayout()
         CType(Me.SfDataGrid1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicDiscount, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -707,7 +709,7 @@ Partial Class FrmProcess
         '
         'Button5
         '
-        Me.Button5.Location = New System.Drawing.Point(1040, 370)
+        Me.Button5.Location = New System.Drawing.Point(1054, 550)
         Me.Button5.Margin = New System.Windows.Forms.Padding(2)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(72, 74)
@@ -717,7 +719,7 @@ Partial Class FrmProcess
         '
         'Button6
         '
-        Me.Button6.Location = New System.Drawing.Point(1040, 461)
+        Me.Button6.Location = New System.Drawing.Point(1054, 641)
         Me.Button6.Margin = New System.Windows.Forms.Padding(2)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(72, 29)
@@ -931,7 +933,7 @@ Partial Class FrmProcess
         Me.GrpItems.Controls.Add(Me.LblItem3)
         Me.GrpItems.Controls.Add(Me.LblItem2)
         Me.GrpItems.Controls.Add(Me.LblItem1)
-        Me.GrpItems.Location = New System.Drawing.Point(480, 468)
+        Me.GrpItems.Location = New System.Drawing.Point(480, 501)
         Me.GrpItems.Margin = New System.Windows.Forms.Padding(2)
         Me.GrpItems.Name = "GrpItems"
         Me.GrpItems.Padding = New System.Windows.Forms.Padding(2)
@@ -943,7 +945,7 @@ Partial Class FrmProcess
         'LblItem5Qty
         '
         Me.LblItem5Qty.AutoSize = True
-        Me.LblItem5Qty.Location = New System.Drawing.Point(223, 121)
+        Me.LblItem5Qty.Location = New System.Drawing.Point(187, 187)
         Me.LblItem5Qty.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.LblItem5Qty.Name = "LblItem5Qty"
         Me.LblItem5Qty.Size = New System.Drawing.Size(67, 13)
@@ -953,7 +955,7 @@ Partial Class FrmProcess
         'LblItem4Qty
         '
         Me.LblItem4Qty.AutoSize = True
-        Me.LblItem4Qty.Location = New System.Drawing.Point(223, 99)
+        Me.LblItem4Qty.Location = New System.Drawing.Point(187, 149)
         Me.LblItem4Qty.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.LblItem4Qty.Name = "LblItem4Qty"
         Me.LblItem4Qty.Size = New System.Drawing.Size(67, 13)
@@ -963,7 +965,7 @@ Partial Class FrmProcess
         'LblItem3Qty
         '
         Me.LblItem3Qty.AutoSize = True
-        Me.LblItem3Qty.Location = New System.Drawing.Point(223, 73)
+        Me.LblItem3Qty.Location = New System.Drawing.Point(187, 107)
         Me.LblItem3Qty.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.LblItem3Qty.Name = "LblItem3Qty"
         Me.LblItem3Qty.Size = New System.Drawing.Size(67, 13)
@@ -973,7 +975,7 @@ Partial Class FrmProcess
         'LblItem2Qty
         '
         Me.LblItem2Qty.AutoSize = True
-        Me.LblItem2Qty.Location = New System.Drawing.Point(223, 48)
+        Me.LblItem2Qty.Location = New System.Drawing.Point(187, 66)
         Me.LblItem2Qty.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.LblItem2Qty.Name = "LblItem2Qty"
         Me.LblItem2Qty.Size = New System.Drawing.Size(67, 13)
@@ -983,7 +985,7 @@ Partial Class FrmProcess
         'LblItem1Qty
         '
         Me.LblItem1Qty.AutoSize = True
-        Me.LblItem1Qty.Location = New System.Drawing.Point(221, 25)
+        Me.LblItem1Qty.Location = New System.Drawing.Point(185, 27)
         Me.LblItem1Qty.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.LblItem1Qty.Name = "LblItem1Qty"
         Me.LblItem1Qty.Size = New System.Drawing.Size(67, 13)
@@ -992,7 +994,7 @@ Partial Class FrmProcess
         '
         'LblItem4
         '
-        Me.LblItem4.Location = New System.Drawing.Point(21, 99)
+        Me.LblItem4.Location = New System.Drawing.Point(23, 149)
         Me.LblItem4.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.LblItem4.Name = "LblItem4"
         Me.LblItem4.Size = New System.Drawing.Size(168, 13)
@@ -1001,7 +1003,7 @@ Partial Class FrmProcess
         '
         'LblItem5
         '
-        Me.LblItem5.Location = New System.Drawing.Point(21, 121)
+        Me.LblItem5.Location = New System.Drawing.Point(23, 187)
         Me.LblItem5.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.LblItem5.Name = "LblItem5"
         Me.LblItem5.Size = New System.Drawing.Size(168, 13)
@@ -1010,7 +1012,7 @@ Partial Class FrmProcess
         '
         'LblItem3
         '
-        Me.LblItem3.Location = New System.Drawing.Point(21, 73)
+        Me.LblItem3.Location = New System.Drawing.Point(23, 107)
         Me.LblItem3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.LblItem3.Name = "LblItem3"
         Me.LblItem3.Size = New System.Drawing.Size(168, 13)
@@ -1019,7 +1021,7 @@ Partial Class FrmProcess
         '
         'LblItem2
         '
-        Me.LblItem2.Location = New System.Drawing.Point(21, 48)
+        Me.LblItem2.Location = New System.Drawing.Point(23, 66)
         Me.LblItem2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.LblItem2.Name = "LblItem2"
         Me.LblItem2.Size = New System.Drawing.Size(168, 13)
@@ -1028,7 +1030,7 @@ Partial Class FrmProcess
         '
         'LblItem1
         '
-        Me.LblItem1.Location = New System.Drawing.Point(21, 25)
+        Me.LblItem1.Location = New System.Drawing.Point(23, 27)
         Me.LblItem1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.LblItem1.Name = "LblItem1"
         Me.LblItem1.Size = New System.Drawing.Size(168, 13)
@@ -1183,7 +1185,7 @@ Partial Class FrmProcess
         '
         Me.CboAuthorizer.FormattingEnabled = True
         Me.CboAuthorizer.Items.AddRange(New Object() {"Leila", "Tyson", "Jim", "Spotty"})
-        Me.CboAuthorizer.Location = New System.Drawing.Point(932, 269)
+        Me.CboAuthorizer.Location = New System.Drawing.Point(929, 360)
         Me.CboAuthorizer.Margin = New System.Windows.Forms.Padding(2)
         Me.CboAuthorizer.Name = "CboAuthorizer"
         Me.CboAuthorizer.Size = New System.Drawing.Size(188, 21)
@@ -1192,7 +1194,7 @@ Partial Class FrmProcess
         'Label29
         '
         Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(819, 269)
+        Me.Label29.Location = New System.Drawing.Point(816, 360)
         Me.Label29.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(106, 13)
@@ -1207,7 +1209,7 @@ Partial Class FrmProcess
         Me.TabControl1.Margin = New System.Windows.Forms.Padding(2)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(458, 566)
+        Me.TabControl1.Size = New System.Drawing.Size(458, 533)
         Me.TabControl1.TabIndex = 24
         '
         'TabPageBillingAddress
@@ -1217,7 +1219,7 @@ Partial Class FrmProcess
         Me.TabPageBillingAddress.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPageBillingAddress.Name = "TabPageBillingAddress"
         Me.TabPageBillingAddress.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabPageBillingAddress.Size = New System.Drawing.Size(450, 540)
+        Me.TabPageBillingAddress.Size = New System.Drawing.Size(450, 507)
         Me.TabPageBillingAddress.TabIndex = 0
         Me.TabPageBillingAddress.Text = "Billing Address"
         Me.TabPageBillingAddress.UseVisualStyleBackColor = True
@@ -1229,7 +1231,7 @@ Partial Class FrmProcess
         Me.TabPageShippingAddress.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPageShippingAddress.Name = "TabPageShippingAddress"
         Me.TabPageShippingAddress.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabPageShippingAddress.Size = New System.Drawing.Size(450, 540)
+        Me.TabPageShippingAddress.Size = New System.Drawing.Size(450, 507)
         Me.TabPageShippingAddress.TabIndex = 1
         Me.TabPageShippingAddress.Text = "Shipping Address"
         Me.TabPageShippingAddress.UseVisualStyleBackColor = True
@@ -1237,7 +1239,7 @@ Partial Class FrmProcess
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(818, 307)
+        Me.Label1.Location = New System.Drawing.Point(815, 398)
         Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(78, 13)
@@ -1246,7 +1248,7 @@ Partial Class FrmProcess
         '
         'TextBox3
         '
-        Me.TextBox3.Location = New System.Drawing.Point(932, 327)
+        Me.TextBox3.Location = New System.Drawing.Point(929, 418)
         Me.TextBox3.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(188, 20)
@@ -1255,7 +1257,7 @@ Partial Class FrmProcess
         'Label31
         '
         Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(880, 334)
+        Me.Label31.Location = New System.Drawing.Point(877, 425)
         Me.Label31.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label31.Name = "Label31"
         Me.Label31.Size = New System.Drawing.Size(36, 13)
@@ -1272,14 +1274,14 @@ Partial Class FrmProcess
         Me.SfDataGrid1.Margin = New System.Windows.Forms.Padding(2)
         Me.SfDataGrid1.Name = "SfDataGrid1"
         Me.SfDataGrid1.PreviewRowHeight = 35
-        Me.SfDataGrid1.Size = New System.Drawing.Size(667, 195)
+        Me.SfDataGrid1.Size = New System.Drawing.Size(671, 195)
         Me.SfDataGrid1.TabIndex = 31
         Me.SfDataGrid1.Text = "SfDataGrid1"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(810, 231)
+        Me.Label2.Location = New System.Drawing.Point(807, 322)
         Me.Label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(72, 13)
@@ -1290,18 +1292,29 @@ Partial Class FrmProcess
         '
         Me.CboPromoPricing.FormattingEnabled = True
         Me.CboPromoPricing.Items.AddRange(New Object() {"Leila", "Tyson", "Jim", "Spotty"})
-        Me.CboPromoPricing.Location = New System.Drawing.Point(932, 231)
+        Me.CboPromoPricing.Location = New System.Drawing.Point(929, 322)
         Me.CboPromoPricing.Margin = New System.Windows.Forms.Padding(2)
         Me.CboPromoPricing.Name = "CboPromoPricing"
         Me.CboPromoPricing.Size = New System.Drawing.Size(188, 21)
         Me.CboPromoPricing.TabIndex = 33
+        '
+        'PicDiscount
+        '
+        Me.PicDiscount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PicDiscount.Location = New System.Drawing.Point(810, 207)
+        Me.PicDiscount.Name = "PicDiscount"
+        Me.PicDiscount.Size = New System.Drawing.Size(86, 101)
+        Me.PicDiscount.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PicDiscount.TabIndex = 34
+        Me.PicDiscount.TabStop = False
         '
         'FrmProcess
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
-        Me.ClientSize = New System.Drawing.Size(1139, 687)
+        Me.ClientSize = New System.Drawing.Size(1143, 725)
+        Me.Controls.Add(Me.PicDiscount)
         Me.Controls.Add(Me.CboPromoPricing)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.SfDataGrid1)
@@ -1342,6 +1355,7 @@ Partial Class FrmProcess
         Me.TabPageBillingAddress.ResumeLayout(False)
         Me.TabPageShippingAddress.ResumeLayout(False)
         CType(Me.SfDataGrid1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicDiscount, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1451,4 +1465,5 @@ Partial Class FrmProcess
     Friend WithEvents SfDataGrid1 As Syncfusion.WinForms.DataGrid.SfDataGrid
     Friend WithEvents Label2 As Label
     Friend WithEvents CboPromoPricing As ComboBox
+    Friend WithEvents PicDiscount As PictureBox
 End Class

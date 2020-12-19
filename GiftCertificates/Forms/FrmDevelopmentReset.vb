@@ -45,6 +45,9 @@
             SfDataGrid10.DataSource = ds.Tables(9)
 
         End If
+        Dim lst1 = DevelopmentGetCustomerBalancesEffect()
+        SfDataGrid11.DataSource = lst1
+
         MsgBox("Completed")
     End Sub
 

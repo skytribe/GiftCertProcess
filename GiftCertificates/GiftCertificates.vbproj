@@ -146,6 +146,12 @@
     <Compile Include="Forms\FrmModify.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\FrmNewPromo.Designer.vb">
+      <DependentUpon>FrmNewPromo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmNewPromo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\FrmPricing.Designer.vb">
       <DependentUpon>FrmPricing.vb</DependentUpon>
     </Compile>
@@ -278,6 +284,9 @@
     <EmbeddedResource Include="Forms\FrmModify.resx">
       <DependentUpon>FrmModify.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmNewPromo.resx">
+      <DependentUpon>FrmNewPromo.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmPricing.resx">
       <DependentUpon>FrmPricing.vb</DependentUpon>
     </EmbeddedResource>
@@ -376,6 +385,10 @@
     </Content>
     <Content Include="Files\fields.txt" />
     <Content Include="hnet.com-image.ico" />
+    <None Include="Resources\PinClipart.com_kostenlose-cliparts-weihnachten_389638.png" />
+    <None Include="Resources\kisspng-candy-cane-computer-icons-portable-network-graphic-candy-cane-icon-free-of-christmas-vector-iconset-5b8124e71b7692.3315894615351902471125.png" />
+    <None Include="Resources\Santa-icon.png" />
+    <None Include="Resources\Santa.png" />
     <None Include="Resources\fdarrow2.png" />
     <None Include="Resources\fdarrowlt2.png" />
     <None Include="Resources\fdarrowdn2.png" />
