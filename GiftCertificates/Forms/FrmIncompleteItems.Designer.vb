@@ -39,19 +39,19 @@ Partial Class FrmIncompleteItems
         Me.Panel3.Controls.Add(Me.RdoBoth)
         Me.Panel3.Controls.Add(Me.RdoProcessed)
         Me.Panel3.Controls.Add(Me.RdoEntered)
-        Me.Panel3.Location = New System.Drawing.Point(131, 11)
-        Me.Panel3.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Panel3.Location = New System.Drawing.Point(98, 9)
+        Me.Panel3.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(476, 47)
+        Me.Panel3.Size = New System.Drawing.Size(357, 38)
         Me.Panel3.TabIndex = 17
         '
         'RdoBoth
         '
         Me.RdoBoth.AutoSize = True
-        Me.RdoBoth.Location = New System.Drawing.Point(270, 14)
-        Me.RdoBoth.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.RdoBoth.Location = New System.Drawing.Point(202, 11)
+        Me.RdoBoth.Margin = New System.Windows.Forms.Padding(2)
         Me.RdoBoth.Name = "RdoBoth"
-        Me.RdoBoth.Size = New System.Drawing.Size(53, 20)
+        Me.RdoBoth.Size = New System.Drawing.Size(47, 17)
         Me.RdoBoth.TabIndex = 2
         Me.RdoBoth.Text = "Both"
         Me.RdoBoth.UseVisualStyleBackColor = True
@@ -59,10 +59,10 @@ Partial Class FrmIncompleteItems
         'RdoProcessed
         '
         Me.RdoProcessed.AutoSize = True
-        Me.RdoProcessed.Location = New System.Drawing.Point(140, 14)
-        Me.RdoProcessed.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.RdoProcessed.Location = New System.Drawing.Point(105, 11)
+        Me.RdoProcessed.Margin = New System.Windows.Forms.Padding(2)
         Me.RdoProcessed.Name = "RdoProcessed"
-        Me.RdoProcessed.Size = New System.Drawing.Size(94, 20)
+        Me.RdoProcessed.Size = New System.Drawing.Size(77, 17)
         Me.RdoProcessed.TabIndex = 1
         Me.RdoProcessed.Text = "Processing"
         Me.RdoProcessed.UseVisualStyleBackColor = True
@@ -71,10 +71,10 @@ Partial Class FrmIncompleteItems
         '
         Me.RdoEntered.AutoSize = True
         Me.RdoEntered.Checked = True
-        Me.RdoEntered.Location = New System.Drawing.Point(17, 14)
-        Me.RdoEntered.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.RdoEntered.Location = New System.Drawing.Point(13, 11)
+        Me.RdoEntered.Margin = New System.Windows.Forms.Padding(2)
         Me.RdoEntered.Name = "RdoEntered"
-        Me.RdoEntered.Size = New System.Drawing.Size(73, 20)
+        Me.RdoEntered.Size = New System.Drawing.Size(62, 17)
         Me.RdoEntered.TabIndex = 0
         Me.RdoEntered.TabStop = True
         Me.RdoEntered.Text = "Entered"
@@ -83,28 +83,37 @@ Partial Class FrmIncompleteItems
         'SfDataGrid1
         '
         Me.SfDataGrid1.AccessibleName = "Table"
-        Me.SfDataGrid1.Location = New System.Drawing.Point(12, 78)
-        Me.SfDataGrid1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.SfDataGrid1.AllowDraggingColumns = True
+        Me.SfDataGrid1.AllowEditing = False
+        Me.SfDataGrid1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SfDataGrid1.Location = New System.Drawing.Point(9, 63)
+        Me.SfDataGrid1.Margin = New System.Windows.Forms.Padding(2)
         Me.SfDataGrid1.Name = "SfDataGrid1"
         Me.SfDataGrid1.PreviewRowHeight = 35
-        Me.SfDataGrid1.Size = New System.Drawing.Size(776, 273)
+        Me.SfDataGrid1.Size = New System.Drawing.Size(640, 479)
         Me.SfDataGrid1.TabIndex = 16
         Me.SfDataGrid1.Text = "SfDataGrid1"
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(171, 380)
+        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button1.Location = New System.Drawing.Point(506, 565)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(2)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.Size = New System.Drawing.Size(56, 34)
         Me.Button1.TabIndex = 18
         Me.Button1.Text = "Process"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(271, 380)
+        Me.Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button2.Location = New System.Drawing.Point(581, 565)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(2)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.Size = New System.Drawing.Size(56, 34)
         Me.Button2.TabIndex = 19
         Me.Button2.Text = "Close"
         Me.Button2.UseVisualStyleBackColor = True
@@ -112,22 +121,25 @@ Partial Class FrmIncompleteItems
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(24, 25)
+        Me.Label1.Location = New System.Drawing.Point(18, 20)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(48, 16)
+        Me.Label1.Size = New System.Drawing.Size(40, 13)
         Me.Label1.TabIndex = 20
         Me.Label1.Text = "Status:"
         '
         'FrmIncompleteItems
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(658, 623)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.SfDataGrid1)
+        Me.Margin = New System.Windows.Forms.Padding(2)
+        Me.MinimumSize = New System.Drawing.Size(674, 662)
         Me.Name = "FrmIncompleteItems"
         Me.Text = "Incomplete Orders"
         Me.Panel3.ResumeLayout(False)

@@ -110,6 +110,115 @@ Public Module Module4
         Return LstPricing
     End Function
 
+    Public Function RetrievePricingPromos(Optional OnlyDisplay As Integer = False) As List(Of KeyValuePair(Of Integer, String))
+
+
+        Dim LstPricing As New List(Of KeyValuePair(Of Integer, String))
+        GetConnectionString()
+        Try
+            Dim cmd As New SqlCommand
+            Dim reader As SqlDataReader
+
+            _sqlCon = New SqlConnection(_strConn)
+
+            cmd.CommandText = "dbo.GCO_GetPricingPromos"
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.Connection = _sqlCon
+            cmd.Parameters.AddWithValue("Active", 1)
+            _sqlCon.Open()
+
+            reader = cmd.ExecuteReader()
+            ' Data is accessible through the DataReader object here.
+            ' Use Read method (true/false) to see if reader has records and advance to next record
+            ' You can use a While loop for multiple records (While reader.Read() ... End While)
+
+
+            Do While reader.Read
+
+                Dim x As New KeyValuePair(Of Integer, String)
+                Dim ikey = CInt(reader("Id").ToString())
+                Dim sValue = String.Format("{0}", reader("PromoDescription").ToString())
+                Dim display As Integer = reader("DisplayInList").ToString()
+                x = New KeyValuePair(Of Integer, String)(ikey, sValue)
+                If OnlyDisplay Then
+                    If display = 1 Then
+                        LstPricing.Add(x)
+                    End If
+                Else
+
+                End If
+
+            Loop
+
+        Catch ex As Exception
+            Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
+            Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
+            LogError(methodName, ex)
+
+            MessageBox.Show("An error occurred" & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        Finally
+            _sqlCon.Close()
+        End Try
+
+        Return LstPricing
+    End Function
+
+    Public Function RetrievePricingPromoForId(Id As Integer) As ClsPromoPricing
+
+
+        Dim RetVAlue As New ClsPromoPricing
+
+        GetConnectionString()
+        Try
+            Dim cmd As New SqlCommand
+            Dim reader As SqlDataReader
+
+            _sqlCon = New SqlConnection(_strConn)
+
+            cmd.CommandText = "dbo.GCO_GetPricingPromo"
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.Connection = _sqlCon
+            cmd.Parameters.AddWithValue("Id", Id)
+            _sqlCon.Open()
+
+            reader = cmd.ExecuteReader()
+            ' Data is accessible through the DataReader object here.
+            ' Use Read method (true/false) to see if reader has records and advance to next record
+            ' You can use a While loop for multiple records (While reader.Read() ... End While)
+
+
+            Do While reader.Read
+                Dim x As New KeyValuePair(Of Integer, String)
+                RetVAlue.ID = CInt(reader("Id").ToString())
+                RetVAlue.PromoDescription = String.Format("{0}", reader("PromoDescription").ToString())
+                RetVAlue.Status = CInt(reader("Status").ToString())
+                RetVAlue.ItemCode1 = CInt(reader("ItemCode1").ToString())
+                RetVAlue.ItemPrice1 = CInt(reader("ItemPricing1").ToString())
+                RetVAlue.ItemCode2 = CInt(reader("ItemCode2").ToString())
+                RetVAlue.ItemCode3 = CInt(reader("ItemCode3").ToString())
+                RetVAlue.ItemCode4 = CInt(reader("ItemCode4").ToString())
+                RetVAlue.ItemCode5 = CInt(reader("ItemCode5").ToString())
+                RetVAlue.ItemPrice2 = CInt(reader("ItemPricing2").ToString())
+                RetVAlue.ItemPrice3 = CInt(reader("ItemPricing3").ToString())
+                RetVAlue.ItemPrice4 = CInt(reader("ItemPricing4").ToString())
+                RetVAlue.ItemPrice5 = CInt(reader("ItemPricing5").ToString())
+            Loop
+
+        Catch ex As Exception
+            Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
+            Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
+            LogError(methodName, ex)
+
+            MessageBox.Show("An error occurred" & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        Finally
+            _sqlCon.Close()
+        End Try
+
+        Return RetVAlue
+    End Function
+
     Public Function RetrieveAuthorizerCode(Id As Integer) As String
 
         Dim sValue As String = ""
@@ -476,7 +585,7 @@ Public Module Module4
 
 
             For Each i In Dct_Discount
-                If i.Value.SKU = SKUCode Then
+                If i.Value.SKU.ToLower = SKUCode.ToLower Then
                     Return i.Value
                 End If
             Next
@@ -617,18 +726,26 @@ Public Module Module4
                 ObjOrderRecord.Shipping_Address.Email = reader("Shipping_Email").ToString()
                 ObjOrderRecord.Item1.Quantity = reader("Item1Qty")
                 ObjOrderRecord.Item1.ItemId = Product_ItemType.Item_TDM10K
+                ObjOrderRecord.Item1.Price = reader("Item1Price")
 
                 ObjOrderRecord.Item2.Quantity = reader("Item2Qty")
                 ObjOrderRecord.Item2.ItemId = Product_ItemType.Item_TDM12K
+                ObjOrderRecord.Item2.Price = reader("Item2Price")
 
                 ObjOrderRecord.Item3.Quantity = reader("Item3Qty")
                 ObjOrderRecord.Item3.ItemId = Product_ItemType.Item_TDM10KVID
+                ObjOrderRecord.Item3.Price = reader("Item3Price")
+
 
                 ObjOrderRecord.Item4.Quantity = reader("Item4Qty")
                 ObjOrderRecord.Item4.ItemId = Product_ItemType.Item_TDM12KVID
+                ObjOrderRecord.Item4.Price = reader("Item4Price")
+
 
                 ObjOrderRecord.Item5.Quantity = reader("Item5Qty")
                 ObjOrderRecord.Item5.ItemId = Product_ItemType.Item_VID
+                ObjOrderRecord.Item5.Price = reader("Item5Price")
+
 
                 If IsDBNull(reader("JR_PurchaseID")) = False Then
                     ObjOrderRecord.JR_PurchaserID = reader("JR_PurchaseID")
@@ -649,6 +766,8 @@ Public Module Module4
                 ObjOrderRecord.Online_OrderNumber = reader("Online_Certificate_Number").ToString
                 ObjOrderRecord.PaymentMethod = reader("PaymentMethod").ToString
                 ObjOrderRecord.PersonalizedFrom = reader("PersonalizedFrom").ToString
+                ObjOrderRecord.OriginalOrderDate = reader("OriginalOrderDate").ToString
+
                 LstPossibles.Add(ObjOrderRecord)
             Loop
 
@@ -721,18 +840,25 @@ Public Module Module4
                 ObjOrderRecord.Shipping_Address.Email = reader("Shipping_Email").ToString()
                 ObjOrderRecord.Item1.Quantity = reader("Item1Qty")
                 ObjOrderRecord.Item1.ItemId = Product_ItemType.Item_TDM10K
+                ObjOrderRecord.Item1.Price = reader("Item1Price")
 
                 ObjOrderRecord.Item2.Quantity = reader("Item2Qty")
                 ObjOrderRecord.Item2.ItemId = Product_ItemType.Item_TDM12K
+                ObjOrderRecord.Item2.Price = reader("Item2Price")
 
                 ObjOrderRecord.Item3.Quantity = reader("Item3Qty")
                 ObjOrderRecord.Item3.ItemId = Product_ItemType.Item_TDM10KVID
+                ObjOrderRecord.Item3.Price = reader("Item3Price")
+
 
                 ObjOrderRecord.Item4.Quantity = reader("Item4Qty")
                 ObjOrderRecord.Item4.ItemId = Product_ItemType.Item_TDM12KVID
+                ObjOrderRecord.Item4.Price = reader("Item4Price")
+
 
                 ObjOrderRecord.Item5.Quantity = reader("Item5Qty")
                 ObjOrderRecord.Item5.ItemId = Product_ItemType.Item_VID
+                ObjOrderRecord.Item5.Price = reader("Item5Price")
 
                 If IsDBNull(reader("JR_PurchaseID")) = False Then
                     ObjOrderRecord.JR_PurchaserID = reader("JR_PurchaseID")
@@ -753,6 +879,14 @@ Public Module Module4
                 ObjOrderRecord.Online_OrderNumber = reader("Online_Certificate_Number").ToString
                 ObjOrderRecord.PaymentMethod = reader("PaymentMethod").ToString
                 ObjOrderRecord.PersonalizedFrom = reader("PersonalizedFrom").ToString
+
+                If IsDate(reader("OriginalOrderDate")) = False Then
+                    ObjOrderRecord.OriginalOrderDate = Nothing
+                Else
+                    ObjOrderRecord.OriginalOrderDate = reader("OriginalOrderDate").ToString
+                End If
+
+
                 LstPossibles.Add(ObjOrderRecord)
             Loop
 
@@ -931,19 +1065,24 @@ Public Module Module4
                 PossibleRecord.Shipping_Address.Zip = reader("Shipping_Zip").ToString()
                 PossibleRecord.Shipping_Address.Email = reader("Shipping_Email").ToString()
                 PossibleRecord.Item1.Quantity = reader("Item1Qty")
-                PossibleRecord.Item1.ItemId = 1
+                PossibleRecord.Item1.ItemId = Product_ItemType.Item_TDM10K
+                PossibleRecord.Item1.Price = reader("Item1Price")
 
                 PossibleRecord.Item2.Quantity = reader("Item2Qty")
-                PossibleRecord.Item2.ItemId = 2
+                PossibleRecord.Item2.ItemId = Product_ItemType.Item_TDM12K
+                PossibleRecord.Item2.Price = reader("Item2Price")
 
                 PossibleRecord.Item3.Quantity = reader("Item3Qty")
-                PossibleRecord.Item3.ItemId = 3
+                PossibleRecord.Item3.ItemId = Product_ItemType.Item_TDM10KVID
+                PossibleRecord.Item3.Price = reader("Item3Price")
 
                 PossibleRecord.Item4.Quantity = reader("Item4Qty")
-                PossibleRecord.Item4.ItemId = 4
+                PossibleRecord.Item4.ItemId = Product_ItemType.Item_TDM12KVID
+                PossibleRecord.Item4.Price = reader("Item4Price")
 
                 PossibleRecord.Item5.Quantity = reader("Item5Qty")
-                PossibleRecord.Item5.ItemId = 5
+                PossibleRecord.Item5.ItemId = Product_ItemType.Item_VID
+                PossibleRecord.Item5.Price = reader("Item5Price")
 
                 If IsDBNull(reader("JR_PurchaseID")) = False Then
                     PossibleRecord.JR_PurchaserID = reader("JR_PurchaseID")
@@ -965,6 +1104,8 @@ Public Module Module4
                 ' PossibleRecord.GC_TotalDiscount = reader("DiscountAmount").ToString
                 PossibleRecord.GC_DiscountCode = reader("DiscountCode").ToString
                 PossibleRecord.PersonalizedFrom = reader("PersonalizedFrom").ToString
+                PossibleRecord.OriginalOrderDate = reader("OriginalOrderDate").ToString
+
 
                 LstPossibles.Add(PossibleRecord)
             Loop
@@ -1212,6 +1353,10 @@ Public Module Module4
                     ObjOrderRecord.GC_TotalAmount = reader("Item_CalculatedTotal").ToString()
                     ObjOrderRecord.GC_TotalDiscount = reader("Item_DiscountTotal").ToString()
                     ObjOrderRecord.GC_DiscountCode = reader("DiscountCode").ToString
+                    Dim OODATE = reader("OriginalOrderDate")
+                    If OODATE IsNot Nothing Then
+                        ObjOrderRecord.OriginalOrderDate = CDate(OODATE)
+                    End If
 
                     ObjOrderRecord.GC_Status = reader("Status")
                     ObjOrderRecord.Online_OrderNumber = reader("Online_Certificate_Number").ToString
@@ -1474,7 +1619,7 @@ Public Module Module4
     End Function
 
 
-    Public Function InsertJumpRunInvDiscountRecord(c As ClsCertificateItems, InsertBy As String, dtInsert As DateTime) As Boolean
+    Public Function InsertJumpRunInvDiscountRecord(c As ClsCertificateItems, InsertBy As String, dtInsert As DateTime, Optional ExtraAltitudeItem As Boolean = False) As Boolean
         Dim SuccessState As Boolean = False
         GetConnectionString()
         Try
@@ -1506,7 +1651,12 @@ Public Module Module4
 
             sqlComm.Parameters.AddWithValue("wItemId_10", c.JumpRunItemId)
 
-            sqlComm.Parameters.AddWithValue("sSerialNo_11", "DISC FOR- " & c.JRCertificateNumber)
+            If ExtraAltitudeItem Then
+                sqlComm.Parameters.AddWithValue("sSerialNo_11", "FREE ALT DISC FOR- " & c.JRCertificateNumber)
+            Else
+                sqlComm.Parameters.AddWithValue("sSerialNo_11", "DISC FOR- " & c.JRCertificateNumber)
+            End If
+
             sqlComm.Parameters.AddWithValue("hQty_12", 1)
             sqlComm.Parameters.AddWithValue("nBodyCnt_13", SqlDbType.SmallInt)
             sqlComm.Parameters("nBodyCnt_13").Direction = ParameterDirection.Output
@@ -1605,8 +1755,81 @@ Public Module Module4
         End Try
         Return SuccessState
     End Function
-    Public Sub GenerateIndividualCertificateRecordsFromGCOrder(GCOrder As ClsGiftCertificate2, Optional DEVTEST As Boolean = False)
+
+
+    Public Function ValidateIndividualCertificateRecordsFromGCOrderWithPayment(GCOrder As ClsGiftCertificate2, PromoID As Integer, Optional DEVTEST As Boolean = False) As Double
         'Determine Qty and Items
+        Dim ItemMonetaryValue As Double = 0
+        Try
+            Dim dtInsert As DateTime = GetBusinessDate()
+
+            Dim CertificateOrderId As Integer = GCOrder.ID
+
+            Dim ObjPricing = RetrievePricingPromoForId(PromoID)
+
+            '//Count Tandem Itesm - ie.  Exclude Video Only Item
+            'Exclude Item3 Qty
+            'Dim IndividualDiscountAmount As Integer = CalculateItemDiscountAmountFromOrder(GCOrder)
+
+            'Determine The Gift Certificates I need to produced from the quantities of each product that have been orders
+            Dim Items As New List(Of ClsCertificateItems)
+
+            AddItemToVirtualCart(GCOrder.ID, GCOrder.JR_PurchaserID, GetJumpRunItemPrice(CInt(ObjPricing.ItemCode1)), GCOrder.Item1, Items, 0, GCOrder.GC_DiscountCode)
+            AddItemToVirtualCart(GCOrder.ID, GCOrder.JR_PurchaserID, GetJumpRunItemPrice(CInt(ObjPricing.ItemCode1)), GCOrder.Item2, Items, 0, GCOrder.GC_DiscountCode)
+            AddItemToVirtualCart(GCOrder.ID, GCOrder.JR_PurchaserID, GetJumpRunItemPrice(CInt(ObjPricing.ItemCode1)), GCOrder.Item3, Items, 0, GCOrder.GC_DiscountCode)
+            AddItemToVirtualCart(GCOrder.ID, GCOrder.JR_PurchaserID, GetJumpRunItemPrice(CInt(ObjPricing.ItemCode1)), GCOrder.Item4, Items, 0, GCOrder.GC_DiscountCode)
+            AddItemToVirtualCart(GCOrder.ID, GCOrder.JR_PurchaserID, GetJumpRunItemPrice(CInt(ObjPricing.ItemCode1)), GCOrder.Item5, Items, 0, "")
+
+            If Items.Count > 0 Then
+
+
+                Dim iindex As Integer = 1
+                For Each i In Items
+                    i.JumpRunItemId = GetJumpRunForItemId(i.ItemId)
+                    If String.IsNullOrEmpty(i.DiscountCode) = False Then
+                        i.DiscountCode = i.DiscountCode
+                        i.DiscountAmount = 0
+                    End If
+
+                    ItemMonetaryValue = ItemMonetaryValue + i.Amount
+
+                    '//Generate a discount record if needed. 
+                    If String.IsNullOrEmpty(i.DiscountCode) = False Then
+                        Dim ObjDiscount = GetPricingForDiscountId(i.DiscountCode.ToUpper)
+                        If ObjDiscount IsNot Nothing Then
+                            Dim iDisc As New ClsCertificateItems
+                            iDisc.Amount = ObjDiscount.Price
+
+                            ItemMonetaryValue = ItemMonetaryValue + iDisc.Amount
+                        Else
+                            MsgBox("Discount Not Found")
+                        End If
+                    End If
+                    iindex += 1
+                Next
+
+
+                'MsgBox(String.Format("Payment Amount {0}, Item Amount {1}", GCOrder.GC_TotalAmount, ItemMonetaryValue))
+
+                'Insert a Payment Record For Customer
+                'Dim RetValue = InsertPayment(dtInsert, GCOrder.JR_PurchaserID, GCOrder.GC_TotalAmount, "Payment For GC Order" & GCOrder.Online_OrderNumber)
+            Else
+                MessageBox.Show("LineItems Required to be created " & Items.Count)
+            End If
+
+
+            Return (GCOrder.GC_TotalAmount - ItemMonetaryValue)
+
+        Catch ex As Exception
+
+        End Try
+
+
+    End Function
+    Public Sub GenerateIndividualCertificateRecordsFromGCOrder(GCOrder As ClsGiftCertificate2, Pricing As ClsPromoPricing, Optional DEVTEST As Boolean = False, Optional ExtraAltitudeDiscrepency As Boolean = False)
+        'Determine Qty and Items
+        Dim AddExtraAltitudeDiscountForEachItem = False
+
         Try
             Dim dtInsert As DateTime = GetBusinessDate()
 
@@ -1615,7 +1838,7 @@ Public Module Module4
 
             '//Count Tandem Itesm - ie.  Exclude Video Only Item
             'Exclude Item3 Qty
-            Dim IndividualDiscountAmount As Integer = CalculateItemDiscountAmountFromOrder(GCOrder)
+            Dim IndividualDiscount As Integer = CalculateItemDiscountAmountFromOrder(GCOrder)
 
             'Determine The Gift Certificates I need to produced from the quantities of each product that have been orders
             Dim Items As New List(Of ClsCertificateItems)
@@ -1628,11 +1851,46 @@ Public Module Module4
             Dim s As String = "TDM10K"
             Dim o = GetPricingForItemId(1).JR_ItemID
 
-            AddItemToVirtualCart(GCOrder.ID, GCOrder.JR_PurchaserID, GetJumpRunItemPrice(CInt(GetPricingForItemId(1).JR_ItemID)), GCOrder.Item1, Items, IndividualDiscountAmount, GCOrder.GC_DiscountCode)
-            AddItemToVirtualCart(GCOrder.ID, GCOrder.JR_PurchaserID, GetJumpRunItemPrice(CInt(GetPricingForItemId(2).JR_ItemID)), GCOrder.Item2, Items, IndividualDiscountAmount, GCOrder.GC_DiscountCode)
-            AddItemToVirtualCart(GCOrder.ID, GCOrder.JR_PurchaserID, GetJumpRunItemPrice(CInt(GetPricingForItemId(3).JR_ItemID)), GCOrder.Item3, Items, IndividualDiscountAmount, GCOrder.GC_DiscountCode)
-            AddItemToVirtualCart(GCOrder.ID, GCOrder.JR_PurchaserID, GetJumpRunItemPrice(CInt(GetPricingForItemId(4).JR_ItemID)), GCOrder.Item4, Items, IndividualDiscountAmount, GCOrder.GC_DiscountCode)
-            AddItemToVirtualCart(GCOrder.ID, GCOrder.JR_PurchaserID, GetJumpRunItemPrice(CInt(GetPricingForItemId(5).JR_ItemID)), GCOrder.Item5, Items, IndividualDiscountAmount, "")
+            AddItemToVirtualCart(GCOrder.ID, GCOrder.JR_PurchaserID, Pricing.ItemPrice1, GCOrder.Item1, Items, IndividualDiscount, GCOrder.GC_DiscountCode)
+            AddItemToVirtualCart(GCOrder.ID, GCOrder.JR_PurchaserID, Pricing.ItemPrice2, GCOrder.Item2, Items, IndividualDiscount, GCOrder.GC_DiscountCode)
+            AddItemToVirtualCart(GCOrder.ID, GCOrder.JR_PurchaserID, Pricing.ItemPrice3, GCOrder.Item3, Items, IndividualDiscount, GCOrder.GC_DiscountCode)
+            AddItemToVirtualCart(GCOrder.ID, GCOrder.JR_PurchaserID, Pricing.ItemPrice4, GCOrder.Item4, Items, IndividualDiscount, GCOrder.GC_DiscountCode)
+            AddItemToVirtualCart(GCOrder.ID, GCOrder.JR_PurchaserID, Pricing.ItemPrice5, GCOrder.Item5, Items, 0, "")
+
+
+
+            'Calculate TotalItemCost
+            'Calculate Discrepency
+            'Calculate TotalTanItems
+            'If Discrepency is mod 25 then
+            '   If discrepency / 25 = Total Tandem Items
+            '   We can add the xtra altitude discount for each tandem
+            'End if 
+
+            Dim TotalTanItems = GCOrder.Item1.Quantity + GCOrder.Item2.Quantity + GCOrder.Item3.Quantity + GCOrder.Item4.Quantity
+
+            Dim TotalTandemCost = 0
+            For Each i In Items
+                If i.ItemId <> 5 Then
+                    TotalTandemCost = TotalTandemCost + (i.Amount + IndividualDiscount)
+
+                Else
+                    TotalTandemCost = TotalTandemCost + i.Amount
+                End If
+
+            Next
+
+            'If TotalTandemCost <> GCOrder.GC_TotalAmount Then
+            '    Dim discrepency = TotalTandemCost - GCOrder.GC_TotalAmount
+            '    Dim freealtdiscount = GetPricingForDiscountId("FREEALT").Price
+
+            '    If Math.Abs(discrepency) = Math.Abs(TotalTanItems * freealtdiscount) And ExtraAltitudeDiscrepency = True Then
+            '        AddExtraAltitudeDiscountForEachItem = True
+
+            '    End If
+
+            'End If
+
 
             If Items.Count > 0 Then
                 Dim iindex As Integer = 1
@@ -1652,7 +1910,7 @@ Public Module Module4
                     'If it is then we cam specify a Discount Amount
                     If String.IsNullOrEmpty(i.DiscountCode) = False Then
                         i.DiscountCode = i.DiscountCode
-                        i.DiscountAmount = IndividualDiscountAmount
+                        i.DiscountAmount = IndividualDiscount
                     End If
 
                     '//This will write a GCOrder Line Item record - which has GCReference Number for each certificate being generated
@@ -1678,8 +1936,31 @@ Public Module Module4
                             MsgBox("Discount Not Found")
                         End If
                     End If
+
+                    If ExtraAltitudeDiscrepency Then
+                        If i.ItemId <> 5 Then
+                            Dim ObjDiscount = GetPricingForDiscountId("FREEALT")
+                            If ObjDiscount IsNot Nothing Then
+                                Dim iDisc As New ClsCertificateItems
+
+                                iDisc.GCOrderId = i.GCOrderId
+                                iDisc.JumpRunCustomerID = i.JumpRunCustomerID
+                                iDisc.JumpRunItemId = ObjDiscount.JR_ItemID
+                                iDisc.Amount = ObjDiscount.Price
+                                iDisc.JRCertificateNumber = i.JRCertificateNumber
+                                InsertJumpRunInvDiscountRecord(iDisc, sOpInsertUser, dtInsert, ExtraAltitudeItem:=True)
+                            Else
+                                MsgBox("Discount Not Found")
+                            End If
+                        End If
+
+                    End If
+
                     iindex += 1
-                Next
+            Next
+
+
+
                 'Insert a Payment Record For Customer
                 Dim RetValue = InsertPayment(dtInsert, GCOrder.JR_PurchaserID, GCOrder.GC_TotalAmount, "Payment For GC Order" & GCOrder.Online_OrderNumber)
             Else
@@ -1696,12 +1977,18 @@ Public Module Module4
 
     End Sub
 
-    Private Function CalculateItemDiscountAmountFromOrder(GCOrder As ClsGiftCertificate2) As Integer
+    Function CalculateItemDiscountAmountFromOrder(GCOrder As ClsGiftCertificate2) As Integer
         Dim IndividualDiscountAmount = 0
         Try
             Dim TdmQty = GCOrder.Item1.Quantity + GCOrder.Item2.Quantity + GCOrder.Item3.Quantity + GCOrder.Item4.Quantity
             If TdmQty > 0 Then
-                IndividualDiscountAmount = GCOrder.GC_TotalDiscount / TdmQty
+                If String.IsNullOrEmpty(GCOrder.GC_DiscountCode) Then
+                    IndividualDiscountAmount = 0
+                Else
+                    IndividualDiscountAmount = GetPricingForDiscountId(GCOrder.GC_DiscountCode).Price
+                End If
+
+                'IndividualDiscountAmount = GCOrder.GC_TotalDiscount / TdmQty
             End If
         Catch ex As Exception
             MsgBox("Calculating discount for order")
@@ -1817,10 +2104,17 @@ Public Module Module4
             sqlComm.Parameters.AddWithValue("ShippingAddress_Zip", c.Shipping_Address.Zip)
             sqlComm.Parameters.AddWithValue("ShippingAddress_Email", c.Shipping_Address.Email)
             sqlComm.Parameters.AddWithValue("Item1Qty", c.Item1.Quantity)
+            sqlComm.Parameters.AddWithValue("Item1Price", c.Item1.Price)
             sqlComm.Parameters.AddWithValue("Item2Qty", c.Item2.Quantity)
+            sqlComm.Parameters.AddWithValue("Item2Price", c.Item2.Price)
             sqlComm.Parameters.AddWithValue("Item3Qty", c.Item3.Quantity)
+            sqlComm.Parameters.AddWithValue("Item3Price", c.Item3.Price)
             sqlComm.Parameters.AddWithValue("Item4Qty", c.Item4.Quantity)
+            sqlComm.Parameters.AddWithValue("Item4Price", c.Item4.Price)
             sqlComm.Parameters.AddWithValue("Item5Qty", c.Item5.Quantity)
+            sqlComm.Parameters.AddWithValue("Item5Price", c.Item5.Price)
+
+            'TODO: Add ItemxPrice fields
             sqlComm.Parameters.AddWithValue("Item_CalculatedTotal", c.GC_TotalAmount)
             sqlComm.Parameters.AddWithValue("Item_TotalDiscount", c.GC_TotalDiscount)
             sqlComm.Parameters.AddWithValue("JR_PurchaserID", c.JR_PurchaserID)
@@ -1832,6 +2126,11 @@ Public Module Module4
                 sqlComm.Parameters.AddWithValue("DiscountCode", c.GC_DiscountCode)
             End If
             sqlComm.Parameters.AddWithValue("PersonalizedFrom", c.PersonalizedFrom)
+            If c.OriginalOrderDate Is Nothing Then
+                sqlComm.Parameters.AddWithValue("OriginalOrderDate", Now)
+            Else
+                sqlComm.Parameters.AddWithValue("OriginalOrderDate", c.OriginalOrderDate)
+            End If
 
             sqlComm.ExecuteNonQuery()
             SuccessState = True

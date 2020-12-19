@@ -7,6 +7,11 @@ Public Class FrmPricing
 
     Private Sub FrmPricing_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
+            Dim x = RetrievePricingPromos(True)
+            ComboBox1.DataSource = x
+            ComboBox1.DisplayMember = "Value"
+            ComboBox1.ValueMember = "Key"
+
             PopulatePricing()
             PopulateDiscounts()
 
@@ -75,7 +80,7 @@ Public Class FrmPricing
 
 
             Dim dc = RetrieveDiscounts()
-            If dc.Count > 3 Then
+            If dc.Count > 4 Then
             Else
                 If dc.Item(0) IsNot Nothing Then
                     Dim Discount1 = GetPricingForDiscountId(dc.Item(0).SKU)
@@ -101,7 +106,13 @@ Public Class FrmPricing
                     TxtDiscountSku3.Text = Discount3.SKU
                     lblDiscountDesc3.Tag = Discount3.ID
                 End If
-
+                If dc.Item(3) IsNot Nothing Then
+                    Dim Discount4 = GetPricingForDiscountId(dc.Item(3).SKU)
+                    TxtDiscountCodeFreeAlt.Text = Discount4.Price
+                    TxtJRItemDiscountCodeFreeAlt.Text = Discount4.JR_ItemID
+                    TxtDiscountFreeAlt.Text = Discount4.SKU
+                    lblDiscountDescFreeAlt.Tag = Discount4.ID
+                End If
             End If
 
             GetPricingForJumpRunItems()
@@ -356,6 +367,15 @@ Public Class FrmPricing
         Else
             JRDiscPrice3.Text = ""
         End If
+
+
+
+        If IsNumeric(TxtJRItemDiscountCodeFreeAlt.Text) Then
+            Dim pd4 = GetJumpRunItemPrice(CInt(TxtJRItemDiscountCodeFreeAlt.Text))
+            JRDiscPriceFreeAlt.Text = pd4.ToString
+        Else
+            JRDiscPriceFreeAlt.Text = ""
+        End If
     End Sub
 
     Private Sub BtnSelect1_Click(sender As Object, e As EventArgs) Handles BtnSelect1.Click
@@ -440,5 +460,21 @@ Public Class FrmPricing
             TxtItemPrice5.Text = obj.CurrentPrice
             TxtJRItemCode5.Text = obj.CurrentSelectedItem
         End If
+    End Sub
+
+    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
+        '
+        Dim x = RetrievePricingPromoForId(CType(ComboBox1.SelectedItem, KeyValuePair(Of Integer, String)).Key)
+        LblCode1.Text = x.ItemCode1.ToString
+        LblCode2.Text = x.ItemCode2.ToString
+        lblCode3.Text = x.ItemCode3.ToString
+        lblCode4.Text = x.ItemCode4.ToString
+        lblCode5.Text = x.ItemCode5.ToString
+        lblPrice1.Text = x.ItemPrice1.ToString
+        lblprice2.Text = x.ItemPrice2.ToString
+        Lblprice3.Text = x.ItemPrice3.ToString
+        lblprice4.Text = x.ItemPrice4.ToString
+        lblprice5.Text = x.ItemPrice5.ToString
+
     End Sub
 End Class

@@ -1,4 +1,5 @@
-﻿Imports System.Reflection
+﻿Imports System.ComponentModel
+Imports System.Reflection
 Imports Syncfusion.WinForms.DataGrid
 Imports Syncfusion.WinForms.DataGrid.Events
 
@@ -28,6 +29,14 @@ Public Class FrmModify
     End Sub
 
     Private Sub SetupForm()
+        If IO.File.Exists("FrmModify.xml") Then
+            Try
+                Using file = System.IO.File.Open("FrmModify.xml", System.IO.FileMode.Open)
+                    Me.SfDataGrid1.Deserialize(file)
+                End Using
+            Catch ex As Exception
+            End Try
+        End If
 
         LblItem1Description.Text = GetDescriptionForItemId(1)
         LblItem2Description.Text = GetDescriptionForItemId(2)
@@ -168,142 +177,142 @@ Public Class FrmModify
         ' If BlnChanged Then
         Dim GC As New ClsGiftCertificate2
 
-            GC = CurrentGiftCertificate
+        GC = CurrentGiftCertificate
 
-            GC.PaymentMethod = CboPayment.SelectedValue
+        GC.PaymentMethod = CboPayment.SelectedValue
 
-            Dim s1 = Module4.WhatRadioIsSelected(Me.Panel2)
-            Select Case s1.ToLower
-                Case "rdodeliveryemail"
-                    GC.delivery = DeliveryOptions.Email
-                Case "rdodeliveryusmail"
-                    GC.delivery = DeliveryOptions.USMail
-                Case "rdodeliveryusmaildiscrete"
-                    GC.delivery = DeliveryOptions.USDiscreet
-                Case "rdodeliveryinperson"
-                    GC.delivery = DeliveryOptions.InOffice
-            End Select
+        Dim s1 = Module4.WhatRadioIsSelected(Me.Panel2)
+        Select Case s1.ToLower
+            Case "rdodeliveryemail"
+                GC.delivery = DeliveryOptions.Email
+            Case "rdodeliveryusmail"
+                GC.delivery = DeliveryOptions.USMail
+            Case "rdodeliveryusmaildiscrete"
+                GC.delivery = DeliveryOptions.USDiscreet
+            Case "rdodeliveryinperson"
+                GC.delivery = DeliveryOptions.InOffice
+        End Select
 
-            Dim s2 = WhatRadioIsSelected(Me.Panel3)
-            Select Case s2.ToLower
-                Case "rdoposphone"
-                    GC.PointOfSale = PointOfSale.PhoneInPerson
+        Dim s2 = WhatRadioIsSelected(Me.Panel3)
+        Select Case s2.ToLower
+            Case "rdoposphone"
+                GC.PointOfSale = PointOfSale.PhoneInPerson
 
-                Case "rdoposonline"
-                    GC.PointOfSale = PointOfSale.Online
-            End Select
-
-
-            GC.HearAbout = CBoHearAbout.SelectedValue
-
-            GC.PaymentNotes = TxtPaymentNotes.Text
-            GC.Notes = TxtNotes.Text
+            Case "rdoposonline"
+                GC.PointOfSale = PointOfSale.Online
+        End Select
 
 
-            GC.Purchaser_FirstName = TxtPurchaserFirstName.Text
-            GC.Purchaser_LastName = TxtPurchaserLastName.Text
-            GC.Billing_Address.Address1 = TxtPurchaserAddress1.Text
-            GC.Billing_Address.Address2 = TxtPurchaserAddress2.Text
-            GC.Billing_Address.City = TxtPurchaserCity.Text
-            GC.Billing_Address.State = TxtPurchaserState.Text
-            GC.Billing_Address.Zip = TxtPurchaserZip.Text
-            GC.Billing_Address.Phone1 = TxtPurchaserPhone1.Text
-            GC.Billing_Address.Phone2 = TxtPurchaserPhone2.Text
-            GC.Billing_Address.Email = TxtPurchaserEmail.Text
+        GC.HearAbout = CBoHearAbout.SelectedValue
 
-            GC.Shipping_Address.Address1 = TxtRecipientAddress1.Text
-            GC.Shipping_Address.Address2 = TxtRecipientAddress2.Text
-            GC.Shipping_Address.City = TxtRecipientCity.Text
-            GC.Shipping_Address.State = TxtRecipientState.Text
-            GC.Shipping_Address.Zip = TxtRecipientZip.Text
-            GC.GC_Authorization = TxtAuthorization.Text
-            GC.GC_DiscountCode = ComboBox6.Text.Trim.ToUpper
-
-            '//These use individual values rather than numbers
-            Dim Qty1 = CInt(CType(ComboBox1.SelectedItem, KeyValuePair(Of Integer, String)).Key)
-            Dim Qty2 = CInt(CType(ComboBox2.SelectedItem, KeyValuePair(Of Integer, String)).Key)
-            Dim Qty3 = CInt(CType(ComboBox3.SelectedItem, KeyValuePair(Of Integer, String)).Key)
-            Dim Qty4 = CInt(CType(ComboBox4.SelectedItem, KeyValuePair(Of Integer, String)).Key)
-            Dim Qty5 = CInt(CType(ComboBox5.SelectedItem, KeyValuePair(Of Integer, String)).Key)
+        GC.PaymentNotes = TxtPaymentNotes.Text
+        GC.Notes = TxtNotes.Text
 
 
-            GC.Item1.Quantity = Qty1
-            GC.Item2.Quantity = Qty2
-            GC.Item3.Quantity = Qty3
-            GC.Item4.Quantity = Qty4
-            GC.Item5.Quantity = Qty5
+        GC.Purchaser_FirstName = TxtPurchaserFirstName.Text
+        GC.Purchaser_LastName = TxtPurchaserLastName.Text
+        GC.Billing_Address.Address1 = TxtPurchaserAddress1.Text
+        GC.Billing_Address.Address2 = TxtPurchaserAddress2.Text
+        GC.Billing_Address.City = TxtPurchaserCity.Text
+        GC.Billing_Address.State = TxtPurchaserState.Text
+        GC.Billing_Address.Zip = TxtPurchaserZip.Text
+        GC.Billing_Address.Phone1 = TxtPurchaserPhone1.Text
+        GC.Billing_Address.Phone2 = TxtPurchaserPhone2.Text
+        GC.Billing_Address.Email = TxtPurchaserEmail.Text
 
-            Dim TotalAmount As Double = 0
-            Dim TotalDiscount As Double = 0
+        GC.Shipping_Address.Address1 = TxtRecipientAddress1.Text
+        GC.Shipping_Address.Address2 = TxtRecipientAddress2.Text
+        GC.Shipping_Address.City = TxtRecipientCity.Text
+        GC.Shipping_Address.State = TxtRecipientState.Text
+        GC.Shipping_Address.Zip = TxtRecipientZip.Text
+        GC.GC_Authorization = TxtAuthorization.Text
+        GC.GC_DiscountCode = ComboBox6.Text.Trim.ToUpper
 
-            '//Calculate Amount and discount
-            Dim Pricing1 = GetPricingForItemId(1)
-            Dim DiscountAmount1 As Double = 0
-            Dim Amount1 = GC.Item1.Quantity * Pricing1.Price
-            If Pricing1.Discountable Then
-                Dim dISCOUNT1 = GetPricingForDiscountId(GC.GC_DiscountCode)
-                If dISCOUNT1 IsNot Nothing Then
-                    DiscountAmount1 = GC.Item1.Quantity * dISCOUNT1.Price
-                Else
-                    DiscountAmount1 = 0
-                End If
+        '//These use individual values rather than numbers
+        Dim Qty1 = CInt(CType(ComboBox1.SelectedItem, KeyValuePair(Of Integer, String)).Key)
+        Dim Qty2 = CInt(CType(ComboBox2.SelectedItem, KeyValuePair(Of Integer, String)).Key)
+        Dim Qty3 = CInt(CType(ComboBox3.SelectedItem, KeyValuePair(Of Integer, String)).Key)
+        Dim Qty4 = CInt(CType(ComboBox4.SelectedItem, KeyValuePair(Of Integer, String)).Key)
+        Dim Qty5 = CInt(CType(ComboBox5.SelectedItem, KeyValuePair(Of Integer, String)).Key)
 
+
+        GC.Item1.Quantity = Qty1
+        GC.Item2.Quantity = Qty2
+        GC.Item3.Quantity = Qty3
+        GC.Item4.Quantity = Qty4
+        GC.Item5.Quantity = Qty5
+
+        Dim TotalAmount As Double = 0
+        Dim TotalDiscount As Double = 0
+
+        '//Calculate Amount and discount
+        Dim Pricing1 = GetPricingForItemId(1)
+        Dim DiscountAmount1 As Double = 0
+        Dim Amount1 = GC.Item1.Quantity * Pricing1.Price
+        If Pricing1.Discountable Then
+            Dim dISCOUNT1 = GetPricingForDiscountId(GC.GC_DiscountCode)
+            If dISCOUNT1 IsNot Nothing Then
+                DiscountAmount1 = GC.Item1.Quantity * dISCOUNT1.Price
+            Else
+                DiscountAmount1 = 0
             End If
 
-            Dim Pricing2 = GetPricingForItemId(2)
-            Dim DiscountAmount2 As Double = 0
+        End If
+
+        Dim Pricing2 = GetPricingForItemId(2)
+        Dim DiscountAmount2 As Double = 0
         Dim Amount2 = GC.Item3.Quantity * Pricing2.Price
         If Pricing2.Discountable Then
-                Dim dISCOUNT2 = GetPricingForDiscountId(GC.GC_DiscountCode)
-                If dISCOUNT2 IsNot Nothing Then
-                    DiscountAmount2 = GC.Item2.Quantity * dISCOUNT2.Price
-                Else
-                    DiscountAmount2 = 0
-                End If
+            Dim dISCOUNT2 = GetPricingForDiscountId(GC.GC_DiscountCode)
+            If dISCOUNT2 IsNot Nothing Then
+                DiscountAmount2 = GC.Item2.Quantity * dISCOUNT2.Price
+            Else
+                DiscountAmount2 = 0
             End If
+        End If
 
-            Dim Pricing3 = GetPricingForItemId(3)
-            Dim DiscountAmount3 As Double = 0
+        Dim Pricing3 = GetPricingForItemId(3)
+        Dim DiscountAmount3 As Double = 0
         Dim Amount3 = GC.Item3.Quantity * Pricing3.Price
         If Pricing3.Discountable Then
-                Dim dISCOUNT3 = GetPricingForDiscountId(GC.GC_DiscountCode)
-                If dISCOUNT3 IsNot Nothing Then
-                    DiscountAmount3 = GC.Item3.Quantity * dISCOUNT3.Price
-                Else
-                    DiscountAmount3 = 0
-                End If
+            Dim dISCOUNT3 = GetPricingForDiscountId(GC.GC_DiscountCode)
+            If dISCOUNT3 IsNot Nothing Then
+                DiscountAmount3 = GC.Item3.Quantity * dISCOUNT3.Price
+            Else
+                DiscountAmount3 = 0
             End If
+        End If
 
-            Dim Pricing4 = GetPricingForItemId(4)
-            Dim DiscountAmount4 As Double = 0
+        Dim Pricing4 = GetPricingForItemId(4)
+        Dim DiscountAmount4 As Double = 0
         Dim Amount4 = GC.Item4.Quantity * Pricing4.Price
         If Pricing4.Discountable Then
-                Dim dISCOUNT4 = GetPricingForDiscountId(GC.GC_DiscountCode)
-                If dISCOUNT4 IsNot Nothing Then
-                    DiscountAmount4 = GC.Item4.Quantity * dISCOUNT4.Price
-                Else
-                    DiscountAmount4 = 0
-                End If
+            Dim dISCOUNT4 = GetPricingForDiscountId(GC.GC_DiscountCode)
+            If dISCOUNT4 IsNot Nothing Then
+                DiscountAmount4 = GC.Item4.Quantity * dISCOUNT4.Price
+            Else
+                DiscountAmount4 = 0
             End If
+        End If
 
-            Dim Pricing5 = GetPricingForItemId(5)
-            Dim DiscountAmount5 As Double = 0
+        Dim Pricing5 = GetPricingForItemId(5)
+        Dim DiscountAmount5 As Double = 0
         Dim Amount5 = GC.Item5.Quantity * Pricing5.Price
         If Pricing5.Discountable Then
-                Dim dISCOUNT5 = GetPricingForDiscountId(GC.GC_DiscountCode)
-                If dISCOUNT5 IsNot Nothing Then
-                    DiscountAmount5 = GC.Item5.Quantity * dISCOUNT5.Price
-                Else
-                    DiscountAmount5 = 0
-                End If
+            Dim dISCOUNT5 = GetPricingForDiscountId(GC.GC_DiscountCode)
+            If dISCOUNT5 IsNot Nothing Then
+                DiscountAmount5 = GC.Item5.Quantity * dISCOUNT5.Price
+            Else
+                DiscountAmount5 = 0
             End If
+        End If
 
-            TotalAmount = Amount1 + Amount2 + Amount3 + Amount4 + Amount5
-            TotalDiscount = DiscountAmount1 + DiscountAmount2 + DiscountAmount3 + DiscountAmount4 + DiscountAmount5
+        TotalAmount = Amount1 + Amount2 + Amount3 + Amount4 + Amount5
+        TotalDiscount = DiscountAmount1 + DiscountAmount2 + DiscountAmount3 + DiscountAmount4 + DiscountAmount5
 
-            GC.GC_TotalAmount = TotalAmount
-            GC.GC_TotalDiscount = TotalDiscount
-            GC.GC_DiscountCode = ComboBox6.Text.Trim.ToUpper
+        GC.GC_TotalAmount = TotalAmount
+        GC.GC_TotalDiscount = TotalDiscount
+        GC.GC_DiscountCode = ComboBox6.Text.Trim.ToUpper
 
 
         'Point Of Sale
@@ -420,6 +429,16 @@ Public Class FrmModify
                 GroupBox1.Enabled = True
                 TxtAuthorization.Enabled = False
                 CBoHearAbout.Enabled = True
+            ElseIf gc.GC_Status = CertificateStatus.Processing Then
+                Panel1.Enabled = False
+                Panel2.Enabled = True
+                Panel3.Enabled = True
+                ComboBox6.Enabled = False
+                TxtPersonalizedFrom.Enabled = True
+                GroupBox1.Enabled = True
+                TxtAuthorization.Enabled = False
+                CBoHearAbout.Enabled = True
+
             Else
                 Panel1.Enabled = False
                 Panel2.Enabled = False
@@ -533,5 +552,9 @@ Public Class FrmModify
 
     End Sub
 
-
+    Private Sub FrmModify_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        Using file = System.IO.File.Create("FrmModify.xml")
+            Me.SfDataGrid1.Serialize(file)
+        End Using
+    End Sub
 End Class

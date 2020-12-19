@@ -33,6 +33,7 @@ Public Module ModPublisherIntegration
 
                     If destination = PbMailMergeDestination.pbSendToPrinter Then
                         Application.ActiveDocument.MailMerge.Execute(True, Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbSendToPrinter)
+
                     ElseIf destination = PbMailMergeDestination.pbMergeToNewPublication Then
                         Application.ActiveDocument.MailMerge.Execute(True, Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbMergeToNewPublication)
 
@@ -78,6 +79,7 @@ Public Module ModPublisherIntegration
                 Try
                     Application.Open(Path, False, True)
                     If destination = PbMailMergeDestination.pbSendToPrinter Then
+
                         Application.ActiveDocument.MailMerge.Execute(True, Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbSendToPrinter)
                     ElseIf destination = PbMailMergeDestination.pbMergeToNewPublication Then
                         Application.ActiveDocument.MailMerge.Execute(True, Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbMergeToNewPublication)

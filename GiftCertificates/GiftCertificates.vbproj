@@ -152,6 +152,12 @@
     <Compile Include="Forms\FrmPricing.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\FrmRejectedImportItems.Designer.vb">
+      <DependentUpon>FrmRejectedImportItems.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmRejectedImportItems.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\FrmReport.Designer.vb">
       <DependentUpon>FrmReport.vb</DependentUpon>
     </Compile>
@@ -211,6 +217,7 @@
     <Compile Include="Models\ClsJumpRunItem.vb" />
     <Compile Include="Models\ClsPricing.vb" />
     <Compile Include="Models\ClsPrintCertificateDetails.vb" />
+    <Compile Include="Models\ClsPromoPricing.vb" />
     <Compile Include="Models\ClsWooLineItem.vb" />
     <Compile Include="Models\ModEmail.vb" />
     <Compile Include="Models\ModPublisherIntegration.vb" />
@@ -273,6 +280,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmPricing.resx">
       <DependentUpon>FrmPricing.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmRejectedImportItems.resx">
+      <DependentUpon>FrmRejectedImportItems.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmReport.resx">
       <DependentUpon>FrmReport.vb</DependentUpon>

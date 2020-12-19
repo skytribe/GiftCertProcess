@@ -11,10 +11,12 @@
 
     Public Property ID As Integer
     Public Property Online_OrderNumber As String = "" 'Online Number
+    Public Property OriginalOrderDate As DateTime?
+
     Public Property GC_DateEntered As Date
     Public Property HearAbout As HearAbout
     Public Property delivery As DeliveryOptions  'EMail, USMail, US Mail Discrete, In-Office
-    Public Property PointOfSale As PointOfSale  'On-Line, Phone/Inperson
+    Public Property PointOfSale As PointOfSale  'On-Line, Phone/In person
     Public Property Notes As String = ""
     Public Property GC_Authorization As String = ""
     Public Property GC_Username As String = ""

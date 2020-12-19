@@ -43,13 +43,16 @@ WA 98012</Value>
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="DevelopmentPrinterOrFile" Type="System.String" Scope="User">
-      <Value Profile="(Default)">File</Value>
+      <Value Profile="(Default)">Printer</Value>
     </Setting>
     <Setting Name="DefaultPrinterToUse" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="DefaultPrinterTray" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="FreeAltitudeID" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">637</Value>
     </Setting>
   </Settings>
 </SettingsFile>

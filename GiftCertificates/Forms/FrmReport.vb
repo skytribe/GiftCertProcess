@@ -64,7 +64,26 @@ Public Class FrmReport
             Dim x = GCOrdersReport(SfDateTimeEdit1.Value, SfDateTimeEdit2.Value)
             Dim LstReport As New List(Of ClsReportItem)
             Dim sb As New System.Text.StringBuilder
-
+            sb.Append("DateEntered,")
+            sb.Append("Date Processed,")
+            sb.Append("Purchaser Name,")
+            sb.Append("Billing Email,")
+            sb.Append("Billing Phone,")
+            sb.Append("Billing Address,")
+            sb.Append("Shipping Address,")
+            sb.Append("GC Authorizer,")
+            sb.Append("10k Tdm qty,")
+            sb.Append("12k Tdm qty,")
+            sb.Append("10k Tdm With Vid Qty,")
+            sb.Append("12k Tdm With Vid Qty,")
+            sb.Append("Vid Qty,")
+            sb.Append("Amount,")
+            sb.Append("Discount Amount ,")
+            sb.Append("Discount Code,")
+            sb.Append("Delivery Option,")
+            sb.Append("Status,")
+            sb.Append("JR Customer ID")
+            sb.AppendLine()
             For Each i In x
                 Dim ci As New ClsReportItem
                 sb.Append(Chr(34) & i.GC_DateEntered & Chr(34) & ",")

@@ -2,6 +2,7 @@
 
     Public Property OrderID As String
     Public Property OrderDate As DateTime
+    Public Property WebStoreOrderStatus As String = ""   '//More used for rejected items
     Public Property PaymentMethod As String '- Authorize.net
 
     Public Property Captured_AuthNet As Boolean = True

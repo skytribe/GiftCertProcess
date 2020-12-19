@@ -1,4 +1,5 @@
-﻿Imports System.Reflection
+﻿Imports System.ComponentModel
+Imports System.Reflection
 Imports Newtonsoft.Json
 Imports Syncfusion.WinForms.DataGrid
 Imports Syncfusion.WinForms.DataGrid.Enums
@@ -13,6 +14,9 @@ Public Class FrmProcess
     Public Property DefaultDate As Nullable(Of DateTime) = Nothing
     Public Property JRCustomerSpecified As Boolean = False
 
+    Public ObjPricing As ClsPromoPricing
+    Public CurrentItemPricing As ClsPromoPricing
+
 
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
         Me.Close()
@@ -21,6 +25,7 @@ Public Class FrmProcess
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         Dim sp As String = ""
         Dim dteInsertDate As DateTime = Now
+        Dim ExtraAltitudeDiscount As Boolean = False
 
         Try
             If GetBusinessDate() <> CurrentGiftCertificate.GC_DateEntered Then
@@ -62,6 +67,144 @@ Public Class FrmProcess
             If MessageBox.Show(ConfirmationString, "Confirm Jumprun Customer Match", MessageBoxButtons.YesNo) = DialogResult.No Then
                 Exit Sub
             End If
+            Dim PricingIsValid As Boolean = False
+
+            CurrentItemPricing = CalculateCurrentOrderPricing(CurrentGiftCertificate, False)
+
+            If CurrentGiftCertificate.GC_DiscountCode <> String.Empty Then
+                '//We need to look at the discount code and set the pricing accordingly
+                Dim code = CurrentGiftCertificate.GC_DiscountCode.ToUpper
+                Dim intPromoPricing = 0
+                Dim DiscountAmount = 0
+
+                Select Case code
+                    Case "SANTA20"
+                        intPromoPricing = 5
+                        DiscountAmount = -50
+                    Case "ELF20"
+                        intPromoPricing = 6
+                        DiscountAmount = -35
+                    Case "CC20"
+                        intPromoPricing = 7
+                        DiscountAmount = -25
+                End Select
+                ObjPricing = RetrievePricingPromoForId(intPromoPricing)
+                ObjPricing.ItemPrice1 = ObjPricing.ItemPrice1
+                ObjPricing.ItemDiscount1 = Math.Abs(DiscountAmount)
+                ObjPricing.ItemPrice2 = ObjPricing.ItemPrice2
+                ObjPricing.ItemDiscount2 = Math.Abs(DiscountAmount)
+                ObjPricing.ItemDiscount3 = ObjPricing.ItemPrice3
+                ObjPricing.ItemDiscount3 = Math.Abs(DiscountAmount)
+                ObjPricing.ItemDiscount4 = ObjPricing.ItemPrice4
+                ObjPricing.ItemDiscount4 = Math.Abs(DiscountAmount)
+
+                Dim FFDiscountAmount As Double
+
+                'DISC-FREE EXTRA AL
+                Dim xfd As Double
+                If My.Settings.FreeAltitudeID <> 0 Then
+                    xfd = GetJumpRunItemPrice(My.Settings.FreeAltitudeID)
+                Else
+                    xfd = 0
+                End If
+
+                '//Lets double check extra freefall on top of this
+                Dim x2a = ValidatePricingDifferenceBetweenWebstoreAndPromo(CurrentGiftCertificate, CurrentItemPricing, ObjPricing)
+                If x2a = False Then
+                    Select Case code
+                        Case "SANTA20"
+                            intPromoPricing = 8
+                            DiscountAmount = -50
+                            FFDiscountAmount = -50 - Math.Abs(xfd)
+                        Case "ELF20"
+                            intPromoPricing = 9
+                            DiscountAmount = -35
+                            FFDiscountAmount = -35 - Math.Abs(xfd)
+                        Case "CC20"
+                            intPromoPricing = 10
+                            DiscountAmount = -25
+                            FFDiscountAmount = -25 - Math.Abs(xfd)
+                    End Select
+                    ObjPricing = RetrievePricingPromoForId(intPromoPricing)
+                    ObjPricing.ItemPrice1 = ObjPricing.ItemPrice1
+                    ObjPricing.ItemDiscount1 = Math.Abs(DiscountAmount)
+                    ObjPricing.ItemPrice2 = ObjPricing.ItemPrice2
+                    ObjPricing.ItemDiscount2 = Math.Abs(FFDiscountAmount)
+                    ObjPricing.ItemDiscount3 = ObjPricing.ItemPrice3
+                    ObjPricing.ItemDiscount3 = Math.Abs(DiscountAmount)
+                    ObjPricing.ItemDiscount4 = ObjPricing.ItemPrice4
+                    ObjPricing.ItemDiscount4 = Math.Abs(FFDiscountAmount)
+                    Dim x2b = ValidatePricingDifferenceBetweenWebstoreAndPromo(CurrentGiftCertificate, CurrentItemPricing, ObjPricing)
+                    If x2b = False Then
+                        MsgBox("Problem with pricing - stopping")
+
+                        Exit Sub
+                    Else
+                        ExtraAltitudeDiscount = True
+                        PricingIsValid = True
+
+                    End If
+                Else
+                    PricingIsValid = True
+
+                End If
+            Else
+                Dim intPromoPricing = CType(CboPromoPricing.SelectedItem, KeyValuePair(Of Integer, String)).Key
+                ObjPricing = RetrievePricingPromoForId(intPromoPricing)
+
+                Dim x2 = ValidatePricingDifferenceBetweenWebstoreAndPromo(CurrentGiftCertificate, CurrentItemPricing, ObjPricing)
+                If x2 = False Then
+
+
+                    'DISC-FREE EXTRA AL
+                    Dim xfd1 As Double
+                    If My.Settings.FreeAltitudeID <> 0 Then
+                        xfd1 = GetJumpRunItemPrice(My.Settings.FreeAltitudeID)
+                    Else
+                        xfd1 = 0
+                    End If
+                    ObjPricing.ItemPrice1 = ObjPricing.ItemPrice1
+                    ObjPricing.ItemDiscount1 = 0
+                    ObjPricing.ItemPrice2 = ObjPricing.ItemPrice2
+                    ObjPricing.ItemDiscount2 = Math.Abs(xfd1)
+                    ObjPricing.ItemDiscount3 = ObjPricing.ItemPrice3
+                    ObjPricing.ItemDiscount3 = 0
+                    ObjPricing.ItemDiscount4 = ObjPricing.ItemPrice4
+                    ObjPricing.ItemDiscount4 = Math.Abs(xfd1)
+                    Dim x2a = ValidatePricingDifferenceBetweenWebstoreAndPromo(CurrentGiftCertificate, CurrentItemPricing, ObjPricing)
+                    If x2a = False Then
+                        PricingIsValid = False
+                    Else
+
+                        If MessageBox.Show("It looks Like free extra altitude may have been in play at the time the order was taken.  Adding it will balance the transaction.   Do you wish to continue ?", "Potential Missing Discount", MessageBoxButtons.YesNo) = DialogResult.No Then
+                            PricingIsValid = False
+                            Exit Sub
+                        Else
+                            ExtraAltitudeDiscount = True
+                            PricingIsValid = True
+                        End If
+
+
+                    End If
+                Else
+                    PricingIsValid = True
+                End If
+
+
+            End If
+            '//If discount code then we need to do some special processing
+            'else
+            '  prcing should be validated and correct
+            If PricingIsValid Then
+                MsgBox("Pricing Looks Goood. We can continue.")
+            Else
+                MsgBox("Problem with pricing - If discount code Is specified standard pricing should be selected, if no discount code is selected then select appropriate promo and try again")
+                Exit Sub
+            End If
+
+
+
+            Dim difference = ValidateIndividualCertificateRecordsFromGCOrderWithPayment(CurrentGiftCertificate, CType(CboPromoPricing.SelectedItem, KeyValuePair(Of Integer, String)).Key)
 
             If CurrentGiftCertificate.JR_PurchaserID = 0 Then
                 sp = "[Create New]"
@@ -88,15 +231,15 @@ Public Class FrmProcess
                 Dim authID = CInt(CType(CboAuthorizer.SelectedItem, KeyValuePair(Of Integer, String)).Key)
                 StrAuthorizer = RetrieveAuthorizerCode(authID)
             Else
-                StrAuthorizer = "UNK"
+                StrAuthorizer = "SS"
             End If
 
             UpdateGCOrderAuthorizer(CurrentGiftCertificate, StrAuthorizer, TextBox3.Text.Trim)
             UpdateCertificateJumpRunCustomers(CurrentGiftCertificate, CurrentGiftCertificate.JR_PurchaserID)
 
-            '//Create the appropriate certificate Items for this certificate
-            '//Generate the gift certificate number in JumpRun for each of them
-            GenerateIndividualCertificateRecordsFromGCOrder(CurrentGiftCertificate)
+
+            GenerateIndividualCertificateRecordsFromGCOrder(CurrentGiftCertificate, ObjPricing, ExtraAltitudeDiscrepency:=ExtraAltitudeDiscount)
+
 
             UpdateGCOrderStatus(CurrentGiftCertificate, CertificateStatus.Processing, dteInsertDate)
 
@@ -115,6 +258,9 @@ Public Class FrmProcess
                 Button8.PerformClick()
             End If
 
+
+            '//TODO: RESET THE CREATE OR SELECT CUSTOMER BACK TO DEFAULT
+
         Catch ex As Exception
             Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
             Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)
@@ -125,7 +271,112 @@ Public Class FrmProcess
 
     End Sub
 
+    Private Function ValidatePricingDifferenceBetweenWebstoreAndPromo(GC As ClsGiftCertificate2, currentItemPricing As ClsPromoPricing, objPricing As ClsPromoPricing) As Object
+        Dim Valid As Boolean = True
 
+        'For each item with a qty verify that the ObjPricing item price matches the currentItemPricing price + discount
+        If GC.Item1.Quantity > 0 Then
+            If currentItemPricing.TotalPrice1 <> objPricing.TotalPrice1 Then
+                Valid = False
+            End If
+        End If
+        If GC.Item2.Quantity > 0 Then
+            If currentItemPricing.TotalPrice2 <> objPricing.TotalPrice2 Then
+                Valid = False
+            End If
+        End If
+        If GC.Item3.Quantity > 0 Then
+            If currentItemPricing.TotalPrice3 <> objPricing.TotalPrice3 Then
+                Valid = False
+            End If
+        End If
+        If GC.Item4.Quantity > 0 Then
+            If currentItemPricing.TotalPrice4 <> objPricing.TotalPrice4 Then
+                Valid = False
+            End If
+        End If
+        If GC.Item5.Quantity > 0 Then
+            If currentItemPricing.TotalPrice5 <> objPricing.TotalPrice5 Then
+                Valid = False
+            End If
+        End If
+
+        Return Valid
+    End Function
+
+    Private Function CalculateCurrentOrderPricing(GCOrder As ClsGiftCertificate2, Optional PriceincludesDiscount As Boolean = False) As ClsPromoPricing
+        If CurrentGiftCertificate Is Nothing Then
+            Throw New Exception("No gift certificate specified")
+        End If
+
+        Dim CUrrentPricing = New ClsPromoPricing
+
+        Try
+
+            CUrrentPricing.ID = 0
+
+            '//Count Tandem Itesm - ie.  Exclude Video Only Item
+            ''Exclude Item3 Qty
+            Dim IndividualDiscountAmount As Integer = +System.Math.Abs(CalculateItemDiscountAmountFromOrder(GCOrder))
+
+            If GCOrder.Item1.Quantity > 0 Then
+                If PriceincludesDiscount Then
+                    CUrrentPricing.ItemPrice1 = GCOrder.Item1.Price
+                Else
+                    CUrrentPricing.ItemPrice1 = GCOrder.Item1.Price + IndividualDiscountAmount
+                End If
+
+                CUrrentPricing.ItemDiscount1 = 0 - IndividualDiscountAmount
+            End If
+
+            If GCOrder.Item2.Quantity > 0 Then
+                If PriceincludesDiscount Then
+                    CUrrentPricing.ItemPrice2 = GCOrder.Item2.Price
+                Else
+                    CUrrentPricing.ItemPrice2 = GCOrder.Item2.Price + IndividualDiscountAmount
+                End If
+                CUrrentPricing.ItemDiscount2 = 0 - IndividualDiscountAmount
+            End If
+
+            If GCOrder.Item3.Quantity > 0 Then
+                If PriceincludesDiscount Then
+                    CUrrentPricing.ItemPrice3 = GCOrder.Item3.Price
+                Else
+                    CUrrentPricing.ItemPrice3 = GCOrder.Item3.Price + IndividualDiscountAmount
+                End If
+                CUrrentPricing.ItemDiscount3 = 0 - IndividualDiscountAmount
+            End If
+
+            If GCOrder.Item4.Quantity > 0 Then
+                If PriceincludesDiscount Then
+                    CUrrentPricing.ItemPrice4 = GCOrder.Item4.Price
+                Else
+                    CUrrentPricing.ItemPrice4 = GCOrder.Item4.Price + IndividualDiscountAmount
+                End If
+                CUrrentPricing.ItemDiscount4 = 0 - IndividualDiscountAmount
+            End If
+
+            If GCOrder.Item5.Quantity > 0 Then
+                If PriceincludesDiscount Then
+                    CUrrentPricing.ItemPrice5 = GCOrder.Item5.Price
+                Else
+                    CUrrentPricing.ItemPrice5 = GCOrder.Item5.Price + IndividualDiscountAmount
+                End If
+                CUrrentPricing.ItemDiscount5 = 0 - IndividualDiscountAmount
+            End If
+
+
+            Return CUrrentPricing
+
+        Catch ex As Exception
+
+        End Try
+
+
+
+
+
+    End Function
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Try
@@ -245,6 +496,10 @@ Public Class FrmProcess
                 Else
                     Button5.Enabled = False
                 End If
+
+                If CurrentGiftCertificate.GC_DiscountCode <> String.Empty Then
+                    CboPromoPricing.SelectedValue = 1
+                End If
             Else
                 BlankDisplayFields()
                 Button5.Enabled = False
@@ -321,6 +576,13 @@ Public Class FrmProcess
 
             End If
 
+            Dim x = RetrievePricingPromos(True)
+
+            CboPromoPricing.DataSource = x
+            CboPromoPricing.DisplayMember = "Value"
+            CboPromoPricing.ValueMember = "Key"
+
+
             'Populate fields from LIst which I want to show - Purchaser, Recipient, Shipper 
             SfDataGrid1.TableControl.VerticalScrollBarVisible = True
 
@@ -343,21 +605,9 @@ Public Class FrmProcess
             SfDataGrid1.Columns.Add(New GridTextColumn() With {.MappingName = "GC_TotalAmount", .HeaderText = "OrderAmount"})
             SfDataGrid1.Columns.Add(New GridTextColumn() With {.MappingName = "GC_TotalDiscount", .HeaderText = "DiscountAmount"})
             SfDataGrid1.Columns.Add(New GridTextColumn() With {.MappingName = "PersonalizedFrom", .HeaderText = "Personalized From"})
+            SfDataGrid1.Columns.Add(New GridTextColumn() With {.MappingName = "OriginalOrderDate", .HeaderText = "Order Date"})
 
-            'Setup the Jumprun Datagrid columns (for bothg grids)
-            SfDGPurchaser.AutoGenerateColumns = False
-            SfDGPurchaser.AllowResizingColumns = True
-            SfDGPurchaser.Columns.Clear()
-            SfDGPurchaser.Columns.Add(New GridTextColumn() With {.MappingName = "wCustId", .HeaderText = "Id"})
-            SfDGPurchaser.Columns.Add(New GridTextColumn() With {.MappingName = "PercentageMatch", .HeaderText = "Score"})
-            SfDGPurchaser.Columns.Add(New GridTextColumn() With {.MappingName = "sCust", .HeaderText = "Name"})
-            SfDGPurchaser.Columns.Add(New GridTextColumn() With {.MappingName = "sStreet1", .HeaderText = "Address"})
-            SfDGPurchaser.Columns.Add(New GridTextColumn() With {.MappingName = "sCity", .HeaderText = "City"})
-            SfDGPurchaser.Columns.Add(New GridTextColumn() With {.MappingName = "sState", .HeaderText = "State"})
-            SfDGPurchaser.Columns.Add(New GridTextColumn() With {.MappingName = "sZip", .HeaderText = "Zip"})
-            SfDGPurchaser.Columns.Add(New GridTextColumn() With {.MappingName = "sEmail", .HeaderText = "Email"})
-            SfDGPurchaser.Columns.Add(New GridTextColumn() With {.MappingName = "sPhone1", .HeaderText = "Phone 1"})
-            SfDGPurchaser.Columns.Add(New GridTextColumn() With {.MappingName = "sPhone2", .HeaderText = "Phone 2"})
+            SetupPurchaserDatagrid()
 
             'SfDGRecipient.AutoGenerateColumns = False
             'SfDGRecipient.AllowResizingColumns = True
@@ -395,6 +645,23 @@ Public Class FrmProcess
         End Try
     End Sub
 
+    Private Sub SetupPurchaserDatagrid()
+        'Setup the Jumprun Datagrid columns (for bothg grids)
+        SfDGPurchaser.AutoGenerateColumns = False
+        SfDGPurchaser.AllowResizingColumns = True
+        SfDGPurchaser.Columns.Clear()
+        SfDGPurchaser.Columns.Add(New GridTextColumn() With {.MappingName = "wCustId", .HeaderText = "Id"})
+        SfDGPurchaser.Columns.Add(New GridTextColumn() With {.MappingName = "PercentageMatch", .HeaderText = "Score"})
+        SfDGPurchaser.Columns.Add(New GridTextColumn() With {.MappingName = "sCust", .HeaderText = "Name"})
+        SfDGPurchaser.Columns.Add(New GridTextColumn() With {.MappingName = "sStreet1", .HeaderText = "Address"})
+        SfDGPurchaser.Columns.Add(New GridTextColumn() With {.MappingName = "sCity", .HeaderText = "City"})
+        SfDGPurchaser.Columns.Add(New GridTextColumn() With {.MappingName = "sState", .HeaderText = "State"})
+        SfDGPurchaser.Columns.Add(New GridTextColumn() With {.MappingName = "sZip", .HeaderText = "Zip"})
+        SfDGPurchaser.Columns.Add(New GridTextColumn() With {.MappingName = "sEmail", .HeaderText = "Email"})
+        SfDGPurchaser.Columns.Add(New GridTextColumn() With {.MappingName = "sPhone1", .HeaderText = "Phone 1"})
+        SfDGPurchaser.Columns.Add(New GridTextColumn() With {.MappingName = "sPhone2", .HeaderText = "Phone 2"})
+    End Sub
+
     Private Sub SfDataGrid1_QueryRowStyle(sender As Object, e As QueryRowStyleEventArgs) Handles SfDGPurchaser.QueryRowStyle
         If e.RowType = RowType.DefaultRow Then
             Dim item = TryCast(e.RowData, ClsJumpRunPossibleCustomers)
@@ -409,9 +676,14 @@ Public Class FrmProcess
                     e.Style.BackColor = Color.Green
                     e.Style.TextColor = Color.White
                 Else
+                    e.Style.BackColor = Color.White
                     e.Style.TextColor = Color.Black
                 End If
-            End If
+            Else
+                e.Style.BackColor = Color.White
+                e.Style.TextColor = Color.Black
+        End If
+
 
         End If
     End Sub
@@ -527,6 +799,8 @@ Public Class FrmProcess
 
                 Panel2.Visible = True
             End If
+
+            SetupPurchaserDatagrid()
             'Get Potential Matches for name
             Dim objperson1 = New ClsPersonSearch() With {.FirstName = lblPurchaser_FirstName.Text.Trim,
                                                          .LastName = lblPurchaser_LastName.Text.Trim,
@@ -851,22 +1125,22 @@ Public Class FrmProcess
     Public Sub initializegrid()
         AllowColumnReordering()
 
-        'If IO.File.Exists("FrmProcess1.xml") Then
-        '    Try
-        '        Using file = System.IO.File.Open("FrmProcess1.xml", System.IO.FileMode.Open)
-        '            Me.SfDataGrid1.Deserialize(file)
-        '        End Using
-        '    Catch ex As Exception
-        '    End Try
-        'End If
-        'If IO.File.Exists("FrmProcess2.xml") Then
-        '    Try
-        '        Using file = System.IO.File.Open("FrmProcess2.xml", System.IO.FileMode.Open)
-        '            Me.SfDGPurchaser.Deserialize(file)
-        '        End Using
-        '    Catch ex As Exception
-        '    End Try
-        'End If
+        If IO.File.Exists("FrmProcess1.xml") Then
+            Try
+                Using file = System.IO.File.Open("FrmProcess1.xml", System.IO.FileMode.Open)
+                    Me.SfDataGrid1.Deserialize(file)
+                End Using
+            Catch ex As Exception
+            End Try
+        End If
+        If IO.File.Exists("FrmProcess2.xml") Then
+            Try
+                Using file = System.IO.File.Open("FrmProcess2.xml", System.IO.FileMode.Open)
+                    Me.SfDGPurchaser.Deserialize(file)
+                End Using
+            Catch ex As Exception
+            End Try
+        End If
     End Sub
 
     Private Sub AllowColumnReordering()
@@ -887,4 +1161,19 @@ Public Class FrmProcess
     Private Sub TabPageBillingAddress_Click(sender As Object, e As EventArgs) Handles TabPageBillingAddress.Click
 
     End Sub
+
+    Private Sub CboPromoPricing_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CboPromoPricing.SelectedIndexChanged
+        ObjPricing = RetrievePricingPromoForId(CType(CboPromoPricing.SelectedItem, KeyValuePair(Of Integer, String)).Key)
+    End Sub
+
+    Private Sub FrmProcess_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        Using file = System.IO.File.Create("FrmProcess1.xml")
+            Me.SfDataGrid1.Serialize(file)
+        End Using
+        Using file = System.IO.File.Create("FrmProcess2.xml")
+            Me.SfDGPurchaser.Serialize(file)
+        End Using
+    End Sub
+
+
 End Class

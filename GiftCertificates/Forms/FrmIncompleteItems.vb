@@ -1,4 +1,5 @@
-﻿Imports Syncfusion.WinForms.DataGrid
+﻿Imports System.ComponentModel
+Imports Syncfusion.WinForms.DataGrid
 Imports Syncfusion.WinForms.DataGrid.Events
 
 Public Class FrmIncompleteItems
@@ -39,8 +40,17 @@ Public Class FrmIncompleteItems
         SfDataGrid1.Columns.Add(New GridTextColumn() With {.MappingName = "Item4.Quantity", .HeaderText = "Tandem 12k With Vid"})
         SfDataGrid1.Columns.Add(New GridTextColumn() With {.MappingName = "Item5.Quantity", .HeaderText = "Video"})
         SfDataGrid1.Columns.Add(New GridTextColumn() With {.MappingName = "GC_TotalAmount", .HeaderText = "OrderAmount-TBD"})
-        SfDataGrid1.Columns.Add(New GridTextColumn() With {.MappingName = "GC_TotalDiscount", .HeaderText = "DiscountAmount-TBD"})
+        SfDataGrid1.Columns.Add(New GridTextColumn() With {.MappingName = "GC_TotalDiscount", .HeaderText = "DiscountAmount"})
+        SfDataGrid1.Columns.Add(New GridTextColumn() With {.MappingName = "OriginalOrderDate", .HeaderText = "Original Order Date"})
 
+        If IO.File.Exists("FrmIncomplete1.xml") Then
+            Try
+                Using file = System.IO.File.Open("FrmIncomplete1.xml", System.IO.FileMode.Open)
+                    Me.SfDataGrid1.Deserialize(file)
+                End Using
+            Catch ex As Exception
+            End Try
+        End If
     End Sub
 
     Private Sub RdoEntered_CheckedChanged(sender As Object, e As EventArgs) Handles RdoEntered.CheckedChanged, RdoProcessed.CheckedChanged, RdoBoth.CheckedChanged
@@ -104,5 +114,11 @@ Public Class FrmIncompleteItems
             objProcess.Certificate = CurrentGiftCertificate
             objProcess.ShowDialog()
         End If
+    End Sub
+
+    Private Sub FrmIncompleteItems_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        Using file = System.IO.File.Create("FrmIncomplete1.xml")
+            Me.SfDataGrid1.Serialize(file)
+        End Using
     End Sub
 End Class

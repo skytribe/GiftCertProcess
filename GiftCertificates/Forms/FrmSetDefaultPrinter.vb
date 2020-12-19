@@ -53,6 +53,7 @@ Public Class FrmSetDefaultPrinter
                 For psrc = 0 To prntDoc.PrinterSettings.PaperSources.Count - 1
                     If prntDoc.PrinterSettings.PaperSources(psrc).SourceName = strDefaultTray Then
                         prntDoc.PrinterSettings.DefaultPageSettings.PaperSource = prntDoc.PrinterSettings.PaperSources.Item(psrc)
+                        prntDoc.PrinterSettings.Duplex = Duplex.Simplex
                     End If
                 Next
 

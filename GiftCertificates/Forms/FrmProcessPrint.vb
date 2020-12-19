@@ -179,9 +179,14 @@ Public Class FrmProcessPrint
             If RdoInPerson.Checked Then
                 Button3.Enabled = False
                 ChkReturnLabel.Enabled = False
+            ElseIf RdoPrint.Checked Then
+                Button3.Enabled = True
+                ChkReturnLabel.Enabled = True
+                ChkReturnLabel.Checked = False
             Else
                 Button3.Enabled = True
                 ChkReturnLabel.Enabled = True
+                ChkReturnLabel.Checked = True
             End If
         End If
 

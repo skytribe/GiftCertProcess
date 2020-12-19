@@ -6,7 +6,8 @@ Public Module ModWooImport
     Public Sub ImportWooCSVFile(filename As String)
         Dim sb As New System.Text.StringBuilder
         Dim NotesSB As New System.Text.StringBuilder
-
+        Dim LstRjectedOrderLineItems As New List(Of ClsWooLineItem)
+        Dim LstOrderLineItems As New List(Of ClsWooLineItem)
         Dim i As Integer = 0
         Dim irow = 0
         Dim InvalidRecords As Integer = 0
@@ -19,7 +20,8 @@ Public Module ModWooImport
             Dim currentRow As String()
 
 
-            Dim LstOrderLineItems As New List(Of ClsWooLineItem)
+
+
             While Not MyReader.EndOfData
                 Try
                     Dim ObjLineItem As New ClsWooLineItem
@@ -32,145 +34,149 @@ Public Module ModWooImport
                     Else
                         'Only Process - processing status records
                         If String.IsNullOrEmpty(currentRow(1)) = False Then
+                            ObjLineItem.WebStoreOrderStatus = currentRow(1).Trim.ToLower
+
+                            If String.IsNullOrEmpty(currentRow(0)) = False Then
+                                ObjLineItem.OrderID = currentRow(0)
+                            End If
+
+                            If String.IsNullOrEmpty(currentRow(2)) = False Then
+                                ObjLineItem.OrderDate = currentRow(2)
+                            End If
+
+                            If String.IsNullOrEmpty(currentRow(3)) = False Then
+                                ObjLineItem.PaymentMethod = currentRow(3)
+                            End If
+                            If String.IsNullOrEmpty(currentRow(3)) = False Then
+                                ObjLineItem.PaymentMethod = currentRow(3)
+                            End If
+                            If String.IsNullOrEmpty(currentRow(5)) = False Then
+                                ObjLineItem.Shippingmethod = currentRow(5)
+                            End If
+
+                            If String.IsNullOrEmpty(currentRow(6)) = False Then
+                                ObjLineItem.ShippingFirstName = currentRow(6)
+                            End If
+                            If String.IsNullOrEmpty(currentRow(7)) = False Then
+                                ObjLineItem.ShippingLastName = currentRow(7)
+                            End If
+                            If String.IsNullOrEmpty(currentRow(8)) = False Then
+                                ObjLineItem.ShippingAddress1 = currentRow(8)
+                            End If
+                            If String.IsNullOrEmpty(currentRow(9)) = False Then
+                                ObjLineItem.ShippingAddress2 = currentRow(9)
+                            End If
+
+                            If String.IsNullOrEmpty(currentRow(10)) = False Then
+                                ObjLineItem.ShippingCity = currentRow(10)
+                            End If
+                            If String.IsNullOrEmpty(currentRow(11)) = False Then
+                                ObjLineItem.ShippingState = currentRow(11)
+                            End If
+
+                            If String.IsNullOrEmpty(currentRow(12)) = False Then
+                                ObjLineItem.ShippingZip = currentRow(12)
+                            End If
+                            If String.IsNullOrEmpty(currentRow(13)) = False Then
+                                ObjLineItem.ShippingCountry = currentRow(13)
+                            End If
+
+                            If String.IsNullOrEmpty(currentRow(14)) = False Then
+                                ObjLineItem.BillingFirstName = currentRow(14)
+                            End If
+                            If String.IsNullOrEmpty(currentRow(15)) = False Then
+                                ObjLineItem.BillingLastName = currentRow(15)
+                            End If
+                            If String.IsNullOrEmpty(currentRow(16)) = False Then
+                                ObjLineItem.BillingAddress1 = currentRow(16)
+                            End If
+                            If String.IsNullOrEmpty(currentRow(17)) = False Then
+                                ObjLineItem.BillingAddress2 = currentRow(17)
+                            End If
+
+                            If String.IsNullOrEmpty(currentRow(18)) = False Then
+                                ObjLineItem.BillingCity = currentRow(18)
+                            End If
+                            If String.IsNullOrEmpty(currentRow(19)) = False Then
+                                ObjLineItem.BillingState = currentRow(19)
+                            End If
+
+                            If String.IsNullOrEmpty(currentRow(20)) = False Then
+                                ObjLineItem.BillingZip = currentRow(20)
+                            End If
+                            If String.IsNullOrEmpty(currentRow(21)) = False Then
+                                ObjLineItem.BillingCountry = currentRow(21)
+                            End If
+
+                            If String.IsNullOrEmpty(currentRow(22)) = False Then
+                                ObjLineItem.BillingPhone = currentRow(22)
+                            End If
+                            If String.IsNullOrEmpty(currentRow(23)) = False Then
+                                ObjLineItem.BillingEmail = currentRow(23)
+                            End If
+
+                            If String.IsNullOrEmpty(currentRow(24)) = False Then
+                                ObjLineItem.BillingOrderComments = currentRow(24)
+                            End If
+
+                            'Quantity of items purchased	
+                            'Product Name	
+                            'Product SKU	
+                            'Product ID	
+                            'Item price INCL. tax	
+                            'Coupon Code	
+                            'Order Discount	
+                            'Order Total(Auth.net)	
+                            'Paid Date	
+                            'Transaction ID
+                            If String.IsNullOrEmpty(currentRow(25)) = False Then
+                                ObjLineItem.LineitemQuantityPurchased = currentRow(25)
+                            End If
+                            If String.IsNullOrEmpty(currentRow(26)) = False Then
+                                ObjLineItem.LineitemName = currentRow(26)
+                            End If
+
+
+                            Dim SKU = DetermineSKUFromDescription(ObjLineItem.LineitemName)
+
+                            If String.IsNullOrEmpty(SKU) = False Then
+                                ObjLineItem.LineitemSKU = SKU
+                            End If
+                            'If String.IsNullOrEmpty(currentRow(27)) = False Then
+                            '    ObjLineItem.Pro = currentRow(27)
+                            'End If
+                            If String.IsNullOrEmpty(currentRow(28)) = False Then
+                                ObjLineItem.LineitemPrice = currentRow(28)
+                            End If
+                            If String.IsNullOrEmpty(currentRow(29)) = False Then
+                                ObjLineItem.LineitemCouponCode = currentRow(29)
+                            End If
+                            If String.IsNullOrEmpty(currentRow(30)) = False Then
+                                ObjLineItem.OrderDiscount = currentRow(30)
+                            End If
+                            If String.IsNullOrEmpty(currentRow(31)) = False Then
+                                ObjLineItem.OrderTotal = currentRow(31)
+                            End If
+
+                            If String.IsNullOrEmpty(currentRow(32)) = False Then
+                                ObjLineItem.PaidDate = currentRow(32)
+                            End If
+                            If String.IsNullOrEmpty(currentRow(33)) = False Then
+                                ObjLineItem.TransactionID = currentRow(33)
+                            End If
+
+                            If String.IsNullOrEmpty(currentRow(34)) = False Then
+                                ObjLineItem.Notes = "Import From Woo webstore" & Environment.NewLine & currentRow(34)
+                            Else
+                                ObjLineItem.Notes = "Import From Woo webstore"
+                            End If
+
                             If currentRow(1).Trim.ToLower = TypeToIncludeForImport Then
-                                If String.IsNullOrEmpty(currentRow(0)) = False Then
-                                    ObjLineItem.OrderID = currentRow(0)
-                                End If
-
-                                If String.IsNullOrEmpty(currentRow(2)) = False Then
-                                    ObjLineItem.OrderDate = currentRow(2)
-                                End If
-
-                                If String.IsNullOrEmpty(currentRow(3)) = False Then
-                                    ObjLineItem.PaymentMethod = currentRow(3)
-                                End If
-                                If String.IsNullOrEmpty(currentRow(3)) = False Then
-                                    ObjLineItem.PaymentMethod = currentRow(3)
-                                End If
-                                If String.IsNullOrEmpty(currentRow(5)) = False Then
-                                    ObjLineItem.Shippingmethod = currentRow(5)
-                                End If
-
-                                If String.IsNullOrEmpty(currentRow(6)) = False Then
-                                    ObjLineItem.ShippingFirstName = currentRow(6)
-                                End If
-                                If String.IsNullOrEmpty(currentRow(7)) = False Then
-                                    ObjLineItem.ShippingLastName = currentRow(7)
-                                End If
-                                If String.IsNullOrEmpty(currentRow(8)) = False Then
-                                    ObjLineItem.ShippingAddress1 = currentRow(8)
-                                End If
-                                If String.IsNullOrEmpty(currentRow(9)) = False Then
-                                    ObjLineItem.ShippingAddress2 = currentRow(9)
-                                End If
-
-                                If String.IsNullOrEmpty(currentRow(10)) = False Then
-                                    ObjLineItem.ShippingCity = currentRow(10)
-                                End If
-                                If String.IsNullOrEmpty(currentRow(11)) = False Then
-                                    ObjLineItem.ShippingState = currentRow(11)
-                                End If
-
-                                If String.IsNullOrEmpty(currentRow(12)) = False Then
-                                    ObjLineItem.ShippingZip = currentRow(12)
-                                End If
-                                If String.IsNullOrEmpty(currentRow(13)) = False Then
-                                    ObjLineItem.ShippingCountry = currentRow(13)
-                                End If
-
-                                If String.IsNullOrEmpty(currentRow(14)) = False Then
-                                    ObjLineItem.BillingFirstName = currentRow(14)
-                                End If
-                                If String.IsNullOrEmpty(currentRow(15)) = False Then
-                                    ObjLineItem.BillingLastName = currentRow(15)
-                                End If
-                                If String.IsNullOrEmpty(currentRow(16)) = False Then
-                                    ObjLineItem.BillingAddress1 = currentRow(16)
-                                End If
-                                If String.IsNullOrEmpty(currentRow(17)) = False Then
-                                    ObjLineItem.BillingAddress2 = currentRow(17)
-                                End If
-
-                                If String.IsNullOrEmpty(currentRow(18)) = False Then
-                                    ObjLineItem.BillingCity = currentRow(18)
-                                End If
-                                If String.IsNullOrEmpty(currentRow(19)) = False Then
-                                    ObjLineItem.BillingState = currentRow(19)
-                                End If
-
-                                If String.IsNullOrEmpty(currentRow(20)) = False Then
-                                    ObjLineItem.BillingZip = currentRow(20)
-                                End If
-                                If String.IsNullOrEmpty(currentRow(21)) = False Then
-                                    ObjLineItem.BillingCountry = currentRow(21)
-                                End If
-
-                                If String.IsNullOrEmpty(currentRow(22)) = False Then
-                                    ObjLineItem.BillingPhone = currentRow(22)
-                                End If
-                                If String.IsNullOrEmpty(currentRow(23)) = False Then
-                                    ObjLineItem.BillingEmail = currentRow(23)
-                                End If
-
-                                If String.IsNullOrEmpty(currentRow(24)) = False Then
-                                    ObjLineItem.BillingOrderComments = currentRow(24)
-                                End If
-
-                                'Quantity of items purchased	
-                                'Product Name	
-                                'Product SKU	
-                                'Product ID	
-                                'Item price INCL. tax	
-                                'Coupon Code	
-                                'Order Discount	
-                                'Order Total(Auth.net)	
-                                'Paid Date	
-                                'Transaction ID
-                                If String.IsNullOrEmpty(currentRow(25)) = False Then
-                                    ObjLineItem.LineitemQuantityPurchased = currentRow(25)
-                                End If
-                                If String.IsNullOrEmpty(currentRow(26)) = False Then
-                                    ObjLineItem.LineitemName = currentRow(26)
-                                End If
-
-
-                                Dim SKU = DetermineSKUFromDescription(ObjLineItem.LineitemName)
-
-                                If String.IsNullOrEmpty(SKU) = False Then
-                                    ObjLineItem.LineitemSKU = SKU
-                                End If
-                                'If String.IsNullOrEmpty(currentRow(27)) = False Then
-                                '    ObjLineItem.Pro = currentRow(27)
-                                'End If
-                                If String.IsNullOrEmpty(currentRow(28)) = False Then
-                                    ObjLineItem.LineitemPrice = currentRow(28)
-                                End If
-                                If String.IsNullOrEmpty(currentRow(29)) = False Then
-                                    ObjLineItem.LineitemCouponCode = currentRow(29)
-                                End If
-                                If String.IsNullOrEmpty(currentRow(30)) = False Then
-                                    ObjLineItem.OrderDiscount = currentRow(30)
-                                End If
-                                If String.IsNullOrEmpty(currentRow(31)) = False Then
-                                    ObjLineItem.OrderTotal = currentRow(31)
-                                End If
-
-                                If String.IsNullOrEmpty(currentRow(32)) = False Then
-                                    ObjLineItem.PaidDate = currentRow(32)
-                                End If
-                                If String.IsNullOrEmpty(currentRow(33)) = False Then
-                                    ObjLineItem.TransactionID = currentRow(33)
-                                End If
-
-                                If String.IsNullOrEmpty(currentRow(34)) = False Then
-                                    ObjLineItem.Notes = "Import From Woo webstore" & Environment.NewLine & currentRow(34)
-                                Else
-                                    ObjLineItem.Notes = "Import From Woo webstore"
-                                End If
-
 
                                 LstOrderLineItems.Add(ObjLineItem)
                             Else
+
+                                LstRjectedOrderLineItems.Add(ObjLineItem)
                                 InvalidRecords += 1
                             End If
                         End If
@@ -202,6 +208,10 @@ Public Module ModWooImport
 
                         LstGCOrderQueue.Add(ObjGiftCertificate)
                         ObjGiftCertificate = New ClsGiftCertificate2
+                    End If
+
+                    If String.IsNullOrEmpty(lineitem.OrderDate) = False Then
+                        ObjGiftCertificate.OriginalOrderDate = lineitem.OrderDate
                     End If
 
                     If String.IsNullOrEmpty(lineitem.OrderID) = False Then
@@ -301,14 +311,19 @@ Public Module ModWooImport
                         Select Case lineitem.LineitemSKU.Trim
                             Case "TDM10K"
                                 ObjGiftCertificate.Item1.Quantity = lineitem.LineitemQuantityPurchased
+                                ObjGiftCertificate.Item1.Price = lineitem.LineitemPrice
                             Case "TDM12K"
                                 ObjGiftCertificate.Item2.Quantity = lineitem.LineitemQuantityPurchased
+                                ObjGiftCertificate.Item2.Price = lineitem.LineitemPrice
                             Case "TDM10KVID"
                                 ObjGiftCertificate.Item3.Quantity = lineitem.LineitemQuantityPurchased
+                                ObjGiftCertificate.Item3.Price = lineitem.LineitemPrice
                             Case "TDM12KVID"
                                 ObjGiftCertificate.Item4.Quantity = lineitem.LineitemQuantityPurchased
+                                ObjGiftCertificate.Item4.Price = lineitem.LineitemPrice
                             Case "VID"
                                 ObjGiftCertificate.Item5.Quantity = lineitem.LineitemQuantityPurchased
+                                ObjGiftCertificate.Item5.Price = lineitem.LineitemPrice
                         End Select
                     End If
 
@@ -342,15 +357,17 @@ Public Module ModWooImport
                     iOrderCounter += 1
                 Next
 
-                '//Display a final message detailing records imported
-                Dim sb1 As New System.Text.StringBuilder
+                ''//Display a final message detailing records imported
+                'Dim sb1 As New System.Text.StringBuilder
 
-                sb1.AppendLine(String.Format("{0} Order records are found.", LstGCOrderQueue.Count + InvalidRecords))
-                sb1.AppendLine(String.Format("{0} Order records are Invalid Status.", InvalidRecords))
-                sb1.AppendLine(String.Format("{0} will inserted into the queue.", newCertificatesCreated))
-                sb1.AppendLine(String.Format("{0} are duplicates of record already in the queue.", duplicateCertificatesFound))
-                MessageBox.Show(sb1.ToString, "Import Results", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                'sb1.AppendLine(String.Format("{0} Order records are found.", LstGCOrderQueue.Count + InvalidRecords))
+                'sb1.AppendLine(String.Format("{0} Order records are Invalid Status.", InvalidRecords))
+                'sb1.AppendLine(String.Format("{0} will inserted into the queue.", newCertificatesCreated))
+                'sb1.AppendLine(String.Format("{0} are duplicates of record already in the queue.", duplicateCertificatesFound))
+                'MessageBox.Show(sb1.ToString, "Import Results", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
+                Dim frmresult As New FrmRejectedImportItems(LstGCOrderQueue.Count + InvalidRecords, newCertificatesCreated, duplicateCertificatesFound, LstRjectedOrderLineItems)
+                frmresult.ShowDialog()
             Catch ex As Exception
                 Dim m1 As MethodBase = MethodBase.GetCurrentMethod()
                 Dim methodName = String.Format("{0}.{1}", m1.ReflectedType.Name, m1.Name)

@@ -42,7 +42,7 @@ Partial Class FrmImport
         'TxtFilename
         '
         Me.TxtFilename.Location = New System.Drawing.Point(103, 25)
-        Me.TxtFilename.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TxtFilename.Margin = New System.Windows.Forms.Padding(2)
         Me.TxtFilename.Name = "TxtFilename"
         Me.TxtFilename.Size = New System.Drawing.Size(314, 20)
         Me.TxtFilename.TabIndex = 1
@@ -50,9 +50,9 @@ Partial Class FrmImport
         'BtnBrowse
         '
         Me.BtnBrowse.Location = New System.Drawing.Point(421, 24)
-        Me.BtnBrowse.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.BtnBrowse.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnBrowse.Name = "BtnBrowse"
-        Me.BtnBrowse.Size = New System.Drawing.Size(56, 19)
+        Me.BtnBrowse.Size = New System.Drawing.Size(28, 21)
         Me.BtnBrowse.TabIndex = 2
         Me.BtnBrowse.Text = "..."
         Me.BtnBrowse.UseVisualStyleBackColor = True
@@ -60,7 +60,7 @@ Partial Class FrmImport
         'BtnImport
         '
         Me.BtnImport.Location = New System.Drawing.Point(151, 69)
-        Me.BtnImport.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.BtnImport.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnImport.Name = "BtnImport"
         Me.BtnImport.Size = New System.Drawing.Size(56, 34)
         Me.BtnImport.TabIndex = 3
@@ -70,7 +70,7 @@ Partial Class FrmImport
         'BtnClose
         '
         Me.BtnClose.Location = New System.Drawing.Point(220, 69)
-        Me.BtnClose.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.BtnClose.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(56, 34)
         Me.BtnClose.TabIndex = 4
@@ -87,7 +87,7 @@ Partial Class FrmImport
         Me.Controls.Add(Me.BtnBrowse)
         Me.Controls.Add(Me.TxtFilename)
         Me.Controls.Add(Me.Label1)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "FrmImport"
         Me.Text = "Import From Shopify"
         Me.ResumeLayout(False)

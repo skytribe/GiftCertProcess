@@ -62,7 +62,10 @@ Public Enum PrintLabelTypes
 End Enum
 
 
-Module Lists
+Public Module Lists
+    Public Const NullDate As String = "12/30/1899 12:00:00 AM"
+    Public Const BCC_Email = "gcprocess@spottysworld.com"
+
     Function RetrievePaymentMethodList() As List(Of KeyValuePair(Of Integer, String))
         Dim L As New List(Of KeyValuePair(Of Integer, String))
         L.Add(New KeyValuePair(Of Integer, String)(PaymentMethod.Cash, "Cash"))

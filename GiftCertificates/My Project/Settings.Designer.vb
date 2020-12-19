@@ -202,7 +202,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("File")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Printer")>  _
         Public Property DevelopmentPrinterOrFile() As String
             Get
                 Return CType(Me("DevelopmentPrinterOrFile"),String)
@@ -233,6 +233,18 @@ Namespace My
             End Get
             Set
                 Me("DefaultPrinterTray") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("637")>  _
+        Public Property FreeAltitudeID() As Integer
+            Get
+                Return CType(Me("FreeAltitudeID"),Integer)
+            End Get
+            Set
+                Me("FreeAltitudeID") = value
             End Set
         End Property
     End Class
